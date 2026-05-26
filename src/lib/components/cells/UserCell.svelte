@@ -1,0 +1,168 @@
+<script lang="ts">
+	import type { ServerUser } from '$lib/api';
+	import PlayerIcon from '../render/PlayerIcon.svelte';
+	import StarIcon from '$lib/assets/icons/star_big.png';
+	import DemonIcon from '$lib/assets/icons/demon.png';
+	import CoinIcon from '$lib/assets/icons/coin.png';
+	import PointsIcon from '$lib/assets/icons/points.png';
+	import ModBadge from '$lib/assets/badges/mod.png';
+	import AdminBadge from '$lib/assets/badges/admin.png';
+
+	import { formatNumber, iconTypeToString } from '$lib';
+	import Link from '../core/Link.svelte';
+	import { resolve } from '$app/paths';
+
+	interface Props {
+		user: ServerUser;
+	}
+
+	const { user }: Props = $props();
+
+	const icon_type = $derived(iconTypeToString(user.icon_type));
+</script>
+
+<div class="cell">
+	{#if user.rank}
+		#{user.rank}
+	{/if}
+
+	<div class="icon-container">
+		<PlayerIcon
+			icon={user.icon}
+			color1={user.color}
+			color2={user.color2}
+			glow={user.special == 2}
+			iconType={icon_type}
+			maxHeight="3rem"
+			maxWidth="100%"
+		/>
+	</div>
+
+	<div class="primary-container">
+		<div class="name-container">
+			<Link
+				href={resolve('/users/[id]', {
+					id: user.id.toString()
+				})}
+			>
+				{user.name}
+			</Link>
+
+			{#if user.permission_level && user.permission_level > 1}
+				<img src={AdminBadge} alt="admin" class="stats-icon" />
+			{:else if user.permission_level && user.permission_level > 0}
+				<img src={ModBadge} alt="mod" class="stats-icon" />
+			{/if}
+		</div>
+
+		<div class="stats-row">
+			<div class="stats-item">
+				{formatNumber(user.stars)}
+				<img src={StarIcon} alt="stars" class="stats-icon" />
+			</div>
+			<div class="stats-item">
+				{formatNumber(user.demons)}
+				<img src={DemonIcon} alt="demons" class="stats-icon" />
+			</div>
+			{#if user.creator_points > 0}
+				<div class="stats-item">
+					{formatNumber(user.creator_points)}
+					<img src={PointsIcon} alt="demons" class="stats-icon" />
+				</div>
+			{:else}
+				<div class="spacer"></div>
+			{/if}
+			<div class="stats-item">
+				{formatNumber(user.coins)}
+				<img src={CoinIcon} alt="demons" class="stats-icon" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.cell {
+		display: flex;
+
+		max-width: 35rem;
+
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 16px;
+		padding: 1em 1em 1em 1em;
+
+		box-shadow: #bbb 0 1px 10px;
+
+		column-gap: 1em;
+		align-items: center;
+	}
+
+	.icon-container {
+		width: 6rem;
+		height: auto;
+	}
+
+	.cell:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.name-container {
+		display: flex;
+		gap: 0.5em;
+		align-items: start;
+	}
+
+	.primary-container {
+		display: flex;
+		flex-direction: row;
+		column-gap: 1em;
+		align-items: center;
+
+		flex-grow: 1;
+	}
+
+	.stats-icon {
+		height: 1.5em;
+	}
+
+	.stats-row {
+		margin-left: auto;
+		display: grid;
+		grid-template-columns: auto auto;
+		column-gap: 0.75em;
+		row-gap: 0.25em;
+	}
+
+	@media screen and (max-width: 512px) {
+		.primary-container {
+			flex-direction: column;
+			align-items: start;
+
+			row-gap: 0.5em;
+		}
+
+		.icon-container {
+			width: 2em;
+		}
+
+		.stats-row {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+
+			justify-content: start;
+			align-items: center;
+		}
+
+		.spacer {
+			display: none;
+		}
+	}
+
+	.stats-item {
+		display: flex;
+		column-gap: 0.25em;
+
+		justify-content: end;
+		align-items: center;
+	}
+</style>
