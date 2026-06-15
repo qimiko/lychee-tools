@@ -23,11 +23,11 @@
 
 	a:hover {
 		box-shadow: #aaa 0 1px 15px;
-		transform: translateY(-2px);
+		background-image: radial-gradient(100% 100% at 100% 0, #7f73ee 0, #9362ee 100%);
 		transition-duration: 0.1s;
 	}
 
 	a:active {
-		transform: translateY(2px);
+		background-image: radial-gradient(100% 100% at 100% 0, #9362ee 0, #7f73ee 100%);
 	}
 </style>

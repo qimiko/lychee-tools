@@ -346,11 +346,6 @@
 		row-gap: 1em;
 	}
 
-	hr {
-		border: 0;
-		border-bottom: 2px dashed #ccc;
-	}
-
 	.management-options {
 		display: flex;
 		justify-content: center;

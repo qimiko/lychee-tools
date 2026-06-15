@@ -8,6 +8,8 @@
 	import AdminBadge from '$lib/assets/badges/admin.png';
 	import OwnerBadge from '$lib/assets/badges/owner.png';
 
+	import Logo from "$lib/assets/icon.png";
+
 	interface Props {
 		profile: ServerMe | null;
 	}
@@ -25,15 +27,14 @@
 </script>
 
 <div class="topnav">
-	<!-- div class="links">
+	<div class="links">
     <a href={resolve("/")} class="logo-container">
-      <img src={GDPSLogo} alt="1.9 GDPS" class="logo" />
+      <img src={Logo} alt="1.9 GDPS" class="logo" />
     </a>
-    <a href={resolve("/download")}>Download</a>
+    <!-- a href={resolve("/download")}>Download</a>
     <a href={resolve("/tools")}>Tools</a>
-    <a href={resolve("/leaderboards")}>Leaderboards</a>
-  </div -->
-	<a href={resolve('/')}>1.9 GDPS</a>
+    <a href={resolve("/leaderboards")}>Leaderboards</a -->
+  </div>
 
 	{#if profile}
 		{#if profile.user}
@@ -88,6 +89,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		height: 52px;
 	}
 
 	.topnav::after {
@@ -95,7 +98,7 @@
 		position: absolute;
 		height: 4px;
 		width: 100%;
-		top: 48px;
+		top: 52px;
 		left: 0px;
 
 		background: repeating-linear-gradient(
@@ -108,7 +111,6 @@
 	}
 
 	.topnav a:not(.logo-container) {
-		float: left;
 		display: block;
 		color: #f2f2f2;
 		text-align: center;
@@ -137,19 +139,26 @@
 		height: 1.5em;
 	}
 
-	/*
-.links {
-  display: flex;
-  align-items: center;
-}
+	.links {
+		display: flex;
+		height: 100%;
+	}
 
-.logo-container {
-  padding: 0 1em;
-}
+	.links a {
+		height: 100%;
+	}
 
-.logo {
-  height: 2.5em;
-  display: block;
-}
-*/
+	.logo-container {
+		display: flex;
+		align-items: center;
+
+		height: 100%;
+	}
+
+	.logo {
+		height: 2.5em;
+		display: block;
+
+		padding: 0 0.5em;
+	}
 </style>

@@ -19,18 +19,16 @@
 	.title {
 		line-height: 72px;
 		text-align: center;
-		text-transform: uppercase;
 		background-image: linear-gradient(to right, #dddddd, #d7d7d7, #dddddd);
 		border-bottom: 3px solid #ccc;
-		box-shadow: #bbb 0 1px 10px;
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
 	}
 
 	.subtitle {
 		line-height: 64px;
 		text-align: center;
-		text-transform: uppercase;
 		background-image: linear-gradient(to right, #dddddd, #d7d7d7, #dddddd);
 		border-bottom: 2px solid #ccc;
-		box-shadow: #bbb 0 1px 10px;
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
 	}
 </style>

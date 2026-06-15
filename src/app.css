@@ -2,5 +2,36 @@ body {
 	margin: 0;
 	background: #eee;
 	background-attachment: fixed;
-	font-family: 'Inter Variable', sans-serif;
+	font-family: 'Montserrat Variable', sans-serif;
+}
+
+table {
+	width: 100%;
+	border: none;
+	border-spacing: 0;
+}
+
+table thead {
+	background-color: white;
+}
+
+th {
+	border: none;
+}
+
+td {
+	border: none;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #fafafa;
+}
+
+tbody tr:hover {
+	background-color: #ddd;
+}
+
+hr {
+	border: 0;
+	border-bottom: 2px dashed #ccc;
 }

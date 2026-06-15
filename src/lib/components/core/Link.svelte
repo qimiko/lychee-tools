@@ -18,17 +18,6 @@
 		cursor: pointer;
 		margin: 5px;
 		text-decoration: none;
-		transition: all 0.5s;
-	}
-
-	a:hover {
-		box-shadow: #aaa 0 1px 15px;
-		transform: translateY(-2px);
-		transition-duration: 0.1s;
-	}
-
-	a:active {
-		transform: translateY(2px);
 	}
 
 	.inline-link {
@@ -42,7 +31,6 @@
 		padding: 0;
 		margin: 0;
 		max-width: none;
-		border-bottom: 1px dashed #222;
 		width: auto;
 	}
 
@@ -59,5 +47,6 @@
 	.inline-link:hover {
 		color: #222;
 		background-color: transparent;
+		text-decoration: underline dashed;
 	}
 </style>

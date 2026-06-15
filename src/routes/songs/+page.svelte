@@ -148,26 +148,4 @@
 		overflow-x: scroll;
 		scrollbar-gutter: stable;
 	}
-
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
-	}
 </style>
