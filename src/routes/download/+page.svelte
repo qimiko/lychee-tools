@@ -3,6 +3,11 @@
 	import Title from '$lib/components/core/Title.svelte';
 	import LinkButton from '$lib/components/core/LinkButton.svelte';
 
+	import FolderArchive from '@lucide/svelte/icons/folder-archive';
+	import Android from '$lib/components/icons/Android.svelte';
+	import Windows from '$lib/components/icons/Windows.svelte';
+	import Link from '$lib/components/core/Link.svelte';
+
 	const { data } = $props();
 </script>
 
@@ -13,13 +18,59 @@
 	<meta name="og:image" content={logo} />
 </svelte:head>
 
-<Title>1.9 GDPS (u{data.update.version}) Downloads</Title>
+<Title>1.9 GDPS Downloads</Title>
 
-<b
-	>By downloading the below versions, you confirm that you own a legal version of the game on said
-	device.</b
->
+<div class="download-buttons">
+	<div>
+		Downloading version <b>u{data.update.version}</b>.
+	</div>
 
-<p><LinkButton href={data.update.links.windows_portable}>Windows (ZIP)</LinkButton></p>
-<p><LinkButton href={data.update.links.windows}>Windows (Installer)</LinkButton></p>
-<p><LinkButton href={data.update.links.android}>Android</LinkButton></p>
+	<b>
+		By downloading the below versions, you confirm that you own a legal version of the game on said
+		device.
+	</b>
+
+	<div>
+		<LinkButton href={data.update.links.windows}>
+			<span class="link-icon">
+				<Windows /> Download for Windows
+			</span>
+		</LinkButton>
+
+		<p>
+			<Link href={data.update.links.windows_portable}>
+				<span class="link-icon">
+					<FolderArchive size={18} /> ZIP archive for Windows
+				</span>
+			</Link>
+		</p>
+	</div>
+
+	<div>
+		<LinkButton href={data.update.links.android}>
+			<span class="link-icon">
+				<Android /> Download for Android
+			</span>
+		</LinkButton>
+
+		<p>Android download only works on 32-bit devices!</p>
+	</div>
+</div>
+
+<style>
+	.download-buttons {
+		display: flex;
+		flex-direction: column;
+
+		align-items: center;
+
+		gap: 1em;
+	}
+
+	.link-icon {
+		display: flex;
+		gap: 0.25rem;
+
+		align-items: center;
+	}
+</style>

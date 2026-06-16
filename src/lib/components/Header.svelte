@@ -11,7 +11,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
 
-	import Logo from "$lib/assets/icon.png";
+	import Logo from '$lib/assets/icon.png';
 
 	interface Props {
 		profile: ServerMe | null;
@@ -33,14 +33,14 @@
 
 <div class="topnav beta">
 	<div class="links">
-    <a href={resolve("/")} class="logo-container">
-      <img src={Logo} alt="1.9 GDPS" class="logo" />
-    </a>
+		<a href={resolve('/')} class="logo-container">
+			<img src={Logo} alt="1.9 GDPS" class="logo" />
+		</a>
 
-    <a href={resolve("/download")} class="hidden-small">Download</a>
-    <a href={resolve("/tools")} class="hidden-small">Tools</a>
-    <a href={resolve("/leaderboards")} class="hidden-small">Leaderboards</a>
-  </div>
+		<a href={resolve('/download')} class="hidden-small">Download</a>
+		<a href={resolve('/tools')} class="hidden-small">Tools</a>
+		<a href={resolve('/leaderboards')} class="hidden-small">Leaderboards</a>
+	</div>
 
 	<div class="account-items">
 		{#if profile}
@@ -59,9 +59,9 @@
 							iconType={iconTypeToString(profile.user.icon_type)}
 							maxHeight="1.5em"
 						/>
-	
+
 						{profile.name}
-	
+
 						{#if profile.permission_level > 2}
 							<img src={OwnerBadge} alt="owner" class="stats-icon" />
 						{:else if profile.permission_level > 1}
@@ -88,10 +88,10 @@
 		{/if}
 	</div>
 
-	<button class="show-small button" onclick={() => overflow_open = !overflow_open}>
+	<button class="show-small button" onclick={() => (overflow_open = !overflow_open)}>
 		{#if overflow_open}
 			<ChevronUp />
-		{:else}	
+		{:else}
 			<ChevronDown />
 		{/if}
 	</button>
@@ -99,9 +99,9 @@
 
 {#if overflow_open}
 	<div class="topnav-overflow show-small">
-		<a href={resolve("/download")}>Download</a>
-		<a href={resolve("/tools")}>Tools</a>
-		<a href={resolve("/leaderboards")}>Leaderboards</a>
+		<a href={resolve('/download')}>Download</a>
+		<a href={resolve('/tools')}>Tools</a>
+		<a href={resolve('/leaderboards')}>Leaderboards</a>
 	</div>
 {/if}
 
@@ -121,7 +121,7 @@
 		height: 100%;
 		margin-left: auto;
 	}
-	
+
 	.topnav-overflow {
 		height: 156px;
 		position: absolute;
@@ -133,6 +133,8 @@
 
 		border-bottom: 2px #555 solid;
 		box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+
+		z-index: 99;
 	}
 
 	.topnav-overflow a {
@@ -164,7 +166,9 @@
 		height: 100vh;
 		width: 100vw;
 
-		background-color: rgba(0,0,0,0.5);
+		background-color: rgba(0, 0, 0, 0.5);
+
+		z-index: 98;
 	}
 
 	.beta::after {
@@ -182,6 +186,8 @@
 			/* End yellow at 20px */ #000000 20px,
 			/* Start black at 20px */ #000000 40px /* End black at 40px (total pattern width) */
 		);
+
+		z-index: 97;
 	}
 
 	.button {
@@ -190,7 +196,8 @@
 		border: none;
 	}
 
-	.topnav a:not(.logo-container), .button {
+	.topnav a:not(.logo-container),
+	.button {
 		color: #f2f2f2;
 		text-align: center;
 		padding: 0 16px;
@@ -203,12 +210,14 @@
 		align-items: center;
 	}
 
-	.topnav a:hover, .button:hover {
+	.topnav a:hover,
+	.button:hover {
 		background-color: #444;
 		color: white;
 	}
 
-	.topnav a:active, .button:active {
+	.topnav a:active,
+	.button:active {
 		background-color: #222;
 		color: white;
 	}
@@ -248,7 +257,7 @@
 			display: none;
 		}
 	}
-	
+
 	.show-small {
 		display: inline-block;
 	}

@@ -17,7 +17,6 @@
 		max-width: 256px;
 		cursor: pointer;
 		margin: 5px;
-		text-decoration: none;
 	}
 
 	.inline-link {

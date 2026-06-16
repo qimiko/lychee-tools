@@ -14,7 +14,6 @@
 		color: #f2f2f2;
 		font-size: 20px;
 		padding: 12px;
-		max-width: 256px;
 		cursor: pointer;
 		margin: 5px;
 		text-decoration: none;
@@ -22,7 +21,7 @@
 	}
 
 	a:hover {
-		box-shadow: #aaa 0 1px 15px;
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.6);
 		background-image: radial-gradient(100% 100% at 100% 0, #7f73ee 0, #9362ee 100%);
 		transition-duration: 0.1s;
 	}

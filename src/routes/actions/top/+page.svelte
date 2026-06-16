@@ -65,4 +65,3 @@
 {#if 0 in top_by_permissions && top_by_permissions[0]}
 	{@render drawTopTable(top_by_permissions[0])}
 {/if}
-

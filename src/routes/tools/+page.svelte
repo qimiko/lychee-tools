@@ -2,17 +2,17 @@
 	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
-	import Music from "@lucide/svelte/icons/music";
-	import ListMusic from "@lucide/svelte/icons/list-music";
-	import Users from "@lucide/svelte/icons/users";
-	import UserSearch from "@lucide/svelte/icons/user-search";
-	import Folders from "@lucide/svelte/icons/folders";
-	import Search from "@lucide/svelte/icons/search";
-	import Trophy from "@lucide/svelte/icons/trophy";
+	import Music from '@lucide/svelte/icons/music';
+	import ListMusic from '@lucide/svelte/icons/list-music';
+	import Users from '@lucide/svelte/icons/users';
+	import UserSearch from '@lucide/svelte/icons/user-search';
+	import Folders from '@lucide/svelte/icons/folders';
+	import Search from '@lucide/svelte/icons/search';
+	import Trophy from '@lucide/svelte/icons/trophy';
 	import MessageSquare from '@lucide/svelte/icons/message-square';
-	import ChartColumn from "@lucide/svelte/icons/chart-column";
+	import ChartColumn from '@lucide/svelte/icons/chart-column';
 	import Shield from '@lucide/svelte/icons/shield';
-	import Play from "@lucide/svelte/icons/play";
+	import Play from '@lucide/svelte/icons/play';
 	import Settings from '@lucide/svelte/icons/settings';
 
 	import { resolve } from '$app/paths';
@@ -26,7 +26,6 @@
 	<meta name="og:title" content="1.9 GDPS" />
 	<meta name="og:description" content="Management tools for the 1.9 GDPS." />
 </svelte:head>
-
 
 <Title size={1}>Available Tools</Title>
 
@@ -101,9 +100,9 @@
 			</span>
 		</Link>
 		<Link href={resolve('/users')}>
-		<span class="link-icon">
-			<UserSearch size={18} /> Search Users
-		</span>
+			<span class="link-icon">
+				<UserSearch size={18} /> Search Users
+			</span>
 		</Link>
 	</div>
 
@@ -127,7 +126,6 @@
 		{#if data.current_user && data.current_user.permission_level >= 2}
 			<Link href={resolve('/tasks')}>Cron Job</Link>
 		{/if}
-
 	</div>
 </div>
 
