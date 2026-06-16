@@ -3,7 +3,7 @@
 	import Link from '$lib/components/core/Link.svelte';
 	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import { resolve } from '$app/paths';
-	import { fade, fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 
 	import YouTube from '$lib/components/icons/YouTube.svelte';
 	import Twitter from '$lib/components/icons/Twitter.svelte';
@@ -32,7 +32,6 @@
 	];
 
 	let current_img_idx = $state(0);
-	const current_img = $derived(banner_listing[current_img_idx]);
 
 	let previous_img = $state(banner_listing[0]);
 
@@ -70,9 +69,12 @@
 
 	<enhanced:img src={previous_img['src']} alt={previous_img['name']} class="screenshot" />
 
-	{#key current_img}
-		<div in:fade={{ duration: 500 }}>
-			<enhanced:img src={current_img['src']} alt={current_img['name']} class="screenshot" />
+	{#key current_img_idx}
+		<div in:fade={{ duration: 1000 }}>
+			<enhanced:img
+				src={banner_listing[current_img_idx]['src']}
+				alt={banner_listing[current_img_idx]['name']}
+				class="screenshot" />
 		</div>
 	{/key}
 
@@ -99,13 +101,13 @@
 		</div>
 	</div>
 
-	<div class="banner-link">
+	<!-- div class="banner-link">
 		<a
 			href={resolve('/levels/[id]', {
 				id: current_img['id'].toString()
 			})}>{current_img['name']}</a
 		>
-	</div>
+	</div -->
 </div>
 
 Check out the 1.9 GDPS on other sites!
@@ -299,8 +301,12 @@ Check out the 1.9 GDPS on other sites!
 
 		aspect-ratio: 16 / 9;
 
+		/*
 		min-height: 400px;
 		max-height: 512px;
+		*/
+
+		height: 400px;
 		object-fit: cover;
 	}
 
@@ -310,8 +316,11 @@ Check out the 1.9 GDPS on other sites!
 
 		aspect-ratio: 16 / 9;
 
+		/*
 		min-height: 400px;
 		max-height: 512px;
+		*/
+		height: 400px;
 
 		position: absolute;
 
@@ -416,6 +425,7 @@ Check out the 1.9 GDPS on other sites!
 		filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
 	}
 
+	/*
 	.banner-link {
 		position: absolute;
 		bottom: 11%;
@@ -434,4 +444,5 @@ Check out the 1.9 GDPS on other sites!
 	.banner-link a:hover {
 		text-decoration: underline;
 	}
+	*/
 </style>
