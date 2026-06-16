@@ -194,6 +194,8 @@
 		appearance: none;
 		background-color: transparent;
 		border: none;
+
+		margin-bottom: -0.25em;
 	}
 
 	.topnav a:not(.logo-container),
@@ -252,7 +254,7 @@
 		padding: 0 0.5em;
 	}
 
-	@media screen and (max-width: 512px) {
+	@media screen and (max-width: 600px) {
 		.links a.hidden-small {
 			display: none;
 		}
@@ -262,7 +264,7 @@
 		display: inline-block;
 	}
 
-	@media screen and (min-width: 512px) {
+	@media screen and (min-width: 601px) {
 		.show-small {
 			display: none;
 		}

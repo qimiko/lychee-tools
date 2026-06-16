@@ -155,7 +155,7 @@ Check out the 1.9 GDPS on other sites!
 <div class="bullet-list">
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/gameplay.png?w=400"
+			src="$lib/assets/home/info/gameplay.png"
 			alt="screenshot of Windy Landscape"
 			class="promo-image"
 		/>
@@ -167,7 +167,7 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/editor.png?w=400"
+			src="$lib/assets/home/info/editor.png"
 			alt="screenshot of the 1.9 editor"
 			class="promo-image"
 		/>
@@ -177,25 +177,25 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/main.png?w=400"
+			src="$lib/assets/home/info/main.png"
 			alt="screenshot of the main level, Jack Russel"
 			class="promo-image"
 		/>
 
 		<span>
-			Challenge yourself with the new main levels, which grant you original icons and colors!
+			Challenge yourself with the new main levels, which grant original icons and colors!
 		</span>
 	</div>
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/creators.png?w=400"
+			src="$lib/assets/home/info/creators.png"
 			alt="screenshot of the level search page"
 			class="promo-image"
 		/>
 
 		<span>
-			Enjoy the thousands of levels made by other creators, including levels granted our exclusive <span
+			Enjoy the thousands of levels made by other creators, including levels given our exclusive <span
 				class="super-text">Super</span
 			> rating!
 		</span>
@@ -203,7 +203,7 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/options.png?w=400"
+			src="$lib/assets/home/info/options.png"
 			alt="screenshot of the gameplay options"
 			class="promo-image"
 		/>
@@ -215,14 +215,14 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/mods.png?w=400"
+			src="$lib/assets/home/info/mods.png"
 			alt="screenshot of the mods list"
 			class="promo-image"
 		/>
 
 		<span>
 			The bundled modloader (based on <Link href="https://geode-sdk.org">Geode</Link>) gives
-			developers the option to modify the game however they want!
+			developers the option to modify the game further!
 		</span>
 	</div>
 </div>
@@ -280,6 +280,8 @@ Check out the 1.9 GDPS on other sites!
 
 	.promo-image {
 		width: 400px;
+		max-width: 95vw;
+
 		height: auto;
 
 		aspect-ratio: 16 / 9;
@@ -341,6 +343,8 @@ Check out the 1.9 GDPS on other sites!
 		display: flex;
 		flex-direction: column;
 		align-items: start;
+
+		margin-right: 1%;
 	}
 
 	.hero-content .description {
@@ -445,4 +449,20 @@ Check out the 1.9 GDPS on other sites!
 		text-decoration: underline;
 	}
 	*/
+
+	@media screen and (max-width: 512px) {
+		.hero-content {
+			align-items: center;
+			left: 0%;
+			width: 100%;
+		}
+
+		.hero-content .description {
+			text-align: center;
+		}
+
+		.title {
+			justify-content: center;
+		}
+	}
 </style>
