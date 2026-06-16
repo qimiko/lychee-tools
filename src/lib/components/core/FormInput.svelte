@@ -67,16 +67,18 @@
 		text-decoration: none;
 		border: none;
 		transition: all 0.5s;
+
+		font-family: inherit;
 	}
 
 	.input-style[type='submit']:hover {
-		box-shadow: #aaa 0 1px 15px;
-		transform: translateY(-2px);
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.6);
+		background-image: radial-gradient(100% 100% at 100% 0, #7f73ee 0, #9362ee 100%);
 		transition-duration: 0.1s;
 	}
 
 	.input-style[type='submit']:not(:disabled):active {
-		transform: translateY(2px);
+		background-image: radial-gradient(100% 100% at 100% 0, #9362ee 0, #7f73ee 100%);
 	}
 
 	.input-style[type='submit']:disabled {
