@@ -391,6 +391,8 @@ Check out the 1.9 GDPS on other sites!
 		margin-bottom: 1em;
 
 		gap: 0.5em;
+
+		background-color: #222;
 	}
 
 	.video-link {
