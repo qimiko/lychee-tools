@@ -542,13 +542,23 @@ export type ServerBan = {
 };
 
 export type SearchLevelType =
-	| 'super'
-	| 'self_unlisted'
 	| 'search_string'
-	| 'user_levels'
 	| 'most_downloaded'
 	| 'most_liked'
-	| 'map_pack';
+	| 'trending'
+	| 'recent'
+	| 'user_levels'
+	| 'featured'
+	| 'magic'
+	| 'map_pack'
+	| 'awarded'
+	| 'followed'
+	| 'friends'
+	| 'super'
+	| 'reported'
+	| 'list'
+	| 'sent'
+	| 'self_unlisted';
 
 export type LevelSearchParams = {
 	type?: SearchLevelType;
@@ -560,7 +570,7 @@ export type LevelSearchParams = {
 	diffs?: number[];
 	lengths?: number[];
 	star?: boolean;
-	no_star?: boolean;
+	no_stars?: boolean;
 	two_player?: boolean;
 	original?: boolean;
 	featured?: boolean;
@@ -950,8 +960,8 @@ export class GDPSClient {
 			url.searchParams.set('star', params.star ? 'true' : 'false');
 		}
 
-		if (params?.no_star !== undefined) {
-			url.searchParams.set('no_star', params.no_star ? 'true' : 'false');
+		if (params?.no_stars !== undefined) {
+			url.searchParams.set('no_stars', params.no_stars ? 'true' : 'false');
 		}
 
 		if (params?.two_player !== undefined) {

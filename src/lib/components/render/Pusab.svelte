@@ -5,12 +5,16 @@
 
 	import BigFontDesc from '$lib/bigfont.json';
 	import GoldFontDesc from '$lib/goldfont.json';
+	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {
 		text: string;
 		gold?: boolean;
 		maxWidth?: string;
 		maxHeight?: string;
+		color?: string;
+
+		class?: ClassValue;
 	}
 
 	const props: Props = $props();
@@ -57,6 +61,31 @@
 		size_ctr = size_ctr - previous_advance + previous_width;
 
 		return [size_ctr, Math.max(height, max_yoff)];
+	}
+
+	function recolorCanvas(base: HTMLCanvasElement, color: string) {
+		const canvas = document.createElement('canvas');
+
+		canvas.width = base.width;
+		canvas.height = base.height;
+
+		const ctx = canvas.getContext('2d');
+		if (!ctx) {
+			return;
+		}
+
+		ctx.drawImage(base, 0, 0);
+		
+		ctx.globalCompositeOperation = "multiply";
+		ctx.fillStyle = color;
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		// this isn't perfect, it messes up the shadow :(
+		// i'll figure it out eventually
+		ctx.globalCompositeOperation = 'destination-in';
+		ctx.drawImage(base, 0, 0);
+
+		return canvas;
 	}
 
 	function extractSprite(
@@ -146,6 +175,18 @@
 			previous_char = code;
 		}
 
+		if (props.color) {
+			const color_canvas = recolorCanvas(canvas, props.color);
+			if (color_canvas) {
+				const data = color_canvas.toDataURL('data/png');
+				image.src = data;
+	
+				rendered = props.text + props.color;
+	
+				return;
+			}
+		}
+
 		const data = canvas.toDataURL('data/png');
 		image.src = data;
 
@@ -178,7 +219,7 @@
 	});
 </script>
 
-<div class="img-container">
+<div class={["img-container", props.class]}>
 	<img
 		bind:this={image}
 		alt={props.text}
