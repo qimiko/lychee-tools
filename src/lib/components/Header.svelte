@@ -12,6 +12,7 @@
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
 
 	import Logo from '$lib/assets/icon.png';
+	import { beforeNavigate } from '$app/navigation';
 
 	interface Props {
 		profile: ServerMe | null;
@@ -29,19 +30,13 @@
 	);
 
 	let overflow_open = $state(false);
+
+	beforeNavigate(() => {
+		overflow_open = false;
+	});
 </script>
 
-<div class="topnav beta">
-	<div class="links">
-		<a href={resolve('/')} class="logo-container">
-			<img src={Logo} alt="1.9 GDPS" class="logo" />
-		</a>
-
-		<a href={resolve('/download')} class="hidden-small">Download</a>
-		<a href={resolve('/tools')} class="hidden-small">Tools</a>
-		<a href={resolve('/leaderboards')} class="hidden-small">Leaderboards</a>
-	</div>
-
+{#snippet profile_btn()}
 	<div class="account-items">
 		{#if profile}
 			{#if profile.user}
@@ -87,22 +82,57 @@
 			<a href={login_path}>Login</a>
 		{/if}
 	</div>
+{/snippet}
+
+<div class="topnav beta" class:menu-open={overflow_open}>
+	<div class="links">
+		<a href={resolve('/')} class="logo-container">
+			<img src={Logo} alt="1.9 GDPS" class="logo" />
+		</a>
+
+		<a href={resolve('/download')} class="hidden-small">Download</a>
+		<a href={resolve('/tools')} class="hidden-small">Tools</a>
+		<a href={resolve('/leaderboards')} class="hidden-small">Leaderboards</a>
+	</div>
+
+	<div class="account-container hidden-small">
+		{@render profile_btn()}
+	</div>
 
 	<button class="show-small button" onclick={() => (overflow_open = !overflow_open)}>
-		{#if overflow_open}
-			<ChevronUp />
-		{:else}
-			<ChevronDown />
-		{/if}
+		<div class="overflow-btn">
+			{#if overflow_open}
+				<ChevronUp />
+			{:else}
+				<ChevronDown />
+			{/if}
+		</div>
 	</button>
 </div>
 
 {#if overflow_open}
-	<div class="topnav-overflow show-small">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="overflow-background" onclick={() => overflow_open = false }></div>
+	<div class="topnav-overflow show-small" onfocusout={({ relatedTarget, currentTarget }) => {
+		if (relatedTarget instanceof HTMLElement && currentTarget.contains(relatedTarget)) {
+			return;
+		}
+		
+		overflow_open = false;
+
+	}}>
 		<a href={resolve('/download')}>Download</a>
 		<a href={resolve('/tools')}>Tools</a>
 		<a href={resolve('/leaderboards')}>Leaderboards</a>
+
+		<div class="overflow-account-container">
+			{@render profile_btn()}
+		</div>
 	</div>
+
+	<!-- for an incredibly silly illusion -->
+	<div style="height: 52px;"></div>
 {/if}
 
 <style>
@@ -117,21 +147,32 @@
 		height: 52px;
 	}
 
-	.account-items {
+	.topnav.menu-open {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 99;
+	}
+
+	.account-container {
 		height: 100%;
 		margin-left: auto;
 	}
 
+	.account-items {
+		height: 100%;
+	}
+
 	.topnav-overflow {
-		height: 156px;
-		position: absolute;
+		height: auto;
+		position: fixed;
 		top: 52px;
 		left: 0px;
 		background-color: #333;
 
 		width: 100%;
 
-		border-bottom: 2px #555 solid;
+		border-bottom: 2px #222 solid;
 		box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
 
 		z-index: 99;
@@ -160,9 +201,8 @@
 		color: white;
 	}
 
-	.topnav-overflow::after {
-		content: '';
-		position: absolute;
+	.overflow-background {
+		position: fixed;
 		height: 100vh;
 		width: 100vw;
 
@@ -194,8 +234,11 @@
 		appearance: none;
 		background-color: transparent;
 		border: none;
+	}
 
-		margin-bottom: -0.25em;
+	.overflow-btn {
+		display: flex;
+		align-items: center;
 	}
 
 	.topnav a:not(.logo-container),
@@ -256,6 +299,10 @@
 
 	@media screen and (max-width: 600px) {
 		.links a.hidden-small {
+			display: none;
+		}
+
+		.hidden-small { 
 			display: none;
 		}
 	}

@@ -35,8 +35,17 @@
 </script>
 
 <div class="page-container">
-	Showing {pageCount} out of {count}
-	{count == 1 ? singularName : pluralName} <span class="bullet">&bull;</span>
+	<span class="total-long">
+		Showing {pageCount} out of {count} total
+		{count == 1 ? singularName : pluralName} 
+	</span>
+	<span class="total-short">
+		{count}
+		{count == 1 ? singularName : pluralName} total
+	</span>
+
+	<span class="bullet">&bull;</span>
+
 	<IconButton
 		onclick={async () => {
 			await onSelect(Math.max(page - 1, 0));
@@ -76,5 +85,19 @@
 		align-items: center;
 
 		gap: 0.5em;
+	}
+
+	.total-short {
+		display: none;
+	}
+
+	@media screen and (max-width: 512px) {
+		.total-long {
+			display: none;
+		}
+
+		.total-short {
+			display: inline-block;
+		}
 	}
 </style>

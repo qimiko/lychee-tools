@@ -7,6 +7,8 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import FormInput from '$lib/components/core/FormInput.svelte';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Search from '@lucide/svelte/icons/search';
 
 	interface Props {
 		data: PageData;
@@ -56,8 +58,12 @@
 <Title>Song List</Title>
 
 <form onsubmit={onSearch}>
-	<FormInput placeholder="Song Name" type="text" bind:value={query} />
-	<FormInput type="submit" value="Search" />
+	<div class="search-row">
+		<FormInput placeholder="Song Name" type="text" bind:value={query} />
+		<IconButton type="submit">
+			<Search />
+		</IconButton>
+	</div>
 </form>
 
 <div>
@@ -147,5 +153,12 @@
 		width: 100%;
 		overflow-x: scroll;
 		scrollbar-gutter: stable;
+	}
+
+	.search-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
 	}
 </style>

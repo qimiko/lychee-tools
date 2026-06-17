@@ -7,6 +7,8 @@
 	import { goto } from '$app/navigation';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import UserCell from '$lib/components/cells/UserCell.svelte';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Search from '@lucide/svelte/icons/search';
 
 	interface Props {
 		data: PageData;
@@ -51,10 +53,15 @@
 <Title>Search Users</Title>
 
 <form onsubmit={onSearch}>
-	<FormInput placeholder="User Name" type="text" bind:value={query} />
-	<FormInput type="submit" value="Search" />
+	<div class="search-row">
+		<FormInput placeholder="Username or User ID" type="text" bind:value={query} />
+		<IconButton type="submit">
+			<Search />
+		</IconButton>
+	</div>
 </form>
 
+{#if data.params.query !== undefined}
 <div>
 	<Pagination
 		count={data.users.count}
@@ -96,6 +103,7 @@
 		/>
 	</div>
 {/if}
+{/if}
 
 <style>
 	.users-container {
@@ -110,5 +118,12 @@
 		justify-content: center;
 
 		width: 100%;
+	}
+
+	.search-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
 	}
 </style>
