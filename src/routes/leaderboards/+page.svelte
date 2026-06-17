@@ -111,6 +111,7 @@
 		flex-direction: column;
 
 		row-gap: 1em;
+		margin-bottom: 1em;
 	}
 
 	.stats-select {

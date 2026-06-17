@@ -33,7 +33,7 @@
 				<tr>
 					<td>
 						<Link
-							href={resolve('/accounts/[id]/manage', {
+							href={resolve('/accounts/[id]', {
 								id: item.id.toString()
 							})}
 						>

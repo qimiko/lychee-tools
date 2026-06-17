@@ -65,6 +65,8 @@
 		align-items: center;
 
 		gap: 1em;
+
+		margin: 0 0.5em;
 	}
 
 	.link-icon {

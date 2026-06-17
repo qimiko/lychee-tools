@@ -125,5 +125,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.5em;
+
+		margin-bottom: 1em;
 	}
 </style>
