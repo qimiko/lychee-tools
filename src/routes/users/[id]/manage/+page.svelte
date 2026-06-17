@@ -5,6 +5,9 @@
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import type { BanType } from '$lib/api/index.js';
 
+	import X from "@lucide/svelte/icons/x";
+	import IconButton from '$lib/components/core/IconButton.svelte';
+
 	let { data, form } = $props();
 
 	const ban_types = [
@@ -49,10 +52,10 @@
 					<td>{formatTimestamp(item.created)}</td>
 					<td>{item.type}</td>
 					<td>{item.reason}</td>
-					<td>
+					<td style="padding: 0.5em;">
 						<form method="POST" use:enhance action="?/remove_ban">
 							<input type="hidden" name="key" value={item.type} />
-							<FormInput type="submit" value="X" />
+							<IconButton type="submit"><X /></IconButton>
 						</form>
 					</td>
 				</tr>

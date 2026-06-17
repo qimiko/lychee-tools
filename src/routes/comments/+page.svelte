@@ -8,6 +8,11 @@
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/core/Button.svelte';
+
+	import MessageSquareDashed from "@lucide/svelte/icons/message-square-dashed";
+	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import X from "@lucide/svelte/icons/x";
 
 	let { data, form } = $props();
 
@@ -268,13 +273,12 @@
 
 	<div class="management-options">
 		{#if enable_management}
-			<button
+			<Button
 				onclick={() => {
 					data.comments.items.forEach((c) => {
 						checked_boxes.add(c.id);
 					});
-				}}>Select All</button
-			>
+				}}>Select All</Button>
 		{/if}
 
 		{#if checked_boxes.size > 0}
@@ -284,17 +288,28 @@
 				<div>{checked_boxes.size} comments selected.</div>
 			{/if}
 
-			<button onclick={() => checked_boxes.clear()}>Clear</button>
+			<Button onclick={() => checked_boxes.clear()}>
+				<span class="link-icon"><X /> Clear Selection</span>
+			</Button>
+		{/if}
+	</div>
+
+	{#if checked_boxes.size > 0}
+		<div class="management-options">
 
 			<form method="POST" action="?/bulk_delete" use:enhance>
 				{#each checked_boxes as item (item)}
 					<input type="hidden" name="comment" value={item} />
 				{/each}
-				<button formaction="?/bulk_hide">Hide All</button>
-				<input type="submit" value="Delete All" />
+				<Button formaction="?/bulk_hide">
+					<span class="link-icon"><MessageSquareDashed /> Hide</span>
+				</Button>
+				<Button type="submit">
+					<span class="link-icon"><Trash2 /> Delete</span>
+				</Button>
 			</form>
-		{/if}
-	</div>
+		</div>
+	{/if}
 
 	{#if form?.error}
 		<p>{form.error}</p>
@@ -349,6 +364,14 @@
 	.management-options {
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		gap: 0.5em;
+	}
+
+	.link-icon {
+		display: flex;
+		gap: 0.25rem;
+
+		align-items: center;
 	}
 </style>

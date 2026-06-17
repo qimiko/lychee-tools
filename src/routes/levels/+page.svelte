@@ -7,6 +7,8 @@
 	import { resolve } from '$app/paths';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Search from '@lucide/svelte/icons/search';
 
 	interface Props {
 		data: PageData;
@@ -73,8 +75,12 @@
 <Title>Search Levels</Title>
 
 <form onsubmit={onSearch}>
-	<FormInput placeholder="Query" type="text" bind:value={query} />
-	<FormInput type="submit" value="Search" />
+	<div class="search-row">
+		<FormInput placeholder="Query" type="text" bind:value={query} />
+		<IconButton type="submit">
+			<Search />
+		</IconButton>
+	</div>
 </form>
 
 <Pagination
@@ -110,5 +116,12 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
+	}
+
+	.search-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
 	}
 </style>

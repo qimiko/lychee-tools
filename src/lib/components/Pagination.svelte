@@ -1,5 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import IconButton from './core/IconButton.svelte';
+
+	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 
 	interface Props {
 		count: number;
@@ -33,21 +37,23 @@
 <div class="page-container">
 	Showing {pageCount} out of {count}
 	{count == 1 ? singularName : pluralName} <span class="bullet">&bull;</span>
-	<button
+	<IconButton
 		onclick={async () => {
 			await onSelect(Math.max(page - 1, 0));
 		}}
-		disabled={disabled || page == 0}>Prev</button
-	>
+		disabled={disabled || page == 0}>
+		<ChevronLeft />
+	</IconButton>
 
 	Page {disp_page} of {max_pages}
 
-	<button
+	<IconButton
 		onclick={async () => {
 			await onSelect(Math.min(page + 1, max_pages));
 		}}
-		disabled={disabled || count == 0 || disp_page == max_pages}>Next</button
-	>
+		disabled={disabled || count == 0 || disp_page == max_pages}>
+		<ChevronRight />
+	</IconButton>
 
 	{#if children}
 		<span class="bullet">&bull;</span>

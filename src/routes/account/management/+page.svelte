@@ -6,6 +6,9 @@
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
 
+	import X from "@lucide/svelte/icons/x";
+	import IconButton from '$lib/components/core/IconButton.svelte';
+
 	let { data, form } = $props();
 
 	let hide_ip = $state(true);
@@ -63,10 +66,10 @@
 						{device.origin_ip}
 					{/if}
 				</td>
-				<td>
+				<td style="padding: 0.5em;">
 					<form method="POST" use:enhance action="?/logout_device">
 						<input type="hidden" name="key" value={device.id} />
-						<FormInput type="submit" value="X" />
+						<IconButton type="submit"><X /></IconButton>
 					</form>
 				</td>
 			</tr>
