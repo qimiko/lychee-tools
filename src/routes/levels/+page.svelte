@@ -273,9 +273,7 @@
 			{#if data.params.type == 'list'}
 				<option value="list">List</option>
 			{/if}
-			{#if data.params.type == 'sent'}
-				<option value="sent">Sent</option>
-			{/if}
+			<option value="sent">Sent</option>
 			{#if data.params.type == 'self_unlisted'}
 				<option value="self_unlisted">Unlisted</option>
 			{/if}
@@ -502,26 +500,30 @@
 	}}
 />
 
-<div class="center">
-	<div class="level-row">
-		{#each data.levels.items as level (level.id)}
-			<LevelCell {level} />
-		{/each}
+{#if data.levels.count > 0}
+	<div class="center">
+		<div class="level-row">
+			{#each data.levels.items as level (level.id)}
+				<LevelCell {level} />
+			{/each}
+		</div>
 	</div>
-</div>
 
-<Pagination
-	count={data.levels.count}
-	pageCount={data.levels.items.length}
-	perPage={data.params.count ?? 25}
-	page={data.params.page ?? 0}
-	pluralName="levels"
-	singularName="level"
-	onSelect={async (x) => {
-		selected_page = x;
-		await updateQueryParams();
-	}}
-/>
+	<Pagination
+		count={data.levels.count}
+		pageCount={data.levels.items.length}
+		perPage={data.params.count ?? 25}
+		page={data.params.page ?? 0}
+		pluralName="levels"
+		singularName="level"
+		onSelect={async (x) => {
+			selected_page = x;
+			await updateQueryParams();
+		}}
+	/>
+{:else}
+	<p>No levels found!</p>
+{/if}
 
 <style>
 	.level-row {
