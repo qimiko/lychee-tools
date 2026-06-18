@@ -113,15 +113,17 @@
 {#if overflow_open}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="overflow-background" onclick={() => overflow_open = false }></div>
-	<div class="topnav-overflow show-small" onfocusout={({ relatedTarget, currentTarget }) => {
-		if (relatedTarget instanceof HTMLElement && currentTarget.contains(relatedTarget)) {
-			return;
-		}
-		
-		overflow_open = false;
+	<div class="overflow-background" onclick={() => (overflow_open = false)}></div>
+	<div
+		class="topnav-overflow show-small"
+		onfocusout={({ relatedTarget, currentTarget }) => {
+			if (relatedTarget instanceof HTMLElement && currentTarget.contains(relatedTarget)) {
+				return;
+			}
 
-	}}>
+			overflow_open = false;
+		}}
+	>
 		<a href={resolve('/download')}>Download</a>
 		<a href={resolve('/tools')}>Tools</a>
 		<a href={resolve('/leaderboards')}>Leaderboards</a>
@@ -302,7 +304,7 @@
 			display: none;
 		}
 
-		.hidden-small { 
+		.hidden-small {
 			display: none;
 		}
 	}

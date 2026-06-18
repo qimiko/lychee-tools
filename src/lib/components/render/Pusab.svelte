@@ -75,8 +75,8 @@
 		}
 
 		ctx.drawImage(base, 0, 0);
-		
-		ctx.globalCompositeOperation = "multiply";
+
+		ctx.globalCompositeOperation = 'multiply';
 		ctx.fillStyle = color;
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -180,9 +180,9 @@
 			if (color_canvas) {
 				const data = color_canvas.toDataURL('data/png');
 				image.src = data;
-	
+
 				rendered = props.text + props.color;
-	
+
 				return;
 			}
 		}
@@ -219,7 +219,7 @@
 	});
 </script>
 
-<div class={["img-container", props.class]}>
+<div class={['img-container', props.class]}>
 	<img
 		bind:this={image}
 		alt={props.text}

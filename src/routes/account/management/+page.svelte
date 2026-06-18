@@ -6,7 +6,7 @@
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
 
-	import X from "@lucide/svelte/icons/x";
+	import X from '@lucide/svelte/icons/x';
 	import IconButton from '$lib/components/core/IconButton.svelte';
 
 	let { data, form } = $props();

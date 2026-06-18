@@ -37,7 +37,7 @@
 <div class="page-container">
 	<span class="total-long">
 		Showing {pageCount} out of {count} total
-		{count == 1 ? singularName : pluralName} 
+		{count == 1 ? singularName : pluralName}
 	</span>
 	<span class="total-short">
 		{count}
@@ -50,7 +50,8 @@
 		onclick={async () => {
 			await onSelect(Math.max(page - 1, 0));
 		}}
-		disabled={disabled || page == 0}>
+		disabled={disabled || page == 0}
+	>
 		<ChevronLeft />
 	</IconButton>
 
@@ -60,7 +61,8 @@
 		onclick={async () => {
 			await onSelect(Math.min(page + 1, max_pages));
 		}}
-		disabled={disabled || count == 0 || disp_page == max_pages}>
+		disabled={disabled || count == 0 || disp_page == max_pages}
+	>
 		<ChevronRight />
 	</IconButton>
 

@@ -33,7 +33,7 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 		featured: onlyIfTrue(url.searchParams.get('featured')) ?? false,
 		audio_track: toIntSafe(url.searchParams.get('audio_track')),
 		custom_song: onlyIfTrue(url.searchParams.get('custom_song')) ?? false,
-		no_reupload: onlyIfTrue(url.searchParams.get('no_reupload')) ?? false,
+		no_reupload: onlyIfTrue(url.searchParams.get('no_reupload')) ?? false
 	};
 
 	const token = cookies.get('token');

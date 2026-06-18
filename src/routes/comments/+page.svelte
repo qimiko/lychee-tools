@@ -10,9 +10,9 @@
 	import { enhance } from '$app/forms';
 	import Button from '$lib/components/core/Button.svelte';
 
-	import MessageSquareDashed from "@lucide/svelte/icons/message-square-dashed";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
-	import X from "@lucide/svelte/icons/x";
+	import MessageSquareDashed from '@lucide/svelte/icons/message-square-dashed';
+	import Trash2 from '@lucide/svelte/icons/trash-2';
+	import X from '@lucide/svelte/icons/x';
 
 	let { data, form } = $props();
 
@@ -278,7 +278,8 @@
 					data.comments.items.forEach((c) => {
 						checked_boxes.add(c.id);
 					});
-				}}>Select All</Button>
+				}}>Select All</Button
+			>
 		{/if}
 
 		{#if checked_boxes.size > 0}
@@ -296,7 +297,6 @@
 
 	{#if checked_boxes.size > 0}
 		<div class="management-options">
-
 			<form method="POST" action="?/bulk_delete" use:enhance>
 				{#each checked_boxes as item (item)}
 					<input type="hidden" name="comment" value={item} />

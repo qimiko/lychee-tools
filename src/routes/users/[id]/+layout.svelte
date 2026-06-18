@@ -4,7 +4,7 @@
 	import Link from '$lib/components/core/Link.svelte';
 	import UserHeader from '$lib/components/UserHeader.svelte';
 
-	import Shield from "@lucide/svelte/icons/shield";
+	import Shield from '@lucide/svelte/icons/shield';
 
 	let { children, data } = $props();
 </script>
@@ -42,40 +42,40 @@
 </div>
 
 {#if data.current_user && data.current_user.permission_level >= 1}
-<div class="header-links">
-	<div class="no-bullet">
-		<Shield class="link-icon" />
+	<div class="header-links">
+		<div class="no-bullet">
+			<Shield class="link-icon" />
+		</div>
+
+		{#if data.current_user && data.current_user.permission_level >= 1}
+			<div>
+				<Link href={resolve('/comments') + `?user=${data.user.id}`}>Manage Comments</Link>
+			</div>
+		{/if}
+
+		{#if data.user.account_id && data.current_user.permission_level >= 2}
+			<div>
+				<Link
+					href={resolve('/accounts/[id]/manage', {
+						id: data.user.account_id.toString()
+					})}>Administrate Account</Link
+				>
+			</div>
+		{/if}
+
+		{#if data.user.account_id && data.current_user.permission_level >= 1}
+			<div>
+				<Link
+					href={resolve('/actions') + `?by_user=${data.user.id}&by_account=${data.user.account_id}`}
+					>View Actions</Link
+				>
+			</div>
+		{:else if data.current_user.permission_level >= 1}
+			<div>
+				<Link href={resolve('/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
+			</div>
+		{/if}
 	</div>
-
-	{#if data.current_user && data.current_user.permission_level >= 1}
-		<div>
-			<Link href={resolve('/comments') + `?user=${data.user.id}`}>Manage Comments</Link>
-		</div>
-	{/if}
-
-	{#if data.user.account_id && data.current_user.permission_level >= 2}
-		<div>
-			<Link
-				href={resolve('/accounts/[id]/manage', {
-					id: data.user.account_id.toString()
-				})}>Administrate Account</Link
-			>
-		</div>
-	{/if}
-
-	{#if data.user.account_id && data.current_user.permission_level >= 1}
-		<div>
-			<Link
-				href={resolve('/actions') + `?by_user=${data.user.id}&by_account=${data.user.account_id}`}
-				>View Actions</Link
-			>
-		</div>
-	{:else if data.current_user.permission_level >= 1}
-		<div>
-			<Link href={resolve('/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
-		</div>
-	{/if}
-</div>
 {/if}
 
 {@render children()}

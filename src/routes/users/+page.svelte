@@ -62,37 +62,11 @@
 </form>
 
 {#if data.params.query !== undefined}
-<div>
-	<Pagination
-		count={data.users.count}
-		pageCount={data.users.items.length}
-		perPage={data.params.count ?? 25}
-		page={data.params.page ?? 0}
-		pluralName="users"
-		singularName="user"
-		onSelect={async (x) => {
-			page = x;
-			await updateQueryParams();
-		}}
-	/>
-</div>
-
-{#if data.users.count == 0}
-	<div>No users were found!</div>
-{:else}
-	<div class="center">
-		<div class="users-container">
-			{#each data.users.items as user (user.id)}
-				<UserCell {user} />
-			{/each}
-		</div>
-	</div>
-
 	<div>
 		<Pagination
 			count={data.users.count}
 			pageCount={data.users.items.length}
-			perPage={data.params.count ?? 50}
+			perPage={data.params.count ?? 25}
 			page={data.params.page ?? 0}
 			pluralName="users"
 			singularName="user"
@@ -102,7 +76,33 @@
 			}}
 		/>
 	</div>
-{/if}
+
+	{#if data.users.count == 0}
+		<div>No users were found!</div>
+	{:else}
+		<div class="center">
+			<div class="users-container">
+				{#each data.users.items as user (user.id)}
+					<UserCell {user} />
+				{/each}
+			</div>
+		</div>
+
+		<div>
+			<Pagination
+				count={data.users.count}
+				pageCount={data.users.items.length}
+				perPage={data.params.count ?? 50}
+				page={data.params.page ?? 0}
+				pluralName="users"
+				singularName="user"
+				onSelect={async (x) => {
+					page = x;
+					await updateQueryParams();
+				}}
+			/>
+		</div>
+	{/if}
 {/if}
 
 <style>

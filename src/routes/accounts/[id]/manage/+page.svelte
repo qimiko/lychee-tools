@@ -90,7 +90,5 @@ Currently managing account <b>{data.account.name}</b>.
 {/if}
 
 {#if !can_manage && current_permissions < 3}
-	<div>
-		No actions available for you! :(
-	</div>
+	<div>No actions available for you! :(</div>
 {/if}

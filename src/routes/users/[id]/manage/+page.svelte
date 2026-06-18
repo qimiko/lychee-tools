@@ -5,7 +5,7 @@
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import type { BanType } from '$lib/api/index.js';
 
-	import X from "@lucide/svelte/icons/x";
+	import X from '@lucide/svelte/icons/x';
 	import IconButton from '$lib/components/core/IconButton.svelte';
 
 	let { data, form } = $props();

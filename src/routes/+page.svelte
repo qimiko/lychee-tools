@@ -74,7 +74,8 @@
 			<enhanced:img
 				src={banner_listing[current_img_idx]['src']}
 				alt={banner_listing[current_img_idx]['name']}
-				class="screenshot" />
+				class="screenshot"
+			/>
 		</div>
 	{/key}
 

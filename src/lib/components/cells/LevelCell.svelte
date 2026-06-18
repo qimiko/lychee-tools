@@ -54,8 +54,8 @@
 
 	const song_string = $derived(song_name);
 
-	const small_song_threshold = $derived(type == "cell" ? 20 : 60);
-	const extra_small_song_threshold = $derived(type == "cell" ? 40 : 80);
+	const small_song_threshold = $derived(type == 'cell' ? 20 : 60);
+	const extra_small_song_threshold = $derived(type == 'cell' ? 40 : 80);
 </script>
 
 <div class="level-cell" class:cell={type == 'cell'}>
@@ -73,11 +73,11 @@
 				>
 					{truncated_name}
 
-					{#if revision.objects > 100_000 && type != "cell"}
+					{#if revision.objects > 100_000 && type != 'cell'}
 						<img src={HighObjectIcon} alt="high objects" class="title-badge" />
 					{/if}
 
-					{#if revision.original_id && type != "cell"}
+					{#if revision.original_id && type != 'cell'}
 						<img src={CollaborationIcon} alt="collaboration" class="title-badge" />
 					{/if}
 				</Link>
@@ -93,7 +93,8 @@
 		<div
 			class="song-container"
 			class:cell={type == 'cell'}
-			class:small={song_string.length >= small_song_threshold && song_string.length < extra_small_song_threshold}
+			class:small={song_string.length >= small_song_threshold &&
+				song_string.length < extra_small_song_threshold}
 			class:extra-small={song_string.length >= extra_small_song_threshold}
 		>
 			<img src={NoteIcon} alt="note" class="song-icon" />
@@ -295,7 +296,6 @@
 		height: 0.75em;
 		display: none;
 	}
-
 
 	@media screen and (min-width: 512px) {
 		.title-badge {
