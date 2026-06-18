@@ -277,6 +277,8 @@ Check out the 1.9 GDPS on other sites!
 		margin: 2em auto;
 
 		max-width: 60%;
+
+		align-items: center;
 	}
 
 	.promo-image {
