@@ -86,7 +86,7 @@
 {/snippet}
 
 <div
-	class="topnav beta"
+	class="topnav"
 	class:menu-open={overflow_open}
 	class:beta={env.PUBLIC_SITE_TESTING == 'true'}
 >

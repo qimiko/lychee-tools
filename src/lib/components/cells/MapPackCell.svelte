@@ -56,7 +56,11 @@
 
 	<div class="info-container">
 		<div class="name-container">
-			<div class="level-name">
+			<div
+				class="level-name"
+				class:small={pack.name.length >= 15 && pack.name.length < 20}
+				class:extra-small={pack.name.length >= 20}
+			>
 				<Link href={resolve('/levels') + `?${search_params}`}>
 					{pack.name}
 				</Link>
@@ -133,6 +137,14 @@
 
 	.level-name {
 		font-size: 1.5em;
+	}
+
+	.level-name.small {
+		font-size: 1.25em;
+	}
+
+	.level-name.extra-small {
+		font-size: 1.05em;
 	}
 
 	.info-container {
