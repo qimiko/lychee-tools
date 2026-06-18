@@ -12,7 +12,6 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
 
-	import Logo from '$lib/assets/icon.png';
 	import { beforeNavigate } from '$app/navigation';
 
 	interface Props {
@@ -88,8 +87,8 @@
 
 <div class="topnav beta" class:menu-open={overflow_open} class:beta={env.PUBLIC_SITE_TESTING == "true"}>
 	<div class="links">
-		<a href={resolve('/')} class="logo-container">
-			<img src={Logo} alt="1.9 GDPS" class="logo" />
+		<a href={resolve('/')} class="logo-container" title="1.9 GDPS">
+			<enhanced:img src="$lib/assets/icon.png" alt="1.9 GDPS" class="logo" />
 		</a>
 
 		<a href={resolve('/download')} class="hidden-small">Download</a>
@@ -296,6 +295,7 @@
 
 	.logo {
 		height: 2.5em;
+		width: auto;
 		display: block;
 
 		padding: 0 0.5em;

@@ -12,8 +12,6 @@
 	import Trophy from '$lib/components/icons/Trophy.svelte';
 	import Download from '@lucide/svelte/icons/download';
 
-	import Logo from '$lib/assets/icon.png';
-
 	import PlaceholderImage from '$lib/assets/home/banner/placeholder.png?enhanced';
 	import Level1 from '$lib/assets/home/banner/12353.png?enhanced&blur=8&brightness=0.5';
 	import Level2 from '$lib/assets/home/banner/14895.png?enhanced&blur=8&brightness=0.5';
@@ -81,7 +79,7 @@
 
 	<div class="hero-content">
 		<h1 class="title">
-			<img src={Logo} alt="logo" class="logo" />
+			<enhanced:img src="$lib/assets/icon.png" alt="logo" class="logo" />
 			1.9 GDPS
 		</h1>
 
@@ -360,6 +358,7 @@ Check out the 1.9 GDPS on other sites!
 
 	.logo {
 		height: 4.5rem;
+		width: auto;
 	}
 
 	.title {

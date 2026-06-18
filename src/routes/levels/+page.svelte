@@ -209,6 +209,7 @@
 		if (show_song_filters) {
 			audio_track = 1;
 		} else {
+			custom_song = false;
 			audio_track = 0;
 		}
 
