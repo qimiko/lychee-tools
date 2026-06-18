@@ -88,3 +88,9 @@ Currently managing account <b>{data.account.name}</b>.
 		</p>
 	</form>
 {/if}
+
+{#if !can_manage && current_permissions < 3}
+	<div>
+		No actions available for you! :(
+	</div>
+{/if}

@@ -56,23 +56,23 @@
 		</div>
 
 		<div class="stats-row">
-			<div class="stats-item">
+			<div class="stats-item" class:small={user.stars > 100000}>
 				{formatNumber(user.stars)}
 				<img src={StarIcon} alt="stars" class="stats-icon" />
 			</div>
-			<div class="stats-item">
+			<div class="stats-item" class:small={user.demons > 10000}>
 				{formatNumber(user.demons)}
 				<img src={DemonIcon} alt="demons" class="stats-icon" />
 			</div>
 			{#if user.creator_points > 0}
-				<div class="stats-item">
+				<div class="stats-item" class:small={user.creator_points > 1000}>
 					{formatNumber(user.creator_points)}
 					<img src={PointsIcon} alt="demons" class="stats-icon" />
 				</div>
 			{:else}
 				<div class="spacer"></div>
 			{/if}
-			<div class="stats-item">
+			<div class="stats-item" class:small={user.coins > 1000}>
 				{formatNumber(user.coins)}
 				<img src={CoinIcon} alt="demons" class="stats-icon" />
 			</div>
@@ -109,12 +109,15 @@
 		display: flex;
 		gap: 0.5em;
 		align-items: start;
+
+		flex-grow: 1;
 	}
 
 	.primary-container {
 		display: flex;
 		flex-direction: row;
-		column-gap: 1em;
+		column-gap: 3em;
+
 		align-items: center;
 
 		flex-grow: 1;
@@ -130,6 +133,10 @@
 		grid-template-columns: auto auto;
 		column-gap: 0.75em;
 		row-gap: 0.25em;
+	}
+
+	.small {
+		font-size: small;
 	}
 
 	@media screen and (max-width: 512px) {
@@ -155,6 +162,10 @@
 
 		.spacer {
 			display: none;
+		}
+
+		.small {
+			font-size: x-small;
 		}
 	}
 
