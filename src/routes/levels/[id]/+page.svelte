@@ -152,7 +152,7 @@
 					</Link>
 				</div>
 			</div>
-			{/if}
+		{/if}
 	</div>
 </div>
 

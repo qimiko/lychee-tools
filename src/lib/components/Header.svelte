@@ -24,7 +24,7 @@
 	const login_base = resolve('/account/login');
 
 	const login_path = $derived(
-		(current_page == login_base || current_page == "/")
+		current_page == login_base || current_page == '/'
 			? login_base
 			: login_base + `?redirect=${encodeURIComponent(current_page)}`
 	);
@@ -85,7 +85,11 @@
 	</div>
 {/snippet}
 
-<div class="topnav beta" class:menu-open={overflow_open} class:beta={env.PUBLIC_SITE_TESTING == "true"}>
+<div
+	class="topnav beta"
+	class:menu-open={overflow_open}
+	class:beta={env.PUBLIC_SITE_TESTING == 'true'}
+>
 	<div class="links">
 		<a href={resolve('/')} class="logo-container" title="1.9 GDPS">
 			<enhanced:img src="$lib/assets/icon.png" alt="1.9 GDPS" class="logo" />
