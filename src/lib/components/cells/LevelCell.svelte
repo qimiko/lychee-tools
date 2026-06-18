@@ -36,11 +36,13 @@
 					'Unknown')
 	);
 
+	/*
 	const song_artist = $derived(
 		revision.song
 			? revision.song.artist_name
 			: (SongInfo[(revision.audio_track + 1).toString() as keyof typeof SongInfo]?.artist ?? 'DJVI')
 	);
+	*/
 
 	// vanilla name length is 20 chars
 	const name_max = 20;
@@ -50,7 +52,10 @@
 
 	const small_threshold = $derived(type == 'cell' ? 12 : 20);
 
-	const song_string = $derived(type == 'cell' ? song_name : `${song_name} by ${song_artist}`);
+	const song_string = $derived(song_name);
+
+	const small_song_threshold = $derived(type == "cell" ? 20 : 60);
+	const extra_small_song_threshold = $derived(type == "cell" ? 40 : 80);
 </script>
 
 <div class="level-cell" class:cell={type == 'cell'}>
@@ -60,7 +65,7 @@
 
 	<div class="info-container" class:cell={type == 'cell'}>
 		<div class="name-container" class:cell={type == 'cell'}>
-			<div class="level-name" class:small={truncated_name.length > small_threshold}>
+			<div class="level-name" class:small={truncated_name.length >= small_threshold}>
 				<Link
 					href={resolve('/levels/[id]', {
 						id: level.id.toString()
@@ -68,11 +73,11 @@
 				>
 					{truncated_name}
 
-					{#if revision.objects > 100_000}
+					{#if revision.objects > 100_000 && type != "cell"}
 						<img src={HighObjectIcon} alt="high objects" class="title-badge" />
 					{/if}
 
-					{#if revision.original_id}
+					{#if revision.original_id && type != "cell"}
 						<img src={CollaborationIcon} alt="collaboration" class="title-badge" />
 					{/if}
 				</Link>
@@ -85,7 +90,12 @@
 			>
 		</div>
 
-		<div class="song-container" class:cell={type == 'cell'} class:small={song_string.length > 60}>
+		<div
+			class="song-container"
+			class:cell={type == 'cell'}
+			class:small={song_string.length >= small_song_threshold && song_string.length < extra_small_song_threshold}
+			class:extra-small={song_string.length >= extra_small_song_threshold}
+		>
 			<img src={NoteIcon} alt="note" class="song-icon" />
 
 			<span>{song_string}</span>
@@ -213,16 +223,21 @@
 		.stats-container:not(.horizontal) {
 			display: flex;
 		}
+
+		.song-container:not(.cell) {
+			max-height: 3lh;
+			max-width: 20em;
+		}
 	}
 
 	.song-container {
-		overflow-x: clip;
+		overflow: hidden;
 		text-overflow: ellipsis;
 		text-align: left;
 
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
+		max-height: 2lh;
+
+		max-width: 70vw;
 
 		overflow-wrap: break-word;
 	}
@@ -231,10 +246,15 @@
 		font-size: 0.9em;
 	}
 
+	.song-container.extra-small {
+		font-size: 0.8em;
+	}
+
 	.song-container.cell {
 		padding-top: 0.25em;
 		text-align: center;
 
+		max-height: 2lh;
 		width: 10em;
 	}
 
@@ -267,11 +287,20 @@
 
 	.info-container.cell {
 		align-items: center;
+
+		justify-content: space-evenly;
 	}
 
 	.title-badge {
 		height: 0.75em;
-		display: inline-block;
+		display: none;
+	}
+
+
+	@media screen and (min-width: 512px) {
+		.title-badge {
+			display: inline-block;
+		}
 	}
 
 	.name-container {

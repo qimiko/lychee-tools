@@ -29,11 +29,13 @@
 	let sort_type = $derived(data.comments_sort);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('comments_page', comments_page.toString());
 		params.set('comments_sort', sort_type);
 
 		await goto(
+			// eslint-disable-next-line svelte/no-navigation-without-resolve
 			`${resolve('/levels/[id]', {
 				id: data.level.id.toString()
 			})}?${params}`,
@@ -152,6 +154,10 @@
 
 		<span>
 			{song_name} by {song_artist}
+
+			{#if revision.song_id != 0}
+				({revision.song_id})
+			{/if}
 		</span>
 	</div>
 
