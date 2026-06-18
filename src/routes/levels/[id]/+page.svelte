@@ -153,7 +153,7 @@
 		<img src={NoteIcon} alt="note" class="song-icon" />
 
 		{#if data.song && data.song.ingame_song_source == 0}
-			<Link href={data.song.download}>{song_name} by {song_artist} ({revision.song_id})</Link>
+			<Link href={data.song.download}>{song_name} by {song_artist}</Link> ({revision.song_id})
 		{:else}
 			<span>
 				{song_name} by {song_artist}
