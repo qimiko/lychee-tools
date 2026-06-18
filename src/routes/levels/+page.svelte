@@ -196,10 +196,21 @@
 		featured = false;
 		original = false;
 		audio_track = 0;
+		show_song_filters = false;
 		custom_song = false;
 
 		selected_difficulties.clear();
 		selected_lengths.clear();
+
+		onSearch();
+	}
+
+	function toggleSongFilters() {
+		if (show_song_filters) {
+			audio_track = 1;
+		} else {
+			audio_track = 0;
+		}
 
 		onSearch();
 	}
@@ -321,7 +332,7 @@
 			</label>
 
 			<label>
-				<input type="checkbox" bind:checked={show_song_filters} onchange={onSearch} />
+				<input type="checkbox" bind:checked={show_song_filters} onchange={toggleSongFilters} />
 				Song
 			</label>
 
