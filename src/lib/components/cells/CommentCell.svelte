@@ -201,6 +201,8 @@
 		text-align: left;
 		overflow-wrap: break-word;
 		width: 100%;
+
+		max-width: 90vw;
 	}
 
 	.likes-icon {
