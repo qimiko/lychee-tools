@@ -123,7 +123,7 @@
 				{lengthToString(revision.length)}
 			</div>
 
-			{#if revision.original_id}
+			{#if revision.original_id && revision.objects == 0}
 				<div class="level-stat">
 					<img src={CollaborationIcon} alt="likes" />
 
@@ -137,6 +137,22 @@
 				</div>
 			{/if}
 		</div>
+
+		{#if revision.original_id && revision.objects != 0}
+			<div class="stats-container">
+				<div class="level-stat">
+					<img src={CollaborationIcon} alt="likes" />
+
+					<Link
+						href={resolve('/levels/[id]', {
+							id: revision.original_id.toString()
+						})}
+					>
+						{revision.original_id}
+					</Link>
+				</div>
+			</div>
+			{/if}
 	</div>
 </div>
 
@@ -283,7 +299,6 @@
 
 	.title-badge {
 		height: 1em;
-		margin-top: 0.25em;
 	}
 
 	.level-stat {

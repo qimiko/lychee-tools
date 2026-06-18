@@ -108,7 +108,7 @@
 	.name-container {
 		display: flex;
 		gap: 0.5em;
-		align-items: start;
+		align-items: center;
 
 		flex-grow: 1;
 	}
