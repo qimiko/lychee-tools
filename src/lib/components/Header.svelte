@@ -7,6 +7,7 @@
 	import ModBadge from '$lib/assets/badges/mod.png';
 	import AdminBadge from '$lib/assets/badges/admin.png';
 	import OwnerBadge from '$lib/assets/badges/owner.png';
+	import { env } from '$env/dynamic/public';
 
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
@@ -24,7 +25,7 @@
 	const login_base = resolve('/account/login');
 
 	const login_path = $derived(
-		current_page == login_base
+		(current_page == login_base || current_page == "/")
 			? login_base
 			: login_base + `?redirect=${encodeURIComponent(current_page)}`
 	);
@@ -79,12 +80,13 @@
 				</a>
 			{/if}
 		{:else}
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 			<a href={login_path}>Login</a>
 		{/if}
 	</div>
 {/snippet}
 
-<div class="topnav beta" class:menu-open={overflow_open}>
+<div class="topnav beta" class:menu-open={overflow_open} class:beta={env.PUBLIC_SITE_TESTING == "true"}>
 	<div class="links">
 		<a href={resolve('/')} class="logo-container">
 			<img src={Logo} alt="1.9 GDPS" class="logo" />
