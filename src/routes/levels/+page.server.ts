@@ -46,7 +46,7 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 		// if the token is invalid, this is the one request that will mysteriously fail
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_credentials') {
-				redirect(303, resolve('/account/login'));
+				redirect(303, resolve('/account/logout'));
 			}
 		}
 

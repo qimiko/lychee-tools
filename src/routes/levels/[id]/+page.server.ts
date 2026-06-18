@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 	} catch (e) {
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_credentials') {
-				redirect(303, resolve('/account/login'));
+				redirect(303, resolve('/account/logout'));
 			}
 		}
 

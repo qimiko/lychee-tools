@@ -14,11 +14,14 @@
 	import Shield from '@lucide/svelte/icons/shield';
 	import Play from '@lucide/svelte/icons/play';
 	import Settings from '@lucide/svelte/icons/settings';
+	import { page } from '$app/state';
 
 	import { resolve } from '$app/paths';
 	import Link from '$lib/components/core/Link.svelte';
 
 	let { data } = $props();
+
+	const show_logout_message = $derived(page.url.searchParams.get('logout') == 'true');
 </script>
 
 <svelte:head>
@@ -30,6 +33,10 @@
 <Title size={1}>Available Tools</Title>
 
 <div class="account-management">
+	{#if show_logout_message}
+		<p>You are now logged out!</p>
+	{/if}
+
 	{#if !data.current_user}
 		<h2><Settings /> Account</h2>
 	{/if}

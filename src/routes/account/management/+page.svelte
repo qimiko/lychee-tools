@@ -87,6 +87,8 @@
 	{/if}
 
 	<FormInput type="submit" value="Log out of all devices" />
+
+	<LinkButton href={resolve('/account/logout')} data-sveltekit-reload>Log out</LinkButton>
 </form>
 
 <Title size={2}>Sessions</Title>
