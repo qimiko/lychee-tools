@@ -559,7 +559,7 @@
 		width: max-content;
 		margin: 1em auto;
 
-		max-width: 95vw;
+		max-width: 90vw;
 	}
 
 	.basic-filters {
