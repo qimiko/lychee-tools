@@ -87,6 +87,8 @@ export type ServerExtraAccountDetails = {
 	devices: ServerDevice[];
 	has_legacy_token: boolean;
 	has_session: boolean;
+	email: string;
+	email_verified: boolean;
 };
 
 export type ServerUser = {
@@ -682,13 +684,13 @@ export class GDPSClient {
 		return body.authkey;
 	}
 
-	async registerAccount(username: string, password: string, email: string) {
+	async registerAccount(username: string, password: string, email: string, challenge: string) {
 		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/register`, {
 			headers: new Headers({
 				'Content-Type': 'application/json'
 			}),
 			method: 'POST',
-			body: JSON.stringify({ username, password, email })
+			body: JSON.stringify({ username, password, email, challenge })
 		});
 
 		if (data.status == 201) {

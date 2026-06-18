@@ -12,6 +12,21 @@
 	let { data, form } = $props();
 
 	let hide_ip = $state(true);
+
+	const censored_email = $derived.by(() => {
+		const parts = data.extra_details.email.split('@');
+
+		if (parts.length != 2) {
+			return data.extra_details.email;
+		}
+
+		const [user, domain] = parts;
+		if (user.length == 0) {
+			return data.extra_details.email;
+		}
+
+		return `${user[0]}*******@${domain}`;
+	});
 </script>
 
 <svelte:head>
@@ -32,12 +47,30 @@
 	</LinkButton>
 </div>
 
-<Title size={2}>Active Devices</Title>
+<div style="margin: 1em;">
+	<b>Email:</b>
+
+	{#if hide_ip}
+		{censored_email}
+	{:else}
+		{data.extra_details.email}
+	{/if}
+
+	<i>
+		({#if data.extra_details.email_verified}
+			Verified
+		{:else}
+			Unverified
+		{/if})
+	</i>
+</div>
 
 <label>
 	<input type="checkbox" bind:checked={hide_ip} />
-	Hide IP Addresses
+	Hide Sensitive Information
 </label>
+
+<Title size={2}>Active Devices</Title>
 
 <div style="padding: 0.5em;"></div>
 
