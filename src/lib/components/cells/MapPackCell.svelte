@@ -39,7 +39,8 @@
 	const search_params = $derived(
 		new URLSearchParams({
 			query: pack.levels.join(','),
-			type: 'map_pack'
+			type: 'map_pack',
+			override_title: pack.name
 		})
 	);
 

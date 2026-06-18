@@ -11,9 +11,10 @@ const mappings: Record<string, string> = {
 	'newSession.php': resolve('/account/management'),
 	'account/resetPassword.php': resolve('/account/forgot-password'),
 	'account/checkTokens.php': resolve('/account/management'),
-	'stats/epicLevels.php': resolve('/levels') + '?type=super',
+	'stats/epicLevels.php': resolve('/levels') + '?type=super&override_title=Super+Levels',
 	'levelReupload.php': resolve('/levels/reupload'),
-	'stats/myUnlistedLevels.php': resolve('/levels') + '?type=self_unlisted',
+	'stats/myUnlistedLevels.php':
+		resolve('/levels') + '?type=self_unlisted&override_title=My+Unlisted+Levels',
 	'stats/mapPacks.php': resolve('/levels/packs'),
 	'stats/reportedLevels.php': resolve('/levels/most-reported'),
 	'stats/comments.php': resolve('/comments'),

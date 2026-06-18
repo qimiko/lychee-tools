@@ -45,7 +45,7 @@ export const actions = {
 			path: '/',
 			maxAge: 2592000
 		});
-		return redirect(300, '/tools');
+		return redirect(302, '/tools');
 	}
 } satisfies Actions;
 

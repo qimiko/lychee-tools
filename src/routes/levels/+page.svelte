@@ -5,6 +5,7 @@
 	import logo from '$lib/assets/ogp-icon.png';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import IconButton from '$lib/components/core/IconButton.svelte';
@@ -22,7 +23,7 @@
 
 	let { data }: Props = $props();
 
-	let page = $derived(data.params.page ?? 0);
+	let selected_page = $derived(data.params.page ?? 0);
 	let query = $derived(data.params.query ?? '');
 	let type = $derived(data.params.type ?? 'most_downloaded');
 	let epic = $derived(data.params.epic ?? false);
@@ -36,6 +37,8 @@
 	let custom_song = $derived(data.params.custom_song ?? false);
 	let featured = $derived(data.params.featured ?? false);
 	let audio_track = $derived(data.params.audio_track ?? 0);
+
+	const override_title = $derived(page.url.searchParams.get('override_title'));
 
 	let track_input = $derived(data.params.audio_track?.toString() ?? '');
 
@@ -56,7 +59,7 @@
 	async function updateQueryParams() {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
-		params.set('page', page.toString());
+		params.set('page', selected_page.toString());
 		params.set('count', count.toString());
 		params.set('type', type);
 
@@ -116,6 +119,10 @@
 			}
 		}
 
+		if (override_title) {
+			params.set('override_title', override_title);
+		}
+
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/levels')}?${params}`, {
 			noScroll: true,
@@ -125,7 +132,7 @@
 	}
 
 	async function onSearch(e?: Event) {
-		page = 0;
+		selected_page = 0;
 
 		e?.preventDefault();
 		updateQueryParams();
@@ -204,61 +211,69 @@
 	<meta name="og:image" content={logo} />
 </svelte:head>
 
-<Title>Search Levels</Title>
+<Title>
+	{#if override_title}
+		{override_title}
+	{:else}
+		Search Levels
+	{/if}
+</Title>
 
-<form onsubmit={onSearch}>
-	<div class="search-row">
-		<FormInput placeholder="Query" type="text" bind:value={query} />
-		<IconButton type="submit">
-			<Search />
+{#if !override_title}
+	<form onsubmit={onSearch}>
+		<div class="search-row">
+			<FormInput placeholder="Query" type="text" bind:value={query} />
+			<IconButton type="submit">
+				<Search />
+			</IconButton>
+		</div>
+	</form>
+
+	<div class="sort-row">
+		Search by:
+		<select bind:value={type} onchange={onSearch}>
+			{#if data.params.type == 'search_string'}
+				<option value="search_string">Most Relevant</option>
+			{/if}
+			<option value="most_downloaded">Most Downloaded</option>
+			<option value="most_liked">Most Liked</option>
+			<option value="trending">Trending</option>
+			<option value="recent">Recent</option>
+			{#if data.params.type == 'user_levels'}
+				<option value="user_levels">User Levels</option>
+			{/if}
+			<option value="featured">Featured</option>
+			<option value="magic">Magic</option>
+			{#if data.params.type == 'map_pack'}
+				<option value="map_pack">Map Pack</option>
+			{/if}
+			<option value="awarded">Awarded</option>
+			{#if data.params.type == 'followed'}
+				<option value="followed">Followed</option>
+			{/if}
+			{#if data.params.type == 'friends'}
+				<option value="friends">Friends</option>
+			{/if}
+			<option value="super">Super</option>
+			{#if data.params.type == 'reported'}
+				<option value="reported">Reported</option>
+			{/if}
+			{#if data.params.type == 'list'}
+				<option value="list">List</option>
+			{/if}
+			{#if data.params.type == 'sent'}
+				<option value="sent">Sent</option>
+			{/if}
+			{#if data.params.type == 'self_unlisted'}
+				<option value="self_unlisted">Unlisted</option>
+			{/if}
+		</select>
+
+		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}>
+			<Funnel />
 		</IconButton>
 	</div>
-</form>
-
-<div class="sort-row">
-	Search by:
-	<select bind:value={type} onchange={onSearch}>
-		{#if data.params.type == 'search_string'}
-			<option value="search_string">Most Relevant</option>
-		{/if}
-		<option value="most_downloaded">Most Downloaded</option>
-		<option value="most_liked">Most Liked</option>
-		<option value="trending">Trending</option>
-		<option value="recent">Recent</option>
-		{#if data.params.type == 'user_levels'}
-			<option value="user_levels">User Levels</option>
-		{/if}
-		<option value="featured">Featured</option>
-		<option value="magic">Magic</option>
-		{#if data.params.type == 'map_pack'}
-			<option value="map_pack">Map Pack</option>
-		{/if}
-		<option value="awarded">Awarded</option>
-		{#if data.params.type == 'followed'}
-			<option value="followed">Followed</option>
-		{/if}
-		{#if data.params.type == 'friends'}
-			<option value="friends">Friends</option>
-		{/if}
-		<option value="super">Super</option>
-		{#if data.params.type == 'reported'}
-			<option value="reported">Reported</option>
-		{/if}
-		{#if data.params.type == 'list'}
-			<option value="list">List</option>
-		{/if}
-		{#if data.params.type == 'sent'}
-			<option value="sent">Sent</option>
-		{/if}
-		{#if data.params.type == 'self_unlisted'}
-			<option value="self_unlisted">Unlisted</option>
-		{/if}
-	</select>
-
-	<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}>
-		<Funnel />
-	</IconButton>
-</div>
+{/if}
 
 {#if filters_open}
 	<div class="advanced-filters">
@@ -470,7 +485,7 @@
 	pluralName="levels"
 	singularName="level"
 	onSelect={async (x) => {
-		page = x;
+		selected_page = x;
 		await updateQueryParams();
 	}}
 />
@@ -483,14 +498,25 @@
 	</div>
 </div>
 
+<Pagination
+	count={data.levels.count}
+	pageCount={data.levels.items.length}
+	perPage={data.params.count ?? 25}
+	page={data.params.page ?? 0}
+	pluralName="levels"
+	singularName="level"
+	onSelect={async (x) => {
+		selected_page = x;
+		await updateQueryParams();
+	}}
+/>
+
 <style>
 	.level-row {
 		display: flex;
 		flex-direction: column;
 
 		row-gap: 1em;
-
-		margin-bottom: 1em;
 	}
 
 	.center {
