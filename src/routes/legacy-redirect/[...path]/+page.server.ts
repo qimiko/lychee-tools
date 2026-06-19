@@ -51,5 +51,5 @@ export const load: PageServerLoad = async ({ params }) => {
 		redirect(301, mappings[path]);
 	}
 
-	error(404);
+	redirect(301, resolve('/tools'));
 };
