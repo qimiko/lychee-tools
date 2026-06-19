@@ -85,11 +85,7 @@
 	</div>
 {/snippet}
 
-<div
-	class="topnav"
-	class:menu-open={overflow_open}
-	class:beta={env.PUBLIC_SITE_TESTING == 'true'}
->
+<div class="topnav" class:menu-open={overflow_open} class:beta={env.PUBLIC_SITE_TESTING == 'true'}>
 	<div class="links">
 		<a href={resolve('/')} class="logo-container" title="1.9 GDPS">
 			<enhanced:img src="$lib/assets/icon.png" alt="1.9 GDPS" class="logo" />

@@ -149,7 +149,6 @@
 			height: 1em;
 		}
 
-
 		.user-header {
 			column-gap: 0.5em;
 		}
