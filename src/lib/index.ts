@@ -141,3 +141,16 @@ export function formatRelativeTimestamp(x: string): string {
 	const rtf = new Intl.RelativeTimeFormat('en');
 	return rtf.format(Math.floor(deltaSeconds / divisor), units[unitIndex]);
 }
+
+export function formatFileSize(x: number) {
+	// this is pretty lazily coded, but we shouldn't be getting save data over 1gb anyways
+	if (x == 0) {
+		return '0B';
+	}
+
+	if (x < 1024 * 1024) {
+		return (x / 1024).toFixed(1) + 'KiB';
+	}
+
+	return (x / (1024 * 1024)).toFixed(1) + 'MiB';
+}

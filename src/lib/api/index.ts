@@ -89,6 +89,7 @@ export type ServerExtraAccountDetails = {
 	has_session: boolean;
 	email: string;
 	email_verified: boolean;
+	save_size: number | null;
 };
 
 export type ServerUser = {

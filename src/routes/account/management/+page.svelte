@@ -1,7 +1,7 @@
 <script>
 	import Title from '$lib/components/core/Title.svelte';
 	import LinkButton from '$lib/components/core/LinkButton.svelte';
-	import { formatTimestamp } from '$lib';
+	import { formatFileSize, formatTimestamp } from '$lib';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
@@ -45,6 +45,14 @@
 			Enable 2.2 Login
 		{/if}
 	</LinkButton>
+</div>
+
+<div style="margin: 1em;">
+	{#if data.extra_details.save_size !== null}
+		<b>Save backup size</b>: {formatFileSize(data.extra_details.save_size)}
+	{:else}
+		No save data backed up!
+	{/if}
 </div>
 
 <div style="margin: 1em;">
