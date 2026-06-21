@@ -126,6 +126,8 @@
 			</span>
 		</Link>
 
+		<Link href={resolve('/accounts')}>Search Accounts</Link>
+
 		{#if data.current_user && data.current_user.permission_level >= 1}
 			<Link href={resolve('/actions/top')}>Top Actions</Link>
 			<Link href={resolve('/actions')}>Mod Actions</Link>

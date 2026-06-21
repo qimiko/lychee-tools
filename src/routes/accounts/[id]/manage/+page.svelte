@@ -77,24 +77,26 @@ Currently managing account <b>{data.account.name}</b>.
 	{/if}
 </form>
 
-{#if current_permissions >= 3 && data.account.account_id != data.current_user?.account_id}
+{#if current_permissions >= 1 && data.account.account_id != data.current_user?.account_id}
 	<form use:enhance method="POST" action="?/verify">
 		<h2>Security Options</h2>
 
 		<Button type="submit" name="reset" value={0}>Verify Account</Button>
 
-		<Button type="submit" name="reset" value={1} buttonStyle="emphasis"
-			>Force Unverify Account</Button
-		>
+		{#if current_permissions >= 3}
+			<Button type="submit" name="reset" value={1} buttonStyle="emphasis"
+				>Force Unverify Account</Button
+			>
 
-		<p>
-			(Force unverifying an account will require that user to go through
-			<Link href={resolve('/account/resend-activation')}>E-Mail Activation</Link>
-			to use their account again.)
-		</p>
+			<p>
+				(Force unverifying an account will require that user to go through
+				<Link href={resolve('/account/resend-activation')}>E-Mail Activation</Link>
+				to use their account again.)
+			</p>
+		{/if}
 	</form>
 {/if}
 
-{#if !can_manage && current_permissions < 3}
+{#if !can_manage && current_permissions < 1}
 	<div>No actions available for you! :(</div>
 {/if}

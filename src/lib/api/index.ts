@@ -82,6 +82,13 @@ export type ServerMinimalAccountPair = {
 	id: number;
 };
 
+export type ServerMinimalAccount = {
+	username: string;
+	id: number;
+	user_id: number | null;
+	created: string;
+};
+
 export type ServerDevice = {
 	id: string;
 	origin_ip: string;
@@ -446,6 +453,7 @@ export type ServerActionAccountEdit = BaseServerAction & {
 		username?: string;
 		password?: boolean;
 		permission_level?: number;
+		verified?: boolean;
 	};
 };
 
@@ -615,6 +623,13 @@ export type SongsSearchParams = {
 	reupload?: boolean;
 };
 
+export type AccountsSearchParams = {
+	query?: string;
+	page?: number;
+	count?: number;
+	sort?: 'registered' | 'name';
+};
+
 export type ActionsSearchParams = {
 	types?: ActionType[];
 	count?: number;
@@ -705,6 +720,29 @@ export class GDPSClient {
 		}
 
 		validate(await data.json());
+	}
+
+	async searchAccounts(params: AccountsSearchParams) {
+		const url = new URL(`${GDPS_BASE_URL}/v2/accounts`);
+
+		if (params.count !== undefined) {
+			url.searchParams.set('count', params.count.toString());
+		}
+
+		if (params.page !== undefined) {
+			url.searchParams.set('page', params.page.toString());
+		}
+
+		if (params.query !== undefined) {
+			url.searchParams.set('query', params.query);
+		}
+
+		if (params.sort !== undefined) {
+			url.searchParams.set('sort', params.sort);
+		}
+
+		const data = await this.#make_request(url);
+		return validate<ServerPaginated<ServerMinimalAccount>>(await data.json());
 	}
 
 	async getAccount(id: number | 'me' = 'me') {
