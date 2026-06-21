@@ -20,10 +20,12 @@
 	let time = $derived(data.time ?? 'global');
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('type', type);
 		params.set('time', time);
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/leaderboards')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -93,7 +95,7 @@
 	<div class="center">
 		<div class="level-row">
 			{#each data.users as user (user.id)}
-				<UserCell {user} />
+				<UserCell {user} firstStat={type} />
 			{/each}
 		</div>
 	</div>
