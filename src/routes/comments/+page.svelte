@@ -56,6 +56,7 @@
 	}
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
@@ -97,6 +98,7 @@
 
 		params.set('sort', type);
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/comments')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -289,9 +291,7 @@
 				<div>{checked_boxes.size} comments selected.</div>
 			{/if}
 
-			<Button onclick={() => checked_boxes.clear()}>
-				<span class="link-icon"><X /> Clear Selection</span>
-			</Button>
+			<Button onclick={() => checked_boxes.clear()} icon={X}>Clear Selection</Button>
 		{/if}
 	</div>
 
@@ -301,12 +301,8 @@
 				{#each checked_boxes as item (item)}
 					<input type="hidden" name="comment" value={item} />
 				{/each}
-				<Button formaction="?/bulk_hide">
-					<span class="link-icon"><MessageSquareDashed /> Hide</span>
-				</Button>
-				<Button type="submit">
-					<span class="link-icon"><Trash2 /> Delete</span>
-				</Button>
+				<Button formaction="?/bulk_hide" icon={MessageSquareDashed}>Hide</Button>
+				<Button type="submit" buttonStyle="emphasis" icon={Trash2}>Delete</Button>
 			</form>
 		</div>
 	{/if}
@@ -366,12 +362,5 @@
 		justify-content: center;
 		align-items: center;
 		gap: 0.5em;
-	}
-
-	.link-icon {
-		display: flex;
-		gap: 0.25rem;
-
-		align-items: center;
 	}
 </style>

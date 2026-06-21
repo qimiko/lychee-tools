@@ -20,8 +20,8 @@
 </script>
 
 {#if label}
-	<p>
-		<label for="{id}-textinput">{label}:</label>
+	<p class="form-input">
+		<label for={`${id}-textinput`} class="form-label">{label}:</label>
 
 		{#if rest.type == 'checkbox'}
 			<input
@@ -32,7 +32,7 @@
 				bind:checked
 			/>
 		{:else}
-			<input class={['input-style', className]} id="{id}-textinput" {...rest} bind:value />
+			<input class={['input-style', className]} id={`${id}-textinput`} {...rest} bind:value />
 		{/if}
 	</p>
 {:else}
@@ -83,5 +83,30 @@
 
 	.input-style[type='submit']:disabled {
 		background-image: radial-gradient(100% 100% at 100% 0, #8f8c97 0, #7b7988 100%);
+	}
+
+	.form-input {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		gap: 0.5em;
+	}
+
+	@media screen and (max-width: 450px) {
+		.form-input {
+			flex-direction: column;
+			align-items: start;
+
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+
+			gap: 0.25em;
+		}
+
+		.form-label {
+			margin-left: 0.5rem;
+		}
 	}
 </style>

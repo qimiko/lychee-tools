@@ -1,10 +1,30 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import { type Icon as IconType } from '@lucide/svelte';
 
-	let { children, ...rest }: HTMLButtonAttributes = $props();
+	interface Props extends HTMLButtonAttributes {
+		buttonStyle?: 'primary' | 'emphasis' | 'secondary';
+		icon?: typeof IconType;
+	}
+
+	let { children, buttonStyle = 'primary', ...rest }: Props = $props();
 </script>
 
-<button {...rest}>{@render children?.()}</button>
+<button
+	{...rest}
+	class:emphasis={buttonStyle == 'emphasis'}
+	class:secondary={buttonStyle == 'secondary'}
+>
+	{#if rest.icon}
+		<span class="button-icon">
+			<rest.icon />
+
+			{@render children?.()}
+		</span>
+	{:else}
+		{@render children?.()}
+	{/if}
+</button>
 
 <style>
 	button {
@@ -14,7 +34,6 @@
 		color: #f2f2f2;
 		font-size: 20px;
 		padding: 12px;
-		max-width: 256px;
 		cursor: pointer;
 		margin: 5px;
 		text-decoration: none;
@@ -24,13 +43,36 @@
 		font-family: inherit;
 	}
 
-	button:hover {
-		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.6);
+	.emphasis {
+		background-image: radial-gradient(100% 100% at 100% 0, #ee73c7 0, #e062ee 100%);
+	}
+
+	.secondary {
+		background-image: radial-gradient(100% 100% at 100% 0, #c6a9fa 0, #bfb9ff 100%);
+		color: black;
+	}
+
+	button:hover,
+	button:active {
+		box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.5);
 		background-image: radial-gradient(100% 100% at 100% 0, #7f73ee 0, #9362ee 100%);
 		transition-duration: 0.1s;
 	}
 
-	button:active {
-		background-image: radial-gradient(100% 100% at 100% 0, #9362ee 0, #7f73ee 100%);
+	button:hover.emphasis,
+	button:active.emphasis {
+		background-image: radial-gradient(100% 100% at 100% 0, #e062ee 0, #ee73c7 100%);
+	}
+
+	button:hover.secondary,
+	button:active.secondary {
+		background-image: radial-gradient(100% 100% at 100% 0, #bfb9ff 0, #c6a9fa 100%);
+	}
+
+	.button-icon {
+		display: flex;
+		gap: 0.25rem;
+
+		align-items: center;
 	}
 </style>

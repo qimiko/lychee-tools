@@ -11,6 +11,7 @@
 	import IconButton from '$lib/components/core/IconButton.svelte';
 	import Search from '@lucide/svelte/icons/search';
 	import Funnel from '@lucide/svelte/icons/funnel';
+	import FunnelX from '@lucide/svelte/icons/funnel-x';
 
 	import AudioTracksList from '$lib/songs.json';
 	import Button from '$lib/components/core/Button.svelte';
@@ -483,7 +484,7 @@
 			</IconButton>
 		</div>
 
-		<Button onclick={resetFilters}>Clear Filters</Button>
+		<Button icon={FunnelX} onclick={resetFilters}>Clear Filters</Button>
 	</div>
 {/if}
 

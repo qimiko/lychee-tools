@@ -3,10 +3,12 @@
 	import Pagination from '$lib/components/Pagination.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import FormInput from '$lib/components/core/FormInput.svelte';
 	import { formatTimestamp } from '$lib';
 	import Button from '$lib/components/core/Button.svelte';
 	import Link from '$lib/components/core/Link.svelte';
+	import X from '@lucide/svelte/icons/x';
+	import Search from '@lucide/svelte/icons/search';
+	import IconButton from '$lib/components/core/IconButton.svelte';
 
 	let { data } = $props();
 
@@ -21,6 +23,7 @@
 	let show_ip = $state(false);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
@@ -47,6 +50,7 @@
 			params.set('by_account', by_account.toString());
 		}
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/actions')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -70,49 +74,90 @@
 
 <Title>Actions</Title>
 
-<form onsubmit={onSearch}>
-	{#if by_account || by_user || on_id || by_ip}
-		<p>
-			{#if by_account}
+<form onsubmit={onSearch} class="main-filters">
+	{#if by_account}
+		<div class="filter-item">
+			<div>
 				By account id: <Link
 					href={resolve('/accounts/[id]', {
 						id: by_account.toString()
 					})}>{by_account}</Link
-				> <br />
-			{/if}
+				>
+			</div>
 
-			{#if by_user}
+			<IconButton
+				onclick={() => {
+					by_account = undefined;
+					page = 0;
+					updateQueryParams();
+				}}
+			>
+				<X />
+			</IconButton>
+		</div>
+	{/if}
+
+	{#if by_user}
+		<div class="filter-item">
+			<div>
 				By user id: <Link
 					href={resolve('/users/[id]', {
 						id: by_user.toString()
 					})}>{by_user}</Link
-				> <br />
-			{/if}
+				>
+			</div>
 
-			{#if by_ip}
-				By IP Address: {by_ip} <br />
-			{/if}
-
-			{#if on_id}
-				Only on ID: {on_id} <br />
-			{/if}
-
-			<Button
+			<IconButton
 				onclick={() => {
-					by_account = undefined;
 					by_user = undefined;
-					on_id = undefined;
-					by_ip = undefined;
-
 					page = 0;
 					updateQueryParams();
-				}}>Clear Filters</Button
+				}}
 			>
-		</p>
+				<X />
+			</IconButton>
+		</div>
 	{/if}
 
-	<label>
+	{#if by_ip}
+		<div class="filter-item">
+			<div>
+				By IP Address: {by_ip}
+			</div>
+
+			<IconButton
+				onclick={() => {
+					by_ip = undefined;
+					page = 0;
+					updateQueryParams();
+				}}
+			>
+				<X />
+			</IconButton>
+		</div>
+	{/if}
+
+	{#if on_id}
+		<div class="filter-item">
+			<div>
+				Only on ID: {on_id}
+			</div>
+
+			<IconButton
+				onclick={() => {
+					on_id = undefined;
+					page = 0;
+					updateQueryParams();
+				}}
+			>
+				<X />
+			</IconButton>
+		</div>
+	{/if}
+
+	<label class="filter-box">
 		Filter types:
+
 		<select name="type" multiple bind:value={selected_types}>
 			<option value="level_rate">Level Rate</option>
 			<option value="level_update">Level Update</option>
@@ -138,7 +183,7 @@
 		</select>
 	</label>
 
-	<FormInput type="submit" value="Search" />
+	<Button type="submit" icon={Search}>Go</Button>
 </form>
 
 {#if data.current_user && data.current_user.permission_level >= 3}
@@ -273,5 +318,25 @@
 	.table-container {
 		width: 100%;
 		overflow-x: scroll;
+	}
+
+	.main-filters {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		gap: 0.5em;
+	}
+
+	.filter-item {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.filter-box {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
 	}
 </style>

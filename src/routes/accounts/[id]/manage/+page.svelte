@@ -47,7 +47,7 @@ Currently managing account <b>{data.account.name}</b>.
 
 	{#if current_permissions >= 2}
 		{#if data.account.permission_level == 1}
-			<Button type="submit" name="level" value={0}>Demote to User</Button>
+			<Button type="submit" name="level" value={0} buttonStyle="secondary">Demote to User</Button>
 		{:else if data.account.permission_level < 1}
 			<Button type="submit" name="level" value={1}>Promote to Moderator</Button>
 		{/if}
@@ -55,8 +55,10 @@ Currently managing account <b>{data.account.name}</b>.
 
 	{#if current_permissions >= 3}
 		{#if data.account.permission_level == 2}
-			<Button type="submit" name="level" value={0}>Demote to User</Button>
-			<Button type="submit" name="level" value={1}>Demote to Moderator</Button>
+			<Button type="submit" name="level" value={0} buttonStyle="secondary">Demote to User</Button>
+			<Button type="submit" name="level" value={1} buttonStyle="secondary"
+				>Demote to Moderator</Button
+			>
 		{:else if data.account.permission_level < 2}
 			<Button type="submit" name="level" value={2}>Promote to Admin</Button>
 		{/if}
@@ -64,9 +66,11 @@ Currently managing account <b>{data.account.name}</b>.
 
 	{#if current_permissions >= 3}
 		{#if data.account.permission_level == 3}
-			<Button type="submit" name="level" value={0}>Demote to User</Button>
-			<Button type="submit" name="level" value={1}>Demote to Moderator</Button>
-			<Button type="submit" name="level" value={2}>Demote to Admin</Button>
+			<Button type="submit" name="level" value={0} buttonStyle="secondary">Demote to User</Button>
+			<Button type="submit" name="level" value={1} buttonStyle="secondary"
+				>Demote to Moderator</Button
+			>
+			<Button type="submit" name="level" value={2} buttonStyle="secondary">Demote to Admin</Button>
 		{:else}
 			<Button type="submit" name="level" value={3}>Promote to Owner</Button>
 		{/if}
@@ -79,7 +83,9 @@ Currently managing account <b>{data.account.name}</b>.
 
 		<Button type="submit" name="reset" value={0}>Verify Account</Button>
 
-		<Button type="submit" name="reset" value={1}>Force Unverify Account</Button>
+		<Button type="submit" name="reset" value={1} buttonStyle="emphasis"
+			>Force Unverify Account</Button
+		>
 
 		<p>
 			(Force unverifying an account will require that user to go through

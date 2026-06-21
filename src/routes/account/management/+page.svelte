@@ -8,6 +8,7 @@
 
 	import X from '@lucide/svelte/icons/x';
 	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 
 	let { data, form } = $props();
 
@@ -127,7 +128,7 @@
 		<p>Logged out of all devices!</p>
 	{/if}
 
-	<FormInput type="submit" value="Log out of all devices" />
+	<Button type="submit" buttonStyle="emphasis">Log out of all devices</Button>
 
 	<LinkButton href={resolve('/account/logout')} data-sveltekit-reload>Log out</LinkButton>
 </form>
