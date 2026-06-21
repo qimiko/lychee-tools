@@ -759,6 +759,26 @@ export class GDPSClient {
 		return validate<ServerMe>(await data.json());
 	}
 
+	async changeAccountUsername(id: number, username: string) {
+		if (!this.#token) {
+			throw new AuthenticationError();
+		}
+
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/${id}/change-username`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'POST',
+			body: JSON.stringify({ username })
+		});
+
+		if (data.status == 204) {
+			return;
+		}
+
+		validate(await data.json());
+	}
+
 	async promoteAccount(id: number, level: number) {
 		if (!this.#token) {
 			throw new AuthenticationError();

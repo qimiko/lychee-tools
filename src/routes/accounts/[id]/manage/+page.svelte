@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
 	import Button from '$lib/components/core/Button.svelte';
+	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Link from '$lib/components/core/Link.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -94,6 +95,16 @@ Currently managing account <b>{data.account.name}</b>.
 				to use their account again.)
 			</p>
 		{/if}
+	</form>
+{/if}
+
+{#if current_permissions >= 3}
+	<form use:enhance method="POST" action="?/change_username">
+		<h2>Account Info</h2>
+
+		<FormInput label="Change Username" type="text" name="username" placeholder="New name" />
+
+		<Button type="submit">Edit</Button>
 	</form>
 {/if}
 
