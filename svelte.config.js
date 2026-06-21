@@ -4,6 +4,12 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const filename = fileURLToPath(import.meta.url);
+const base_dir = dirname(filename);
+const path_to_layout = join(base_dir, './src/lib/components/markdown/layout.svelte');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,7 +20,8 @@ const config = {
 		mdsvex({
 			extensions: ['.svx', '.md'],
 			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-			remarkPlugins: [remarkToc]
+			remarkPlugins: [remarkToc],
+			layout: path_to_layout
 		})
 	],
 	kit: {

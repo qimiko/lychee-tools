@@ -1,1 +1,85 @@
-FAQ not finished yet, sorry... :(
+_FAQ not finished yet, sorry... :(_
+
+# Contents
+
+# Setup
+
+## How do I access the 1.9 GDPS from 2.2 clients?
+
+Using a mod like [GDPS Switcher](https://geode-sdk.org/mods/km7dev.gdps-switcher) is the easiest way to access the 1.9 GDPS on 2.2.
+The server link to use is `https://19gdps.com/gdapi/`.
+
+To log into a 1.9 GDPS account from 2.2, a 2.2 token must be created.
+This can be done through the [account management](/account/management/legacy-token) page.
+The legacy token must be used in place of your password while logging in. 
+
+Please be aware that levels made in the 2.2 client cannot be uploaded to the 1.9 servers through a GDPS switcher.
+2.2 players also have limited visibility on the ingame leaderboards.
+Some 2.2 features, such as the friends list and lists, may not function as intended.
+
+## How do I run the 1.9 GDPS on macOS?
+
+You will have to use Wine.
+For easy setup, a Wine wrapper like [Sikarugir](https://github.com/Sikarugir-App/Sikarugir) (Free) or [CrossOver](https://www.codeweavers.com) (Paid) is recommended.
+The "ZIP archive for Windows" download is typically easier to set up than the installer. Use `DontRenameMeThxDash.exe` as the main executable. 
+
+Due to the high minimum Wine version requirement (10.14), **Whisky is not recommended** for using the 1.9 GDPS.
+
+## How do I run the 1.9 GDPS on Linux?
+
+The easiest method, assuming you already have Geometry Dash through Steam, is with Proton. To use it:
+
+1. Add the 1.9 GDPS (`DontRenameMeThxDash.exe`) as a non-Steam game. See https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC for more information.
+2. Enable Proton for the 1.9 GDPS. This is done by going into the game properties (either through right clicking or on the settings in the game page) and viewing the compatibility tab. Check the "Force the use of a specific Steam Play compatibility tool" box and select the latest version of Proton.
+
+A wrapper like [Bottles](https://usebottles.com) or [Lutris](https://lutris.net) should also work.
+Those wrappers may not come with the Visual Studio redistributables by default, and so they will have to be installed through an application like Winetricks.
+
+If levels are failing to download, you may need to install the 32-bit gnutls libraries (`lib32-gnutls`) as well.
+
+As is typically the case with Linux, there exists an endless number of guides on how to run Windows games, so feel free to look around for setups that work best for you.
+
+## Why am I missing a msvcp DLL?
+
+The following Visual Studio redistributables are required for the 1.9 GDPS:
+
+- 2017 Redists: <https://aka.ms/vc14/vc_redist.x86.exe>
+- 2013 Redists: <https://www.microsoft.com/en-us/download/details.aspx?id=40784>
+- 2010 Redists: <https://www.microsoft.com/en-us/download/details.aspx?id=26999>
+
+These must all be the **x86 redistributables**.
+
+## Why does my antivirus flag the game as malware?
+
+Windows Defender or other antivirus software might flag 1.9 GDPS as malicious, because it inherently uses methods that are often used by malware.
+
+For example, it modifies the game's files and injects extra code into the game, which is similar to how viruses work.
+The game is also modified to work without Steam, which most antiviruses will flag as well.
+Because 1.9 does not have an official way to mod it, it's necessary to "frankenstein" the game's code that way, and the result is your antivirus software thinking it's something malicious.
+
+# Account
+
+## Why can I not log in to the game?
+
+This issue is likely present due to the username and/or the password containing special symbols.
+
+The username and password should only contain letters within the English Alphabet (26 letters) and can include any numbers as well.
+
+It is likely that you already have registered an account at this point, and it is therefore suggested that you change your username or password, depending on which contains special symbols. It is also possible registering for a new account. 
+
+To change your password, visit the [account management page](/account/management/change-password).
+
+## What do I do if I forgot my password?
+
+The [password reset tool](/account/forgot-password) is the quickest way to reset your password.
+This requires you to have a valid email address on your account. Make sure that emails from <support@19gdps.com> are allowed through your spam filter.
+
+If you cannot receive the reset email, please contact a Moderator or Admin for further support.
+
+## How do I change my username?
+
+The tool to do this can be found on the [account management page](/account/management/change-username).
+
+After changing your username, please use the ingame "Refresh Login" option to finalize the update.
+
+Afterwards, you should see the username change on your levels and on the [Search Users](/users) tool. 

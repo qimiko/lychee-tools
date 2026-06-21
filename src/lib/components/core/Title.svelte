@@ -1,18 +1,17 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	interface Props {
+	interface Props extends HTMLAttributes<HTMLHeadingElement> {
 		size?: 1 | 2;
-		children: Snippet;
 	}
 
-	let { children, size = 1 }: Props = $props();
+	let { children, size = 1, ...rest }: Props = $props();
 </script>
 
 {#if size == 1}
-	<h1 class="title">{@render children?.()}</h1>
+	<h1 class="title" {...rest}>{@render children?.()}</h1>
 {:else}
-	<h2 class="subtitle">{@render children?.()}</h2>
+	<h2 class="subtitle" {...rest}>{@render children?.()}</h2>
 {/if}
 
 <style>
