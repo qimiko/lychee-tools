@@ -18,6 +18,11 @@ export type ServerInvalidRegistrationError = ServerResultError & {
 		| 'username_too_short';
 };
 
+export type ServerInvalidEmailError = ServerResultError & {
+	type: 'invalid_email';
+	message: string | null;
+};
+
 export type ServerReuploadFailedError = ServerResultError & {
 	type: 'reupload_failed';
 	error: 'generic' | 'fetch_failed' | 'reupload_exists' | 'invalid_data' | 'level_too_recent';
@@ -37,7 +42,8 @@ type ServerGenericResultError = ServerResultError & {
 type ServerResultFull =
 	| ServerInvalidRegistrationError
 	| ServerReuploadFailedError
-	| ServerGenericResultError;
+	| ServerGenericResultError
+	| ServerInvalidEmailError;
 
 type ServerResult<T, E extends ServerResultError = ServerResultFull> =
 	| {
