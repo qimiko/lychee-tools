@@ -1,58 +1,54 @@
 <script lang="ts">
-	/* eslint-disable svelte/no-navigation-without-resolve */
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { type Icon as IconType } from '@lucide/svelte';
 
-	interface Props extends HTMLButtonAttributes {
+	type Props = {
 		buttonStyle?: 'primary' | 'emphasis' | 'secondary';
-		href?: string;
 		icon?: typeof IconType;
-	}
+	} & (HTMLAnchorAttributes | HTMLButtonAttributes);
 
-	let { children, buttonStyle = 'primary', href, ...rest }: Props = $props();
+	let { children, buttonStyle = 'primary', ...rest }: Props = $props();
 </script>
 
-{#if href}
-	<a
-		{href}
-		class="button"
-		class:emphasis={buttonStyle == 'emphasis'}
-		class:secondary={buttonStyle == 'secondary'}
-	>
-		{#if rest.icon}
-			<span class="button-icon">
-				<rest.icon />
+<svelte:element
+	this={'href' in rest && rest.href ? 'a' : 'button'}
+	{...rest}
+	class="button"
+	class:emphasis={buttonStyle == 'emphasis'}
+	class:secondary={buttonStyle == 'secondary'}
+>
+	{#if rest.icon}
+		<span class="button-icon">
+			<rest.icon />
 
-				{@render children?.()}
-			</span>
-		{:else}
 			{@render children?.()}
-		{/if}
-	</a>
-{:else}
-	<button
-		{...rest}
-		class="button"
-		class:emphasis={buttonStyle == 'emphasis'}
-		class:secondary={buttonStyle == 'secondary'}
-	>
-		{#if rest.icon}
-			<span class="button-icon">
-				<rest.icon />
-
-				{@render children?.()}
-			</span>
-		{:else}
-			{@render children?.()}
-		{/if}
-	</button>
-{/if}
+		</span>
+	{:else}
+		{@render children?.()}
+	{/if}
+</svelte:element>
 
 <style>
+	@property --start-color {
+		syntax: '<color>';
+		inherits: false;
+		initial-value: #9362ee;
+	}
+
+	@property --end-color {
+		syntax: '<color>';
+		inherits: false;
+		initial-value: #7f73ee;
+	}
+
 	.button {
 		display: inline-block;
 		border-radius: 12px;
-		background-image: radial-gradient(100% 100% at 100% 0, #9362ee 0, #7f73ee 100%);
+		background-image: radial-gradient(
+			100% 100% at 100% 0,
+			var(--start-color) 0,
+			var(--end-color) 100%
+		);
 		color: #f2f2f2;
 		font-size: 20px;
 		padding: 12px;
@@ -60,35 +56,50 @@
 		margin: 5px;
 		text-decoration: none;
 		border: none;
-		transition: all 0.5s;
+		transition:
+			--start-color 0.5s,
+			--end-color 0.5s,
+			box-shadow 0.5s;
 
 		font-family: inherit;
 	}
 
 	.emphasis {
-		background-image: radial-gradient(100% 100% at 100% 0, #ee73c7 0, #e062ee 100%);
+		--start-color: #ee73c7;
+		--end-color: #e062ee;
 	}
 
 	.secondary {
-		background-image: radial-gradient(100% 100% at 100% 0, #c6a9fa 0, #bfb9ff 100%);
 		color: black;
+
+		--start-color: #c6a9fa;
+		--end-color: #bfb9ff;
 	}
 
-	.button:hover,
-	.button:active {
+	.button:disabled {
+		--start-color: #8f8c97;
+		--end-color: #7b7988;
+	}
+
+	.button:hover:not(:disabled),
+	.button:active:not(:disabled) {
 		box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.5);
-		background-image: radial-gradient(100% 100% at 100% 0, #7f73ee 0, #9362ee 100%);
 		transition-duration: 0.1s;
+
+		--start-color: #7f73ee;
+		--end-color: #9362ee;
 	}
 
-	.button:hover.emphasis,
-	.button:active.emphasis {
-		background-image: radial-gradient(100% 100% at 100% 0, #e062ee 0, #ee73c7 100%);
+	.button:hover.emphasis:not(:disabled),
+	.button:active.emphasis:not(:disabled) {
+		--start-color: #e062ee;
+		--end-color: #ee73c7;
 	}
 
-	.button:hover.secondary,
-	.button:active.secondary {
-		background-image: radial-gradient(100% 100% at 100% 0, #bfb9ff 0, #c6a9fa 100%);
+	.button:hover.secondary:not(:disabled),
+	.button:active.secondary:not(:disabled) {
+		--start-color: #bfb9ff;
+		--end-color: #c6a9fa;
 	}
 
 	.button-icon {

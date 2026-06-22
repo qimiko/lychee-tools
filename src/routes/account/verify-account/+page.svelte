@@ -3,8 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { env } from '$env/dynamic/public';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 
@@ -23,7 +22,7 @@
 	{#if form?.success}
 		<p>Account successfully activated! You may now log into your 1.9 GDPS account.</p>
 
-		<LinkButton href={resolve('/account/login')}>Log In</LinkButton>
+		<Button href={resolve('/account/login')}>Log In</Button>
 	{:else}
 		{#if form?.error}
 			<p>{form.error}</p>
@@ -38,7 +37,7 @@
 		{/if}
 
 		<div>
-			<FormInput type="submit" value="Activate" />
+			<Button type="submit">Activate</Button>
 		</div>
 	{/if}
 </form>

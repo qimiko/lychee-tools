@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -32,6 +33,6 @@ Currently editing <b>{data.song.title}</b> ({data.song.id}).
 	<FormInput type="text" label="Download" bind:value={download} name="download" />
 
 	<div>
-		<FormInput type="submit" value="Edit" />
+		<Button type="submit">Edit</Button>
 	</div>
 </form>

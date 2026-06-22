@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { env } from '$env/dynamic/public';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 	import { Turnstile } from 'svelte-turnstile';
@@ -84,9 +85,7 @@
 		<input type="hidden" name="cf-turnstile-response" value="dummy" />
 	{/if}
 
-	<FormInput
-		type="submit"
-		value="Register"
-		disabled={!passwords_confirmed || !emails_confirmed || !password || !email}
-	/>
+	<Button type="submit" disabled={!passwords_confirmed || !emails_confirmed || !password || !email}
+		>Register</Button
+	>
 </form>

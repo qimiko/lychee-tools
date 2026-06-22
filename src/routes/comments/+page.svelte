@@ -254,7 +254,7 @@
 
 	<FormInput type="checkbox" id="reverse-box" label="Reverse Sort?" bind:checked={reverse} />
 
-	<FormInput type="submit" value="Go" />
+	<Button type="submit">Go</Button>
 </form>
 
 <hr />

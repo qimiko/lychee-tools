@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -53,6 +54,6 @@
 	/>
 
 	<div>
-		<FormInput type="submit" value="Reset" />
+		<Button type="submit">Reset</Button>
 	</div>
 </form>

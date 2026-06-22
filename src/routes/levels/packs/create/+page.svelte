@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import type { ServerMapPack } from '$lib/api';
 	import MapPackCell from '$lib/components/cells/MapPackCell.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -77,7 +78,7 @@
 	<FormInput type="color" label="Color" bind:value={color} name="color" />
 
 	<div>
-		<FormInput type="submit" value="Create" />
+		<Button type="submit">Create</Button>
 	</div>
 </form>
 

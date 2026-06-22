@@ -1,7 +1,7 @@
 <script lang="ts">
 	import logo from '$lib/assets/ogp-icon.png';
 	import Title from '$lib/components/core/Title.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 
 	import FolderArchive from '@lucide/svelte/icons/folder-archive';
 	import Android from '$lib/components/icons/Android.svelte';
@@ -31,11 +31,7 @@
 	</b>
 
 	<div>
-		<LinkButton href={data.update.links.windows}>
-			<span class="link-icon">
-				<Windows /> Download for Windows
-			</span>
-		</LinkButton>
+		<Button href={data.update.links.windows} icon={Windows}>Download for Windows</Button>
 
 		<p>
 			<Link href={data.update.links.windows_portable}>
@@ -47,11 +43,7 @@
 	</div>
 
 	<div>
-		<LinkButton href={data.update.links.android}>
-			<span class="link-icon">
-				<Android /> Download for Android
-			</span>
-		</LinkButton>
+		<Button href={data.update.links.android} icon={Android}>Download for Android</Button>
 
 		<p>Android download only works on 32-bit devices!</p>
 	</div>

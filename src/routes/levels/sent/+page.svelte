@@ -18,10 +18,12 @@
 	let count = $derived(data.params.count ?? 250);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/levels/sent')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,

@@ -7,6 +7,7 @@
 
 	import X from '@lucide/svelte/icons/x';
 	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 
 	let { data, form } = $props();
 
@@ -90,6 +91,6 @@
 
 		<FormInput type="text" label="Reason" name="reason" required />
 
-		<FormInput type="submit" value="Ban" />
+		<Button type="submit">Ban</Button>
 	</form>
 {/if}

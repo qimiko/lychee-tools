@@ -1,5 +1,4 @@
 <script lang="ts">
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
 	import Music from '@lucide/svelte/icons/music';
@@ -18,6 +17,7 @@
 
 	import { resolve } from '$app/paths';
 	import Link from '$lib/components/core/Link.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 
 	let { data } = $props();
 
@@ -43,14 +43,10 @@
 
 	<div class="button-row">
 		{#if data.current_user}
-			<LinkButton href={resolve('/account/management')}>
-				<span class="link-icon">
-					<Settings /> Manage Account
-				</span>
-			</LinkButton>
+			<Button href={resolve('/account/management')} icon={Settings}>Manage Account</Button>
 		{:else}
-			<LinkButton href={resolve('/account/register')}>Register</LinkButton>
-			<LinkButton href={resolve('/account/login')}>Login</LinkButton>
+			<Button href={resolve('/account/register')} buttonStyle="secondary">Register</Button>
+			<Button href={resolve('/account/login')}>Login</Button>
 		{/if}
 	</div>
 

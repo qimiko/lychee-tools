@@ -1,8 +1,6 @@
 <script>
 	import Title from '$lib/components/core/Title.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import { formatFileSize, formatTimestamp } from '$lib';
-	import FormInput from '$lib/components/core/FormInput.svelte';
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
 
@@ -37,15 +35,15 @@
 
 <Title>Account Management</Title>
 <div class="main-container">
-	<LinkButton href={resolve('/account/management/change-password')}>Change Password</LinkButton>
-	<LinkButton href={resolve('/account/management/change-username')}>Change Username</LinkButton>
-	<LinkButton href={resolve('/account/management/legacy-token')}>
+	<Button href={resolve('/account/management/change-password')}>Change Password</Button>
+	<Button href={resolve('/account/management/change-username')}>Change Username</Button>
+	<Button href={resolve('/account/management/legacy-token')}>
 		{#if data.extra_details.has_legacy_token}
 			Reset 2.2 Login
 		{:else}
 			Enable 2.2 Login
 		{/if}
-	</LinkButton>
+	</Button>
 </div>
 
 <div style="margin: 1em;">
@@ -130,7 +128,7 @@
 
 	<Button type="submit" buttonStyle="emphasis">Log out of all devices</Button>
 
-	<LinkButton href={resolve('/account/logout')} data-sveltekit-reload>Log out</LinkButton>
+	<Button href={resolve('/account/logout')} data-sveltekit-reload>Log out</Button>
 </form>
 
 <Title size={2}>Sessions</Title>
@@ -147,7 +145,7 @@
 			<p>Session created!</p>
 		{/if}
 
-		<FormInput type="submit" value="New Session" />
+		<Button type="submit">New Session</Button>
 	</form>
 {/if}
 

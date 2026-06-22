@@ -21,6 +21,7 @@
 	let count = $derived(data.params.count ?? 25);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
@@ -29,6 +30,7 @@
 			params.set('query', query);
 		}
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/users')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
