@@ -150,6 +150,9 @@
 		align-items: center;
 
 		height: 52px;
+
+		border-bottom: 2px #222 solid;
+		box-sizing: border-box;
 	}
 
 	.topnav.menu-open {
@@ -224,13 +227,7 @@
 		top: 52px;
 		left: 0px;
 
-		background: repeating-linear-gradient(
-			45deg,
-			#ffcc00,
-			/* Start yellow */ #ffcc00 20px,
-			/* End yellow at 20px */ #000000 20px,
-			/* Start black at 20px */ #000000 40px /* End black at 40px (total pattern width) */
-		);
+		background: repeating-linear-gradient(45deg, #ffcc00, #ffcc00 20px, #000000 20px, #000000 40px);
 
 		z-index: 97;
 	}

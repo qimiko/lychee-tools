@@ -113,6 +113,10 @@
 		background-color: #ccc;
 	}
 
+	.button.secondary:active:not(:disabled) {
+		background-color: #ddd;
+	}
+
 	.button-icon {
 		display: flex;
 		gap: 0.25rem;
