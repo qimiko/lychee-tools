@@ -261,7 +261,9 @@
 	}
 
 	.topnav a:hover,
-	.button:hover {
+	.topnav a:focus,
+	.button:hover,
+	.button:focus {
 		background-color: #444;
 		color: white;
 	}

@@ -611,7 +611,7 @@
 	}
 
 	.sort-row :global(.active) {
-		border: solid rgba(0, 0, 0, 0.75) 1px;
+		border: solid rgba(0, 0, 0, 0.4) 1px;
 		background-color: rgba(0, 0, 0, 0.1);
 	}
 </style>

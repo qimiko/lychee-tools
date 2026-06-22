@@ -17,7 +17,7 @@
 		font-size: 20px;
 		text-decoration: none;
 		border: none;
-		transition: all 0.5s;
+		transition: background-color 0.5s;
 
 		display: inline-block;
 
@@ -35,13 +35,14 @@
 		justify-content: center;
 	}
 
-	button:not(:disabled):hover {
+	button:not(:disabled):hover,
+	button:not(:disabled):focus {
 		background-color: rgba(0, 0, 0, 0.1);
 		transition-duration: 0.1s;
 	}
 
 	button:not(:disabled):active {
-		background-color: rgba(0, 0, 0, 0.1);
+		background-color: rgba(0, 0, 0, 0.2);
 	}
 
 	button:disabled {

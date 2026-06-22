@@ -44,6 +44,7 @@
 	.button {
 		display: inline-block;
 		border-radius: 12px;
+		background-color: white;
 		background-image: radial-gradient(
 			100% 100% at 100% 0,
 			var(--start-color) 0,
@@ -59,7 +60,10 @@
 		transition:
 			--start-color 0.5s,
 			--end-color 0.5s,
-			box-shadow 0.5s;
+			box-shadow 0.5s,
+			background-color 0.5s;
+
+		background-blend-mode: multiply;
 
 		font-family: inherit;
 	}
@@ -82,7 +86,8 @@
 	}
 
 	.button:hover:not(:disabled),
-	.button:active:not(:disabled) {
+	.button:active:not(:disabled),
+	.button:focus:not(:disabled) {
 		box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.5);
 		transition-duration: 0.1s;
 
@@ -91,15 +96,21 @@
 	}
 
 	.button:hover.emphasis:not(:disabled),
-	.button:active.emphasis:not(:disabled) {
+	.button:active.emphasis:not(:disabled),
+	.button:focus.emphasis:not(:disabled) {
 		--start-color: #e062ee;
 		--end-color: #ee73c7;
 	}
 
 	.button:hover.secondary:not(:disabled),
-	.button:active.secondary:not(:disabled) {
+	.button:active.secondary:not(:disabled),
+	.button:focus.secondary:not(:disabled) {
 		--start-color: #bfb9ff;
 		--end-color: #c6a9fa;
+	}
+
+	.button:active:not(:disabled) {
+		background-color: #ccc;
 	}
 
 	.button-icon {
