@@ -92,6 +92,7 @@
 		</a>
 
 		<a href={resolve('/download')} class="hidden-small">Download</a>
+		<a href={resolve('/faq')} class="hidden-small">FAQ</a>
 		<a href={resolve('/tools')} class="hidden-small">Tools</a>
 		<a href={resolve('/leaderboards')} class="hidden-small">Leaderboards</a>
 	</div>
@@ -126,6 +127,7 @@
 		}}
 	>
 		<a href={resolve('/download')}>Download</a>
+		<a href={resolve('/faq')}>FAQ</a>
 		<a href={resolve('/tools')}>Tools</a>
 		<a href={resolve('/leaderboards')}>Leaderboards</a>
 
@@ -301,7 +303,11 @@
 		padding: 0 0.5em;
 	}
 
-	@media screen and (max-width: 600px) {
+	.show-small {
+		display: none;
+	}
+
+	@media screen and (max-width: 720px) {
 		.links a.hidden-small {
 			display: none;
 		}
@@ -309,15 +315,9 @@
 		.hidden-small {
 			display: none;
 		}
-	}
 
-	.show-small {
-		display: inline-block;
-	}
-
-	@media screen and (min-width: 601px) {
 		.show-small {
-			display: none;
+			display: inline-block;
 		}
 	}
 </style>

@@ -1,4 +1,5 @@
-_FAQ not finished yet, sorry... :(_
+This FAQ is still a work-in-progress.
+If you cannot find an answer to your question, please ask in the [1.9 GDPS Discord server](https://discord.gg/eCGFrCG).
 
 # Contents
 
@@ -29,7 +30,7 @@ Due to the high minimum Wine version requirement (10.14), **Whisky is not recomm
 
 The easiest method, assuming you already have Geometry Dash through Steam, is with Proton. To use it:
 
-1. Add the 1.9 GDPS (`DontRenameMeThxDash.exe`) as a non-Steam game. See https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC for more information.
+1. Add the 1.9 GDPS (`DontRenameMeThxDash.exe`) as a non-Steam game. See [the Steam Help Article](https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC) for more information.
 2. Enable Proton for the 1.9 GDPS. This is done by going into the game properties (either through right clicking or on the settings in the game page) and viewing the compatibility tab. Check the "Force the use of a specific Steam Play compatibility tool" box and select the latest version of Proton.
 
 A wrapper like [Bottles](https://usebottles.com) or [Lutris](https://lutris.net) should also work.
@@ -57,29 +58,71 @@ For example, it modifies the game's files and injects extra code into the game, 
 The game is also modified to work without Steam, which most antiviruses will flag as well.
 Because 1.9 does not have an official way to mod it, it's necessary to "frankenstein" the game's code that way, and the result is your antivirus software thinking it's something malicious.
 
+## Why does Android say that the 1.9 GDPS is not compatible with my device?
+
+This is very likely due to the 1.9 GDPS being a 32-bit only application, which newer devices have lost support for.
+Unfortunately, there are no good solutions for this.
+
+Other users have had success with using a 32-bit emulator, or running the Windows version of the game through Wine.
+
 # Account
 
-## Why can I not log in to the game?
+## Why can I not log into the game?
 
-This issue is likely present due to the username and/or the password containing special symbols.
+If you recently registered your account, you likely need to activate your account.
+Please check your email for more information.
+If you do not see this email, you may need to use the [Resend Activation Email](/account/resend-activation) tool. 
+Make sure that emails from <support@19gdps.com> are allowed through your spam filter.
 
-The username and password should only contain letters within the English Alphabet (26 letters) and can include any numbers as well.
+For older accounts, this issue is likely present due to the username and/or the password containing special symbols.
+The username and password should only contain letters within the English alphabet (26 letters) and numbers.
 
-It is likely that you already have registered an account at this point, and it is therefore suggested that you change your username or password, depending on which contains special symbols. It is also possible registering for a new account. 
-
-To change your password, visit the [account management page](/account/management/change-password).
+In this case, it is recommended that you change your username or password, depending on which contains special symbols. To change your account details, visit the [account management page](/account/management).
 
 ## What do I do if I forgot my password?
 
 The [password reset tool](/account/forgot-password) is the quickest way to reset your password.
-This requires you to have a valid email address on your account. Make sure that emails from <support@19gdps.com> are allowed through your spam filter.
+This requires you to have a valid email address on your account.
+Make sure that emails from <support@19gdps.com> are allowed through your spam filter.
 
-If you cannot receive the reset email, please contact a Moderator or Admin for further support.
+If you cannot receive the reset email, please contact a staff member for further support.
 
 ## How do I change my username?
 
-The tool to do this can be found on the [account management page](/account/management/change-username).
+The tool to do this can be found on the [account management page](/account/management).
 
 After changing your username, please use the ingame "Refresh Login" option to finalize the update.
 
 Afterwards, you should see the username change on your levels and on the [Search Users](/users) tool. 
+
+# Songs
+
+## Why does downloading a song not work?
+
+If the song appears to fails towards the end of the download, try enabling "Change Custom Songs Location" in the ingame settings.
+
+For many older GDPS levels, songs may fail to download due to certain sites disabling access to older audio tracks.
+You may report these songs to staff through [broken song submission form](https://docs.google.com/forms/d/e/1FAIpQLSeMTmAWUp3IRe7hc8k14qbR1Du6f7aYM_YrVnGyRUsWD71YVw/viewform).
+
+If this is your song ID, make sure the URL you are uploading refers to a valid audio file.
+If it does not, try a different URL or hosting service.
+
+Songs through Newgrounds must be downloadable on the main servers, which means that the artist must be whitelisted, scouted, and have allowed API access to their songs.
+
+## How do I use a song that's not on Newgrounds?
+
+You should use the [Song Reupload tool](/songs/reupload).
+
+Temporary links, such as those from Discord, are not allowed.
+Services that do not point to direct song links, like SoundCloud or YouTube, are also not allowed.
+Audio files should be in the mp3 format.
+Other formats may work ingame, but are generally not optimized for use in Geometry Dash and can cause lag during gameplay.
+
+Instead, please use a recommended service like [Dropbox](https://www.dropbox.com), [Google Drive](https://drive.google.com) or [File Garden](https://filegarden.com).
+Make sure your files are accessible publicly.
+
+If you need to edit the song information after a song was uploaded, please contact a staff member.
+
+Most songs from the 2.2 Music Library can also be used.
+You may want to use a tool like [Hyperbolus](https://hyperbolus.net/tools/music) to view the song IDs.
+Please note that songs from NCS or CHOMPO will not correctly download in u9.0.4.

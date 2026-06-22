@@ -1,7 +1,6 @@
 <script lang="ts">
 	import logo from '$lib/assets/ogp-icon.png';
 	import Link from '$lib/components/core/Link.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import { resolve } from '$app/paths';
 	import { fade } from 'svelte/transition';
 
@@ -11,6 +10,7 @@
 	import Discord from '$lib/components/icons/Discord.svelte';
 	import Trophy from '$lib/components/icons/Trophy.svelte';
 	import Download from '@lucide/svelte/icons/download';
+	import CircleQuestionMark from '@lucide/svelte/icons/circle-question-mark';
 
 	import PlaceholderImage from '$lib/assets/home/banner/placeholder.png?enhanced';
 	import Level1 from '$lib/assets/home/banner/12353.png?enhanced&blur=8&brightness=0.5';
@@ -19,6 +19,7 @@
 	import Level4 from '$lib/assets/home/banner/28539.png?enhanced&blur=8&brightness=0.5';
 	import Level5 from '$lib/assets/home/banner/72524.png?enhanced&blur=8&brightness=0.5';
 	import Level6 from '$lib/assets/home/banner/307901.png?enhanced&blur=8&brightness=0.5';
+	import Button from '$lib/components/core/Button.svelte';
 
 	const banner_listing = [
 		{ src: Level4, name: 'Unreality by GrenadeofTacos', id: 28539 },
@@ -94,9 +95,9 @@
 		</div>
 
 		<div class="download-btn">
-			<LinkButton href={resolve('/download')}>
-				<span class="link-icon"><Download /> Download</span>
-			</LinkButton>
+			<Button href={resolve('/download')} icon={Download} buttonStyle="emphasis">Download</Button>
+
+			<Button href={resolve('/faq')} icon={CircleQuestionMark}>FAQ</Button>
 		</div>
 	</div>
 
@@ -428,6 +429,8 @@ Check out the 1.9 GDPS on other sites!
 	}
 
 	.download-btn {
+		display: flex;
+		flex-wrap: wrap;
 		filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
 	}
 
