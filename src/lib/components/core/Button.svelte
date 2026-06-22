@@ -44,7 +44,7 @@
 	.button {
 		display: inline-block;
 		border-radius: 12px;
-		background-color: white;
+		background-color: transparent;
 		background-image: radial-gradient(
 			100% 100% at 100% 0,
 			var(--start-color) 0,
