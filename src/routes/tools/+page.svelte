@@ -62,16 +62,8 @@
 	<div class="links-container">
 		<h2><Play /> Levels</h2>
 
-		<Link href={resolve('/levels')}>
-			<span class="link-icon">
-				<Search size={18} /> Search Levels
-			</span>
-		</Link>
-		<Link href={resolve('/levels/packs')}>
-			<span class="link-icon">
-				<Folders size={18} /> Map Packs
-			</span>
-		</Link>
+		<Link href={resolve('/levels')} icon={Search}>Search Levels</Link>
+		<Link href={resolve('/levels/packs')} icon={Folders}>Map Packs</Link>
 		{#if data.current_user}
 			<Link href={resolve('/levels/reupload')}>Level Reupload</Link>
 		{/if}
@@ -85,11 +77,7 @@
 
 	<div class="links-container">
 		<h2><Music /> Songs</h2>
-		<Link href={resolve('/songs')}>
-			<span class="link-icon">
-				<ListMusic size={18} /> Song List
-			</span>
-		</Link>
+		<Link href={resolve('/songs')} icon={ListMusic}>Song List</Link>
 		{#if data.current_user}
 			<Link href={resolve('/songs/reupload')}>Song Reupload</Link>
 		{/if}
@@ -97,30 +85,14 @@
 
 	<div class="links-container">
 		<h2><Users /> Users</h2>
-		<Link href={resolve('/leaderboards')}>
-			<span class="link-icon">
-				<Trophy size={18} /> Leaderboards
-			</span>
-		</Link>
-		<Link href={resolve('/users')}>
-			<span class="link-icon">
-				<UserSearch size={18} /> Search Users
-			</span>
-		</Link>
+		<Link href={resolve('/leaderboards')} icon={Trophy}>Leaderboards</Link>
+		<Link href={resolve('/users')} icon={UserSearch}>Search Users</Link>
 	</div>
 
 	<div class="links-container">
 		<h2><Shield /> Other</h2>
-		<Link href={resolve('/stats/server-info')}>
-			<span class="link-icon">
-				<ChartColumn size={18} /> Server Info
-			</span>
-		</Link>
-		<Link href={resolve('/comments')}>
-			<span class="link-icon">
-				<MessageSquare size={18} /> Comments
-			</span>
-		</Link>
+		<Link href={resolve('/stats/server-info')} icon={ChartColumn}>Server Info</Link>
+		<Link href={resolve('/comments')} icon={MessageSquare}>Comments</Link>
 
 		<Link href={resolve('/accounts')}>Search Accounts</Link>
 
@@ -166,13 +138,6 @@
 		align-items: center;
 
 		margin: 0;
-	}
-
-	.link-icon {
-		display: flex;
-		gap: 0.25rem;
-
-		align-items: center;
 	}
 
 	.account-management {

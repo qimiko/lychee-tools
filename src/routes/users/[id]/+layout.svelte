@@ -4,7 +4,7 @@
 	import Link from '$lib/components/core/Link.svelte';
 	import UserHeader from '$lib/components/UserHeader.svelte';
 
-	import Shield from '@lucide/svelte/icons/shield';
+	import ExternalLink from '@lucide/svelte/icons/external-link';
 
 	let { children, data } = $props();
 </script>
@@ -44,7 +44,7 @@
 {#if data.current_user && data.current_user.permission_level >= 1}
 	<div class="header-links">
 		<div class="no-bullet">
-			<Shield class="link-icon" />
+			<ExternalLink class="link-icon" />
 		</div>
 
 		{#if data.current_user && data.current_user.permission_level >= 1}

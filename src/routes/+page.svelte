@@ -114,40 +114,34 @@ Check out the 1.9 GDPS on other sites!
 
 <div class="social-links">
 	<div>
-		<Link href="https://discord.gg/eCGFrCG">
-			<span class="link-icon"><Discord /> Discord</span>
-		</Link>
+		<Link href="https://discord.gg/eCGFrCG" icon={Discord}>Discord</Link>
 	</div>
 
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://demonlist.19gdps.com/">
-			<span class="link-icon"><Trophy /> Demonlist</span>
-		</Link>
+		<Link href="https://demonlist.19gdps.com/" icon={Trophy}>Demonlist</Link>
 	</div>
 </div>
 
 <div class="social-links">
 	<div>
-		<Link href="https://www.youtube.com/channel/UCIUpOcn9GZ-IlEw34czouIg">
-			<span class="link-icon"><YouTube /> 19GDPSOfficial</span>
+		<Link href="https://www.youtube.com/channel/UCIUpOcn9GZ-IlEw34czouIg" icon={YouTube}>
+			19GDPSOfficial
 		</Link>
 	</div>
 
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://twitter.com/official19gdps">
-			<span class="link-icon"><Twitter /> official19gdps</span>
-		</Link>
+		<Link href="https://twitter.com/official19gdps" icon={Twitter}>official19gdps</Link>
 	</div>
 
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://bsky.app/profile/19gdps.bsky.social">
-			<span class="link-icon"><Bluesky /> 19gdps.bsky.social</span>
+		<Link href="https://bsky.app/profile/19gdps.bsky.social" icon={Bluesky}>
+			19gdps.bsky.social
 		</Link>
 	</div>
 </div>
@@ -290,13 +284,6 @@ Check out the 1.9 GDPS on other sites!
 		border-radius: 8px;
 
 		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
-	}
-
-	.link-icon {
-		display: flex;
-		gap: 0.25rem;
-
-		align-items: center;
 	}
 
 	.screenshot-placeholder {

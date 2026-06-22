@@ -34,10 +34,8 @@
 		<Button href={data.update.links.windows} icon={Windows}>Download for Windows</Button>
 
 		<p>
-			<Link href={data.update.links.windows_portable}>
-				<span class="link-icon">
-					<FolderArchive size={18} /> ZIP archive for Windows
-				</span>
+			<Link href={data.update.links.windows_portable} icon={FolderArchive}>
+				ZIP archive for Windows
 			</Link>
 		</p>
 	</div>
@@ -59,12 +57,5 @@
 		gap: 1em;
 
 		margin: 0 0.5em;
-	}
-
-	.link-icon {
-		display: flex;
-		gap: 0.25rem;
-
-		align-items: center;
 	}
 </style>
