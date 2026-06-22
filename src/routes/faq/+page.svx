@@ -30,7 +30,7 @@ Due to the high minimum Wine version requirement (10.14), **Whisky is not recomm
 
 The easiest method, assuming you already have Geometry Dash through Steam, is with Proton. To use it:
 
-1. Add the 1.9 GDPS (`DontRenameMeThxDash.exe`) as a non-Steam game. See [the Steam Help Article](https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC) for more information.
+1. Add the 1.9 GDPS (`DontRenameMeThxDash.exe`) as a non-Steam game. See the [Steam Help article](https://help.steampowered.com/en/faqs/view/4B8B-9697-2338-40EC) for more information.
 2. Enable Proton for the 1.9 GDPS. This is done by going into the game properties (either through right clicking or on the settings in the game page) and viewing the compatibility tab. Check the "Force the use of a specific Steam Play compatibility tool" box and select the latest version of Proton.
 
 A wrapper like [Bottles](https://usebottles.com) or [Lutris](https://lutris.net) should also work.
@@ -58,7 +58,7 @@ For example, it modifies the game's files and injects extra code into the game, 
 The game is also modified to work without Steam, which most antiviruses will flag as well.
 Because 1.9 does not have an official way to mod it, it's necessary to "frankenstein" the game's code that way, and the result is your antivirus software thinking it's something malicious.
 
-## Why does Android say that the 1.9 GDPS is not compatible with my device?
+## Why does Android say that the 1.9 GDPS is not compatible?
 
 This is very likely due to the 1.9 GDPS being a 32-bit only application, which newer devices have lost support for.
 Unfortunately, there are no good solutions for this.

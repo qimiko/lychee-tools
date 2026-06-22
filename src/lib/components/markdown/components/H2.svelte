@@ -1,10 +1,16 @@
 <script lang="ts">
-	import Title from '../../core/Title.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	const { children, ...rest }: HTMLAttributes<HTMLHeadingElement> = $props();
 </script>
 
-<Title size={2} {...rest}>
+<h2 {...rest}>
 	{@render children?.()}
-</Title>
+</h2>
+
+<style>
+	h2 {
+		margin: 1em;
+		text-decoration: underline;
+	}
+</style>
