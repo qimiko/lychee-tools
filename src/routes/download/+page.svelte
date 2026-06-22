@@ -1,5 +1,4 @@
 <script lang="ts">
-	import logo from '$lib/assets/ogp-icon.png';
 	import Title from '$lib/components/core/Title.svelte';
 	import Button from '$lib/components/core/Button.svelte';
 
@@ -13,9 +12,8 @@
 
 <svelte:head>
 	<title>Downloads - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
-	<meta name="og:description" content="Download links for the 1.9 GDPS." />
-	<meta name="og:image" content={logo} />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Downloads" />
 </svelte:head>
 
 <Title>1.9 GDPS Downloads</Title>

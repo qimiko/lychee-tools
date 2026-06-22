@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Title from '$lib/components/core/Title.svelte';
 	import type { PageData } from './$types.js';
-	import logo from '$lib/assets/ogp-icon.png';
 	import UserCell from '$lib/components/cells/UserCell.svelte';
 	import StarIcon from '$lib/assets/icons/star_big.png';
 	import DemonIcon from '$lib/assets/icons/demon.png';
@@ -36,8 +35,8 @@
 
 <svelte:head>
 	<title>Leaderboards - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
-	<meta name="og:image" content={logo} />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Leaderboards" />
 </svelte:head>
 
 <Title>Leaderboards</Title>

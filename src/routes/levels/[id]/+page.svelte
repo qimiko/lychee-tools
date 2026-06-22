@@ -69,7 +69,7 @@
 <svelte:head>
 	<title>{revision.name} - 1.9 GDPS</title>
 	<meta name="og:site_name" content="1.9 GDPS" />
-	<meta name="og:title" content={revision.name} />
+	<meta name="og:title" content={`${revision.name} by ${data.level.author.name}`} />
 	<meta name="og:description" content={revision.description} />
 </svelte:head>
 

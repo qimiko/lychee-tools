@@ -9,7 +9,8 @@
 
 <svelte:head>
 	<title>Change Username - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Change Username" />
 </svelte:head>
 
 <Title>Change Username</Title>

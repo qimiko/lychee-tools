@@ -26,8 +26,8 @@
 
 <svelte:head>
 	<title>Tools - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
-	<meta name="og:description" content="Management tools for the 1.9 GDPS." />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Available Tools" />
 </svelte:head>
 
 <Title size={1}>Available Tools</Title>

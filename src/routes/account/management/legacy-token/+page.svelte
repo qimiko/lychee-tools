@@ -9,7 +9,8 @@
 
 <svelte:head>
 	<title>Create Legacy Token - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Create Legacy Token" />
 </svelte:head>
 
 <Title>Create Legacy Token</Title>

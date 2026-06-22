@@ -30,7 +30,8 @@
 
 <svelte:head>
 	<title>Account Management - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Account Management" />
 </svelte:head>
 
 <Title>Account Management</Title>

@@ -12,7 +12,8 @@
 
 <svelte:head>
 	<title>Login - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Login" />
 	<meta name="og:description" content="Login to a 1.9 GDPS account." />
 </svelte:head>
 

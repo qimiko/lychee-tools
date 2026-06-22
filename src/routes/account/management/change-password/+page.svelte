@@ -9,7 +9,8 @@
 
 <svelte:head>
 	<title>Change Password - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Change Password" />
 </svelte:head>
 
 <Title>Change Password</Title>
