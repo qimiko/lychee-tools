@@ -44,34 +44,36 @@
 		{count == 1 ? singularName : pluralName} total
 	</span>
 
-	<span class="bullet">&bull;</span>
+	<span class="main-bullet">&bull;</span>
 
-	<IconButton
-		onclick={async () => {
-			await onSelect(Math.max(page - 1, 0));
-		}}
-		disabled={disabled || page == 0}
-	>
-		<ChevronLeft />
-	</IconButton>
+	<div class="pagination-buttons">
+		<IconButton
+			onclick={async () => {
+				await onSelect(Math.max(page - 1, 0));
+			}}
+			disabled={disabled || page == 0}
+		>
+			<ChevronLeft />
+		</IconButton>
 
-	Page {disp_page} of {max_pages}
+		Page {disp_page} of {max_pages}
 
-	<IconButton
-		onclick={async () => {
-			await onSelect(Math.min(page + 1, max_pages));
-		}}
-		disabled={disabled || count == 0 || disp_page == max_pages}
-	>
-		<ChevronRight />
-	</IconButton>
+		<IconButton
+			onclick={async () => {
+				await onSelect(Math.min(page + 1, max_pages));
+			}}
+			disabled={disabled || count == 0 || disp_page == max_pages}
+		>
+			<ChevronRight />
+		</IconButton>
 
-	{#if children}
-		<span class="bullet">&bull;</span>
-		<div>
-			{@render children()}
-		</div>
-	{/if}
+		{#if children}
+			<span class="bullet">&bull;</span>
+			<div>
+				{@render children()}
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
@@ -82,6 +84,14 @@
 
 	.page-container {
 		padding: 0.5em 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		gap: 0.5em;
+	}
+
+	.pagination-buttons {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -100,6 +110,14 @@
 
 		.total-short {
 			display: inline-block;
+		}
+
+		.page-container {
+			flex-direction: column;
+		}
+
+		.main-bullet {
+			display: none;
 		}
 	}
 </style>
