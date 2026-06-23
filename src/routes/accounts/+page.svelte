@@ -20,7 +20,7 @@
 	let page = $derived(data.params.page ?? 0);
 	let query = $derived(data.params.query ?? '');
 	let sort = $derived(data.params.sort);
-	let count = $derived(data.params.count ?? 250);
+	let count = $derived(data.params.count ?? 50);
 
 	async function updateQueryParams() {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity

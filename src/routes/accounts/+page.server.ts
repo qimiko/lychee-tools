@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	const params: AccountsSearchParams = {
 		query: url.searchParams.get('query') ?? undefined,
 		page: toIntSafe(url.searchParams.get('page')) ?? 0,
-		count: toIntSafe(url.searchParams.get('count')) ?? 250,
+		count: toIntSafe(url.searchParams.get('count')) ?? 50,
 		sort: url.searchParams.get('sort') == 'registered' ? 'registered' : 'name'
 	};
 
