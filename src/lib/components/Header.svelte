@@ -150,7 +150,9 @@
 		align-items: center;
 
 		height: 52px;
+	}
 
+	.topnav:not(.beta) {
 		border-bottom: 2px #222 solid;
 		box-sizing: border-box;
 	}
