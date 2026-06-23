@@ -1,0 +1,22 @@
+## Key Features
+
+**Build:** In build mode you select and place different objects in the level.
+
+**Edit:** In edit mode you can select a piece and modify its attributes such as position and rotation.
+
+**Delete:** Tap on objects when in delete mode to remove them.
+
+**Swipe:** Activating swipe mode changes the way commands work.
+
+- _Place multiple objects by swiping while in build mode._
+- _Select large groups of objects while in edit mode._
+- _Delete multiple objects while in delete mode._
+- **Delete:** Tap on objects when in delete mode to remove them.
+
+**Copy behaviour:** If an object is placed while the same kind of objects is already selected, the new object will inherit the transformations of the selected object.
+
+Example: Place a spike and rotate it 90 degrees. While the spike is still selected place a new spike. The new spike will inherit the transformation and also be rotated 90 degrees.
+
+---
+
+Inspired by [2.0's editor guide](http://web.archive.org/web/20150412090606/http://www.boomlings.com/files/GJGuide.pdf).

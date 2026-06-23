@@ -11,7 +11,7 @@
 	p {
 		padding: 0 1em;
 		margin: 1em auto;
-		max-width: 65ch;
+		max-width: 70ch;
 		text-align: left;
 	}
 </style>

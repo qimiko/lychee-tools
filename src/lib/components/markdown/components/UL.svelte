@@ -11,7 +11,7 @@
 	ul {
 		padding: 0 2em;
 		margin: 1em auto;
-		max-width: 65ch;
+		max-width: 70ch;
 
 		text-align: left;
 	}

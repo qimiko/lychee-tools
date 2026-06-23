@@ -1,3 +1,9 @@
+<script>
+	import Title from '$lib/components/core/Title.svelte';
+</script>
+
+<Title>1.9 GDPS FAQ</Title>
+
 This FAQ is still a work-in-progress.
 If you cannot find an answer to your question, please ask in the [1.9 GDPS Discord server](https://discord.gg/eCGFrCG).
 
