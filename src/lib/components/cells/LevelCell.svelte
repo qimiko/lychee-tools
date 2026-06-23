@@ -158,7 +158,8 @@
 		justify-content: space-between;
 
 		min-width: 20em;
-		max-width: 30em;
+
+		width: min(90vw, 30rem);
 		height: 7em;
 
 		background-color: rgba(0, 0, 0, 0.05);

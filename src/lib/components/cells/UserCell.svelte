@@ -104,7 +104,7 @@
 	.cell {
 		display: flex;
 
-		max-width: 35rem;
+		width: min(90vw, 35rem);
 
 		background-color: rgba(0, 0, 0, 0.05);
 		border-radius: 16px;
