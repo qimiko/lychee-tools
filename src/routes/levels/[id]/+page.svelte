@@ -205,7 +205,7 @@
 
 		<span class="bullet">&bull;</span>
 
-		<Link href={resolve('/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
+		<Link href={resolve('/stats/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
 	</div>
 {/if}
 

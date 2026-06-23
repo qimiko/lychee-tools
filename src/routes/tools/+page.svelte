@@ -97,11 +97,11 @@
 		<Link href={resolve('/accounts')}>Search Accounts</Link>
 
 		{#if data.current_user && data.current_user.permission_level >= 1}
-			<Link href={resolve('/actions/top')}>Top Actions</Link>
-			<Link href={resolve('/actions')}>Mod Actions</Link>
+			<Link href={resolve('/stats/actions/top')}>Top Actions</Link>
+			<Link href={resolve('/stats/actions')}>Mod Actions</Link>
 		{/if}
 		{#if data.current_user && data.current_user.permission_level >= 2}
-			<Link href={resolve('/tasks')}>Cron Job</Link>
+			<Link href={resolve('/stats/tasks')}>Cron Job</Link>
 		{/if}
 	</div>
 </div>

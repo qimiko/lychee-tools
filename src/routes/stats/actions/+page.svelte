@@ -51,7 +51,7 @@
 		}
 
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/actions')}?${params}`, {
+		await goto(`${resolve('/stats/actions')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
 			replaceState: true

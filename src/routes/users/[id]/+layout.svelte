@@ -66,13 +66,13 @@
 		{#if data.user.account_id && data.current_user.permission_level >= 1}
 			<div>
 				<Link
-					href={resolve('/actions') + `?by_user=${data.user.id}&by_account=${data.user.account_id}`}
-					>View Actions</Link
+					href={resolve('/stats/actions') +
+						`?by_user=${data.user.id}&by_account=${data.user.account_id}`}>View Actions</Link
 				>
 			</div>
 		{:else if data.current_user.permission_level >= 1}
 			<div>
-				<Link href={resolve('/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
+				<Link href={resolve('/stats/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
 			</div>
 		{/if}
 	</div>
