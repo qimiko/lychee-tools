@@ -114,6 +114,8 @@
 		align-items: start;
 
 		gap: 0.25rem;
+
+		margin: 0 0.5em;
 	}
 
 	.links-row {
