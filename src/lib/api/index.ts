@@ -575,7 +575,8 @@ export type SearchLevelType =
 	| 'reported'
 	| 'list'
 	| 'sent'
-	| 'self_unlisted';
+	| 'self_unlisted'
+	| 'last_updated';
 
 export type LevelSearchParams = {
 	type?: SearchLevelType;

@@ -277,6 +277,7 @@
 			{#if data.params.type == 'self_unlisted'}
 				<option value="self_unlisted">Unlisted</option>
 			{/if}
+			<option value="last_updated">Last Updated</option>
 		</select>
 
 		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}>
