@@ -61,14 +61,15 @@ export const actions = {
 	}
 } satisfies Actions;
 
-export const load: PageServerLoad = async ({ cookies, fetch }) => {
+export const load: PageServerLoad = async ({ cookies, fetch, getClientAddress }) => {
 	const token = cookies.get('token');
 	if (!token) {
 		const url_params = new URLSearchParams({ redirect: '/account/management' });
 		redirect(303, resolve('/account/login') + `?${url_params}`);
 	}
 
-	const client = new GDPSClient({ token, fetch });
+	const ip = getClientAddress();
+	const client = new GDPSClient({ token, fetch, ip });
 
 	let extra_details;
 	try {
