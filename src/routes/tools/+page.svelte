@@ -13,6 +13,8 @@
 	import Shield from '@lucide/svelte/icons/shield';
 	import Play from '@lucide/svelte/icons/play';
 	import Settings from '@lucide/svelte/icons/settings';
+	import Lock from '@lucide/svelte/icons/lock';
+
 	import { page } from '$app/state';
 
 	import { resolve } from '$app/paths';
@@ -64,9 +66,9 @@
 
 		<Link href={resolve('/levels')} icon={Search}>Search Levels</Link>
 		<Link href={resolve('/levels/packs')} icon={Folders}>Map Packs</Link>
-		{#if data.current_user}
-			<Link href={resolve('/levels/reupload')}>Level Reupload</Link>
-		{/if}
+		<Link href={resolve('/levels/reupload')} icon={data.current_user ? undefined : Lock}
+			>Level Reupload</Link
+		>
 		{#if data.current_user && data.current_user.permission_level >= 1}
 			<Link href={resolve('/levels/packs/create')}>Create Map Pack</Link>
 		{/if}
@@ -78,9 +80,9 @@
 	<div class="links-container">
 		<h2><Music /> Songs</h2>
 		<Link href={resolve('/songs')} icon={ListMusic}>Song List</Link>
-		{#if data.current_user}
-			<Link href={resolve('/songs/reupload')}>Song Reupload</Link>
-		{/if}
+		<Link href={resolve('/songs/reupload')} icon={data.current_user ? undefined : Lock}
+			>Song Reupload</Link
+		>
 	</div>
 
 	<div class="links-container">

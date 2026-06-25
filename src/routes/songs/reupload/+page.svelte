@@ -1,7 +1,9 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { resolve } from '$app/paths';
 	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
+	import Link from '$lib/components/core/Link.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
 	let { form } = $props();
@@ -19,10 +21,12 @@
 	{#if form?.error}
 		<p>{form.error}</p>
 	{:else if form?.success}
-		<p>Success! Song reupload with ID {form.reuploaded_id}</p>
+		<p>
+			Success! Song reuploaded with ID <Link href={resolve('/songs')}>{form.reuploaded_id}</Link>.
+		</p>
 	{/if}
 
-	<b>Direct links</b> or <b>Dropbox links</b> only accepted,
+	<b>Direct links</b> or <b>Dropbox/Google Drive links</b> only accepted,
 	<b><font size="5">NO YOUTUBE OR DISCORD LINKS</font></b><br />
 
 	<FormInput type="url" label="URL" value={form?.url ?? ''} name="url" required />

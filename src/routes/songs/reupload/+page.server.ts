@@ -46,7 +46,8 @@ export const actions = {
 					let message = 'An error occurred during reupload.';
 					switch (error) {
 						case 'fetch_failed':
-							message = 'Failed to fetch song, try again later.';
+							message =
+								'Failed to fetch song, please make sure your song is publicly accessible and is a valid audio file.';
 							break;
 						case 'reupload_exists':
 							message = 'Song being reuploaded already exists.';
