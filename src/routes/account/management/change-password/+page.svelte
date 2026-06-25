@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -8,7 +9,8 @@
 
 <svelte:head>
 	<title>Change Password - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Change Password" />
 </svelte:head>
 
 <Title>Change Password</Title>
@@ -16,11 +18,6 @@
 <form method="POST" use:enhance>
 	{#if form?.error}
 		<p>{form.error}</p>
-	{:else if form?.success}
-		<p>
-			Success! Your password has been updated. Please "Refresh Login" ingame to have it update
-			fully.
-		</p>
 	{/if}
 
 	<p>
@@ -40,6 +37,6 @@
 	/>
 
 	<div>
-		<FormInput type="submit" value="Update" />
+		<Button type="submit">Update</Button>
 	</div>
 </form>

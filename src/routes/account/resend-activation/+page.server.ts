@@ -33,6 +33,11 @@ export const actions = {
 						error: 'Invalid data, make sure you entered everything correctly!',
 						email
 					});
+				} else if (e.type == 'invalid_email') {
+					return fail(400, {
+						error: 'Failed to send activation email. Please try again later.',
+						email
+					});
 				}
 			}
 

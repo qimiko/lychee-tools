@@ -18,6 +18,11 @@ export type ServerInvalidRegistrationError = ServerResultError & {
 		| 'username_too_short';
 };
 
+export type ServerInvalidEmailError = ServerResultError & {
+	type: 'invalid_email';
+	message: string | null;
+};
+
 export type ServerReuploadFailedError = ServerResultError & {
 	type: 'reupload_failed';
 	error: 'generic' | 'fetch_failed' | 'reupload_exists' | 'invalid_data' | 'level_too_recent';
@@ -37,7 +42,8 @@ type ServerGenericResultError = ServerResultError & {
 type ServerResultFull =
 	| ServerInvalidRegistrationError
 	| ServerReuploadFailedError
-	| ServerGenericResultError;
+	| ServerGenericResultError
+	| ServerInvalidEmailError;
 
 type ServerResult<T, E extends ServerResultError = ServerResultFull> =
 	| {
@@ -76,6 +82,13 @@ export type ServerMinimalAccountPair = {
 	id: number;
 };
 
+export type ServerMinimalAccount = {
+	username: string;
+	id: number;
+	user_id: number | null;
+	created: string;
+};
+
 export type ServerDevice = {
 	id: string;
 	origin_ip: string;
@@ -87,6 +100,9 @@ export type ServerExtraAccountDetails = {
 	devices: ServerDevice[];
 	has_legacy_token: boolean;
 	has_session: boolean;
+	email: string;
+	email_verified: boolean;
+	save_size: number | null;
 };
 
 export type ServerUser = {
@@ -437,6 +453,7 @@ export type ServerActionAccountEdit = BaseServerAction & {
 		username?: string;
 		password?: boolean;
 		permission_level?: number;
+		verified?: boolean;
 	};
 };
 
@@ -542,13 +559,23 @@ export type ServerBan = {
 };
 
 export type SearchLevelType =
-	| 'super'
-	| 'self_unlisted'
 	| 'search_string'
-	| 'user_levels'
 	| 'most_downloaded'
 	| 'most_liked'
-	| 'map_pack';
+	| 'trending'
+	| 'recent'
+	| 'user_levels'
+	| 'featured'
+	| 'magic'
+	| 'map_pack'
+	| 'awarded'
+	| 'followed'
+	| 'friends'
+	| 'super'
+	| 'reported'
+	| 'list'
+	| 'sent'
+	| 'self_unlisted';
 
 export type LevelSearchParams = {
 	type?: SearchLevelType;
@@ -560,7 +587,7 @@ export type LevelSearchParams = {
 	diffs?: number[];
 	lengths?: number[];
 	star?: boolean;
-	no_star?: boolean;
+	no_stars?: boolean;
 	two_player?: boolean;
 	original?: boolean;
 	featured?: boolean;
@@ -594,6 +621,13 @@ export type SongsSearchParams = {
 	page?: number;
 	count?: number;
 	reupload?: boolean;
+};
+
+export type AccountsSearchParams = {
+	query?: string;
+	page?: number;
+	count?: number;
+	sort?: 'registered' | 'name';
 };
 
 export type ActionsSearchParams = {
@@ -672,13 +706,13 @@ export class GDPSClient {
 		return body.authkey;
 	}
 
-	async registerAccount(username: string, password: string, email: string) {
+	async registerAccount(username: string, password: string, email: string, challenge: string) {
 		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/register`, {
 			headers: new Headers({
 				'Content-Type': 'application/json'
 			}),
 			method: 'POST',
-			body: JSON.stringify({ username, password, email })
+			body: JSON.stringify({ username, password, email, challenge })
 		});
 
 		if (data.status == 201) {
@@ -686,6 +720,29 @@ export class GDPSClient {
 		}
 
 		validate(await data.json());
+	}
+
+	async searchAccounts(params: AccountsSearchParams) {
+		const url = new URL(`${GDPS_BASE_URL}/v2/accounts`);
+
+		if (params.count !== undefined) {
+			url.searchParams.set('count', params.count.toString());
+		}
+
+		if (params.page !== undefined) {
+			url.searchParams.set('page', params.page.toString());
+		}
+
+		if (params.query !== undefined) {
+			url.searchParams.set('query', params.query);
+		}
+
+		if (params.sort !== undefined) {
+			url.searchParams.set('sort', params.sort);
+		}
+
+		const data = await this.#make_request(url);
+		return validate<ServerPaginated<ServerMinimalAccount>>(await data.json());
 	}
 
 	async getAccount(id: number | 'me' = 'me') {
@@ -700,6 +757,26 @@ export class GDPSClient {
 		}
 
 		return validate<ServerMe>(await data.json());
+	}
+
+	async changeAccountUsername(id: number, username: string) {
+		if (!this.#token) {
+			throw new AuthenticationError();
+		}
+
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/${id}/change-username`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'POST',
+			body: JSON.stringify({ username })
+		});
+
+		if (data.status == 204) {
+			return;
+		}
+
+		validate(await data.json());
 	}
 
 	async promoteAccount(id: number, level: number) {
@@ -950,8 +1027,8 @@ export class GDPSClient {
 			url.searchParams.set('star', params.star ? 'true' : 'false');
 		}
 
-		if (params?.no_star !== undefined) {
-			url.searchParams.set('no_star', params.no_star ? 'true' : 'false');
+		if (params?.no_stars !== undefined) {
+			url.searchParams.set('no_stars', params.no_stars ? 'true' : 'false');
 		}
 
 		if (params?.two_player !== undefined) {

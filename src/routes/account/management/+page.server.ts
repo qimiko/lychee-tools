@@ -36,7 +36,7 @@ export const actions = {
 			path: '/',
 			maxAge: 2592000
 		});
-		return redirect(300, '/tools');
+		return redirect(302, '/tools');
 	},
 	logout_device: async ({ request, fetch, cookies }) => {
 		const formData = await request.formData();

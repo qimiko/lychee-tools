@@ -33,7 +33,7 @@
 				<tr>
 					<td>
 						<Link
-							href={resolve('/accounts/[id]/manage', {
+							href={resolve('/accounts/[id]', {
 								id: item.id.toString()
 							})}
 						>
@@ -65,27 +65,3 @@
 {#if 0 in top_by_permissions && top_by_permissions[0]}
 	{@render drawTopTable(top_by_permissions[0])}
 {/if}
-
-<style>
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
-	}
-</style>

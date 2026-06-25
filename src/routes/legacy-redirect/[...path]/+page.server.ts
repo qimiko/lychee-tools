@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
 
@@ -11,9 +11,10 @@ const mappings: Record<string, string> = {
 	'newSession.php': resolve('/account/management'),
 	'account/resetPassword.php': resolve('/account/forgot-password'),
 	'account/checkTokens.php': resolve('/account/management'),
-	'stats/epicLevels.php': resolve('/levels') + '?type=super',
+	'stats/epicLevels.php': resolve('/levels') + '?type=super&override_title=Super+Levels',
 	'levelReupload.php': resolve('/levels/reupload'),
-	'stats/myUnlistedLevels.php': resolve('/levels') + '?type=self_unlisted',
+	'stats/myUnlistedLevels.php':
+		resolve('/levels') + '?type=self_unlisted&override_title=My+Unlisted+Levels',
 	'stats/mapPacks.php': resolve('/levels/packs'),
 	'stats/reportedLevels.php': resolve('/levels/most-reported'),
 	'stats/comments.php': resolve('/comments'),
@@ -25,12 +26,12 @@ const mappings: Record<string, string> = {
 	'stats/starGains.php': resolve('/users'),
 	'stats/top24h.php': resolve('/leaderboards'),
 	'stats/topWeek.php': resolve('/leaderboards'),
-	'cron/cron.php': resolve('/tasks'),
-	'cron/fixcps.php': resolve('/tasks'),
-	'cron/autoban.php': resolve('/tasks'),
-	'cron/deleteInvalidUsersAndSongs.php': resolve('/tasks'),
+	'cron/cron.php': resolve('/stats/tasks'),
+	'cron/fixcps.php': resolve('/stats/tasks'),
+	'cron/autoban.php': resolve('/stats/tasks'),
+	'cron/deleteInvalidUsersAndSongs.php': resolve('/stats/tasks'),
 	'stats/serverInfo.php': resolve('/stats/server-info'),
-	'stats/modActions.php': resolve('/actions'),
+	'stats/modActions.php': resolve('/stats/actions'),
 	'mod/leaderboardsBan.php': resolve('/users'),
 	'mod/leaderboardsUnban.php': resolve('/users'),
 	'mod/sendBan.php': resolve('/users'),
@@ -50,5 +51,5 @@ export const load: PageServerLoad = async ({ params }) => {
 		redirect(301, mappings[path]);
 	}
 
-	error(404);
+	redirect(301, resolve('/tools'));
 };

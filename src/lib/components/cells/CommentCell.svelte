@@ -133,7 +133,7 @@
 
 		flex-direction: column;
 
-		max-width: 35rem;
+		width: min(90vw, 35rem);
 		min-height: 5rem;
 
 		background-color: rgba(0, 0, 0, 0.05);
@@ -201,6 +201,8 @@
 		text-align: left;
 		overflow-wrap: break-word;
 		width: 100%;
+
+		max-width: 90vw;
 	}
 
 	.likes-icon {

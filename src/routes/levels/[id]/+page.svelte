@@ -29,11 +29,13 @@
 	let sort_type = $derived(data.comments_sort);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('comments_page', comments_page.toString());
 		params.set('comments_sort', sort_type);
 
 		await goto(
+			// eslint-disable-next-line svelte/no-navigation-without-resolve
 			`${resolve('/levels/[id]', {
 				id: data.level.id.toString()
 			})}?${params}`,
@@ -67,7 +69,7 @@
 <svelte:head>
 	<title>{revision.name} - 1.9 GDPS</title>
 	<meta name="og:site_name" content="1.9 GDPS" />
-	<meta name="og:title" content={revision.name} />
+	<meta name="og:title" content={`${revision.name} by ${data.level.author.name}`} />
 	<meta name="og:description" content={revision.description} />
 </svelte:head>
 
@@ -121,7 +123,7 @@
 				{lengthToString(revision.length)}
 			</div>
 
-			{#if revision.original_id}
+			{#if revision.original_id && revision.objects == 0}
 				<div class="level-stat">
 					<img src={CollaborationIcon} alt="likes" />
 
@@ -135,6 +137,22 @@
 				</div>
 			{/if}
 		</div>
+
+		{#if revision.original_id && revision.objects != 0}
+			<div class="stats-container">
+				<div class="level-stat">
+					<img src={CollaborationIcon} alt="likes" />
+
+					<Link
+						href={resolve('/levels/[id]', {
+							id: revision.original_id.toString()
+						})}
+					>
+						{revision.original_id}
+					</Link>
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -150,9 +168,17 @@
 	<div>
 		<img src={NoteIcon} alt="note" class="song-icon" />
 
-		<span>
-			{song_name} by {song_artist}
-		</span>
+		{#if data.song && data.song.ingame_song_source == 0}
+			<Link href={data.song.download}>{song_name} by {song_artist}</Link> ({revision.song_id})
+		{:else}
+			<span>
+				{song_name} by {song_artist}
+
+				{#if revision.song_id != 0}
+					({revision.song_id})
+				{/if}
+			</span>
+		{/if}
 	</div>
 
 	<br />
@@ -179,7 +205,7 @@
 
 		<span class="bullet">&bull;</span>
 
-		<Link href={resolve('/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
+		<Link href={resolve('/stats/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
 	</div>
 {/if}
 
@@ -273,7 +299,6 @@
 
 	.title-badge {
 		height: 1em;
-		margin-top: 0.25em;
 	}
 
 	.level-stat {

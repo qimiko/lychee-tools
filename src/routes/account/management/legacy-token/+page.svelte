@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
@@ -8,7 +9,8 @@
 
 <svelte:head>
 	<title>Create Legacy Token - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Create Legacy Token" />
 </svelte:head>
 
 <Title>Create Legacy Token</Title>
@@ -34,7 +36,7 @@
 	<FormInput type="password" label="Password" name="password" required />
 
 	<div>
-		<FormInput type="submit" value="Get Token" />
+		<Button type="submit">Get Token</Button>
 	</div>
 </form>
 

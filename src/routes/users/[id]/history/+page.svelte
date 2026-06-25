@@ -57,28 +57,6 @@
 		overflow-x: scroll;
 	}
 
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
-	}
-
 	.warning {
 		background-color: #f0f000;
 	}

@@ -2,17 +2,18 @@
 	import { enhance } from '$app/forms';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Link from '$lib/components/core/Link.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
 	import { resolve } from '$app/paths';
+	import Button from '$lib/components/core/Button.svelte';
 
 	let { form } = $props();
 </script>
 
 <svelte:head>
 	<title>Login - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Login" />
 	<meta name="og:description" content="Login to a 1.9 GDPS account." />
 </svelte:head>
 
@@ -28,9 +29,9 @@
 	<FormInput type="password" label="Password" name="password" required />
 
 	<div>
-		<LinkButton>Register</LinkButton>
+		<Button href={resolve('/account/register')} buttonStyle="secondary">Register</Button>
 
-		<FormInput type="submit" value="Login" />
+		<Button type="submit">Login</Button>
 	</div>
 </form>
 

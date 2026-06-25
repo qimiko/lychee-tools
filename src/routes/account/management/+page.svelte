@@ -1,40 +1,84 @@
 <script>
 	import Title from '$lib/components/core/Title.svelte';
-	import LinkButton from '$lib/components/core/LinkButton.svelte';
-	import { formatTimestamp } from '$lib';
-	import FormInput from '$lib/components/core/FormInput.svelte';
+	import { formatFileSize, formatTimestamp } from '$lib';
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
+
+	import X from '@lucide/svelte/icons/x';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
 
 	let { data, form } = $props();
 
 	let hide_ip = $state(true);
+
+	const censored_email = $derived.by(() => {
+		const parts = data.extra_details.email.split('@');
+
+		if (parts.length != 2) {
+			return data.extra_details.email;
+		}
+
+		const [user, domain] = parts;
+		if (user.length == 0) {
+			return data.extra_details.email;
+		}
+
+		return `${user[0]}*******@${domain}`;
+	});
 </script>
 
 <svelte:head>
 	<title>Account Management - 1.9 GDPS</title>
-	<meta name="og:title" content="1.9 GDPS" />
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Account Management" />
 </svelte:head>
 
 <Title>Account Management</Title>
 <div class="main-container">
-	<LinkButton href={resolve('/account/management/change-password')}>Change Password</LinkButton>
-	<LinkButton href={resolve('/account/management/change-username')}>Change Username</LinkButton>
-	<LinkButton href={resolve('/account/management/legacy-token')}>
+	<Button href={resolve('/account/management/change-password')}>Change Password</Button>
+	<Button href={resolve('/account/management/change-username')}>Change Username</Button>
+	<Button href={resolve('/account/management/legacy-token')}>
 		{#if data.extra_details.has_legacy_token}
 			Reset 2.2 Login
 		{:else}
 			Enable 2.2 Login
 		{/if}
-	</LinkButton>
+	</Button>
 </div>
 
-<Title size={2}>Active Devices</Title>
+<div style="margin: 1em;">
+	{#if data.extra_details.save_size !== null}
+		<b>Save backup size</b>: {formatFileSize(data.extra_details.save_size)}
+	{:else}
+		No save data backed up!
+	{/if}
+</div>
+
+<div style="margin: 1em;">
+	<b>Email:</b>
+
+	{#if hide_ip}
+		{censored_email}
+	{:else}
+		{data.extra_details.email}
+	{/if}
+
+	<i>
+		({#if data.extra_details.email_verified}
+			Verified
+		{:else}
+			Unverified
+		{/if})
+	</i>
+</div>
 
 <label>
 	<input type="checkbox" bind:checked={hide_ip} />
-	Hide IP Addresses
+	Hide Sensitive Information
 </label>
+
+<Title size={2}>Active Devices</Title>
 
 <div style="padding: 0.5em;"></div>
 
@@ -63,10 +107,10 @@
 						{device.origin_ip}
 					{/if}
 				</td>
-				<td>
+				<td style="padding: 0.5em;">
 					<form method="POST" use:enhance action="?/logout_device">
 						<input type="hidden" name="key" value={device.id} />
-						<FormInput type="submit" value="X" />
+						<IconButton type="submit"><X /></IconButton>
 					</form>
 				</td>
 			</tr>
@@ -83,7 +127,9 @@
 		<p>Logged out of all devices!</p>
 	{/if}
 
-	<FormInput type="submit" value="Log out of all devices" />
+	<Button type="submit" buttonStyle="emphasis">Log out of all devices</Button>
+
+	<Button href={resolve('/account/logout')} data-sveltekit-reload>Log out</Button>
 </form>
 
 <Title size={2}>Sessions</Title>
@@ -100,7 +146,7 @@
 			<p>Session created!</p>
 		{/if}
 
-		<FormInput type="submit" value="New Session" />
+		<Button type="submit">New Session</Button>
 	</form>
 {/if}
 
@@ -113,27 +159,5 @@
 		align-items: center;
 
 		gap: 0.5em;
-	}
-
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
 	}
 </style>

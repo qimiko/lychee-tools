@@ -18,10 +18,12 @@
 	let count = $derived(data.params.count ?? 250);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/levels/sent')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -140,27 +142,5 @@
 	.table-container {
 		width: 100%;
 		overflow-x: scroll;
-	}
-
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
 	}
 </style>

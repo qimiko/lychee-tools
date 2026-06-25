@@ -7,6 +7,8 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import FormInput from '$lib/components/core/FormInput.svelte';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Search from '@lucide/svelte/icons/search';
 
 	interface Props {
 		data: PageData;
@@ -20,6 +22,7 @@
 	let count = $derived(data.params.count ?? 250);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
@@ -32,6 +35,7 @@
 			params.set('no_reupload', 'true');
 		}
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/songs')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -56,8 +60,12 @@
 <Title>Song List</Title>
 
 <form onsubmit={onSearch}>
-	<FormInput placeholder="Song Name" type="text" bind:value={query} />
-	<FormInput type="submit" value="Search" />
+	<div class="search-row">
+		<FormInput placeholder="Song Name" type="text" bind:value={query} />
+		<IconButton type="submit">
+			<Search />
+		</IconButton>
+	</div>
 </form>
 
 <div>
@@ -149,25 +157,10 @@
 		scrollbar-gutter: stable;
 	}
 
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
+	.search-row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
 	}
 </style>

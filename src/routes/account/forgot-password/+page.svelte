@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { env } from '$env/dynamic/public';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 	import { Turnstile } from 'svelte-turnstile';
@@ -37,6 +38,6 @@
 	{/if}
 
 	<div>
-		<FormInput type="submit" value="Get Reset Email" />
+		<Button type="submit">Get Reset Email</Button>
 	</div>
 </form>

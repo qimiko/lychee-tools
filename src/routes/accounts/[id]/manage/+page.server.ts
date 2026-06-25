@@ -55,6 +55,35 @@ export const actions = {
 		} catch {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
+	},
+	change_username: async ({ request, fetch, cookies, getClientAddress, params }) => {
+		const id = +params.id;
+
+		const formData = await request.formData();
+
+		const username = formData.get('username');
+
+		if (typeof username != 'string' || !id) {
+			return fail(400, { error: 'Invalid information.', username: '' });
+		}
+
+		const ip = getClientAddress();
+		const token = cookies.get('token');
+		const client = new GDPSClient({ fetch, token, ip });
+
+		try {
+			await client.changeAccountUsername(id, username);
+
+			return { success: true, username };
+		} catch (e) {
+			if (e instanceof ServerError) {
+				if (e.type == 'invalid_registration') {
+					return fail(400, { error: 'Invalid username!' });
+				}
+			}
+
+			return fail(400, { error: 'An unknown server error has happened, please try again!' });
+		}
 	}
 } satisfies Actions;
 

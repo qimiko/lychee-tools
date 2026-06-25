@@ -5,6 +5,10 @@
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import type { BanType } from '$lib/api/index.js';
 
+	import X from '@lucide/svelte/icons/x';
+	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Button from '$lib/components/core/Button.svelte';
+
 	let { data, form } = $props();
 
 	const ban_types = [
@@ -49,10 +53,10 @@
 					<td>{formatTimestamp(item.created)}</td>
 					<td>{item.type}</td>
 					<td>{item.reason}</td>
-					<td>
+					<td style="padding: 0.5em;">
 						<form method="POST" use:enhance action="?/remove_ban">
 							<input type="hidden" name="key" value={item.type} />
-							<FormInput type="submit" value="X" />
+							<IconButton type="submit"><X /></IconButton>
 						</form>
 					</td>
 				</tr>
@@ -87,35 +91,6 @@
 
 		<FormInput type="text" label="Reason" name="reason" required />
 
-		<FormInput type="submit" value="Ban" />
+		<Button type="submit">Ban</Button>
 	</form>
 {/if}
-
-<style>
-	table {
-		width: 100%;
-		border: none;
-		border-spacing: 0;
-	}
-
-	table thead {
-		background-color: white;
-	}
-
-	th {
-		border: none;
-	}
-
-	td {
-		border: none;
-	}
-
-	tbody tr:nth-child(even) {
-		background-color: #fafafa;
-	}
-
-	hr {
-		border: 0;
-		border-bottom: 2px dashed #ccc;
-	}
-</style>

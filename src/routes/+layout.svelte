@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '@fontsource-variable/inter';
+	import '@fontsource-variable/montserrat';
 
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.ico';

@@ -20,8 +20,8 @@
 </script>
 
 {#if label}
-	<p>
-		<label for="{id}-textinput">{label}:</label>
+	<p class="form-input">
+		<label for={`${id}-textinput`} class="form-label">{label}:</label>
 
 		{#if rest.type == 'checkbox'}
 			<input
@@ -32,7 +32,7 @@
 				bind:checked
 			/>
 		{:else}
-			<input class={['input-style', className]} id="{id}-textinput" {...rest} bind:value />
+			<input class={['input-style', className]} id={`${id}-textinput`} {...rest} bind:value />
 		{/if}
 	</p>
 {:else}
@@ -54,32 +54,28 @@
 		text-decoration: none;
 	}
 
-	.input-style[type='submit'] {
-		display: inline-block;
-		border-radius: 12px;
-		background-image: radial-gradient(100% 100% at 100% 0, #9362ee 0, #7f73ee 100%);
-		color: #f2f2f2;
-		font-size: 20px;
-		padding: 12px;
-		max-width: 256px;
-		cursor: pointer;
-		margin: 5px;
-		text-decoration: none;
-		border: none;
-		transition: all 0.5s;
+	.form-input {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		gap: 0.5em;
 	}
 
-	.input-style[type='submit']:hover {
-		box-shadow: #aaa 0 1px 15px;
-		transform: translateY(-2px);
-		transition-duration: 0.1s;
-	}
+	@media screen and (max-width: 450px) {
+		.form-input {
+			flex-direction: column;
+			align-items: start;
 
-	.input-style[type='submit']:not(:disabled):active {
-		transform: translateY(2px);
-	}
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
 
-	.input-style[type='submit']:disabled {
-		background-image: radial-gradient(100% 100% at 100% 0, #8f8c97 0, #7b7988 100%);
+			gap: 0.25em;
+		}
+
+		.form-label {
+			margin-left: 0.5rem;
+		}
 	}
 </style>

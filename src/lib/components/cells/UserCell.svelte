@@ -14,9 +14,22 @@
 
 	interface Props {
 		user: ServerUser;
+		firstStat?: 'stars' | 'demons' | 'secret_coins' | 'creator_points';
 	}
 
-	const { user }: Props = $props();
+	const { user, firstStat = 'stars' }: Props = $props();
+	const statOrder = $derived.by(() => {
+		switch (firstStat) {
+			case 'stars':
+				return ['stars', 'demons', 'creator_points', 'secret_coins'];
+			case 'demons':
+				return ['demons', 'stars', 'creator_points', 'secret_coins'];
+			case 'creator_points':
+				return ['creator_points', 'stars', 'demons', 'secret_coins'];
+			case 'secret_coins':
+				return ['secret_coins', 'stars', 'creator_points', 'demons'];
+		}
+	});
 
 	const icon_type = $derived(iconTypeToString(user.icon_type));
 </script>
@@ -56,26 +69,33 @@
 		</div>
 
 		<div class="stats-row">
-			<div class="stats-item">
-				{formatNumber(user.stars)}
-				<img src={StarIcon} alt="stars" class="stats-icon" />
-			</div>
-			<div class="stats-item">
-				{formatNumber(user.demons)}
-				<img src={DemonIcon} alt="demons" class="stats-icon" />
-			</div>
-			{#if user.creator_points > 0}
-				<div class="stats-item">
-					{formatNumber(user.creator_points)}
-					<img src={PointsIcon} alt="demons" class="stats-icon" />
-				</div>
-			{:else}
-				<div class="spacer"></div>
-			{/if}
-			<div class="stats-item">
-				{formatNumber(user.coins)}
-				<img src={CoinIcon} alt="demons" class="stats-icon" />
-			</div>
+			{#each statOrder as stat (stat)}
+				{#if stat == 'stars'}
+					<div class="stats-item" class:small={user.stars > 100000}>
+						{formatNumber(user.stars)}
+						<img src={StarIcon} alt="stars" class="stats-icon" />
+					</div>
+				{:else if stat == 'demons'}
+					<div class="stats-item" class:small={user.demons > 10000}>
+						{formatNumber(user.demons)}
+						<img src={DemonIcon} alt="demons" class="stats-icon" />
+					</div>
+				{:else if stat == 'secret_coins'}
+					<div class="stats-item" class:small={user.coins > 1000}>
+						{formatNumber(user.coins)}
+						<img src={CoinIcon} alt="demons" class="stats-icon" />
+					</div>
+				{:else if stat == 'creator_points'}
+					{#if user.creator_points > 0}
+						<div class="stats-item" class:small={user.creator_points > 1000}>
+							{formatNumber(user.creator_points)}
+							<img src={PointsIcon} alt="demons" class="stats-icon" />
+						</div>
+					{:else}
+						<div class="spacer"></div>
+					{/if}
+				{/if}
+			{/each}
 		</div>
 	</div>
 </div>
@@ -84,7 +104,7 @@
 	.cell {
 		display: flex;
 
-		max-width: 35rem;
+		width: min(90vw, 35rem);
 
 		background-color: rgba(0, 0, 0, 0.05);
 		border-radius: 16px;
@@ -108,13 +128,16 @@
 	.name-container {
 		display: flex;
 		gap: 0.5em;
-		align-items: start;
+		align-items: center;
+
+		flex-grow: 1;
 	}
 
 	.primary-container {
 		display: flex;
 		flex-direction: row;
-		column-gap: 1em;
+		column-gap: 3em;
+
 		align-items: center;
 
 		flex-grow: 1;
@@ -130,6 +153,10 @@
 		grid-template-columns: auto auto;
 		column-gap: 0.75em;
 		row-gap: 0.25em;
+	}
+
+	.small {
+		font-size: small;
 	}
 
 	@media screen and (max-width: 512px) {
@@ -155,6 +182,10 @@
 
 		.spacer {
 			display: none;
+		}
+
+		.small {
+			font-size: x-small;
 		}
 	}
 

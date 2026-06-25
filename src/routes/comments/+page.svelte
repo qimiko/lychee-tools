@@ -8,6 +8,11 @@
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/core/Button.svelte';
+
+	import MessageSquareDashed from '@lucide/svelte/icons/message-square-dashed';
+	import Trash2 from '@lucide/svelte/icons/trash-2';
+	import X from '@lucide/svelte/icons/x';
 
 	let { data, form } = $props();
 
@@ -51,6 +56,7 @@
 	}
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('page', page.toString());
 		params.set('count', count.toString());
@@ -92,6 +98,7 @@
 
 		params.set('sort', type);
 
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/comments')}?${params}`, {
 			noScroll: true,
 			keepFocus: true,
@@ -247,7 +254,7 @@
 
 	<FormInput type="checkbox" id="reverse-box" label="Reverse Sort?" bind:checked={reverse} />
 
-	<FormInput type="submit" value="Go" />
+	<Button type="submit">Go</Button>
 </form>
 
 <hr />
@@ -268,12 +275,12 @@
 
 	<div class="management-options">
 		{#if enable_management}
-			<button
+			<Button
 				onclick={() => {
 					data.comments.items.forEach((c) => {
 						checked_boxes.add(c.id);
 					});
-				}}>Select All</button
+				}}>Select All</Button
 			>
 		{/if}
 
@@ -284,17 +291,21 @@
 				<div>{checked_boxes.size} comments selected.</div>
 			{/if}
 
-			<button onclick={() => checked_boxes.clear()}>Clear</button>
+			<Button onclick={() => checked_boxes.clear()} icon={X}>Clear Selection</Button>
+		{/if}
+	</div>
 
+	{#if checked_boxes.size > 0}
+		<div class="management-options">
 			<form method="POST" action="?/bulk_delete" use:enhance>
 				{#each checked_boxes as item (item)}
 					<input type="hidden" name="comment" value={item} />
 				{/each}
-				<button formaction="?/bulk_hide">Hide All</button>
-				<input type="submit" value="Delete All" />
+				<Button formaction="?/bulk_hide" icon={MessageSquareDashed}>Hide</Button>
+				<Button type="submit" buttonStyle="emphasis" icon={Trash2}>Delete</Button>
 			</form>
-		{/if}
-	</div>
+		</div>
+	{/if}
 
 	{#if form?.error}
 		<p>{form.error}</p>
@@ -346,14 +357,10 @@
 		row-gap: 1em;
 	}
 
-	hr {
-		border: 0;
-		border-bottom: 2px dashed #ccc;
-	}
-
 	.management-options {
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		gap: 0.5em;
 	}
 </style>

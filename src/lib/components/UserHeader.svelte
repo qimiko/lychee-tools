@@ -44,7 +44,7 @@
 			glow={user.special == 2}
 			iconType={icon_type}
 			maxHeight="4rem"
-			maxWidth="6rem"
+			maxWidth="100%"
 		/>
 	</div>
 
@@ -103,6 +103,8 @@
 		width: 100%;
 		justify-content: center;
 		column-gap: 0.75em;
+
+		flex-wrap: wrap;
 	}
 
 	.stats-icon {
@@ -132,5 +134,23 @@
 
 	.player-badge {
 		height: 1.5em;
+	}
+
+	.icon-container {
+		max-width: 6rem;
+	}
+
+	@media screen and (max-width: 600px) {
+		.icon-container {
+			max-width: 3rem;
+		}
+
+		.player-badge {
+			height: 1em;
+		}
+
+		.user-header {
+			column-gap: 0.5em;
+		}
 	}
 </style>

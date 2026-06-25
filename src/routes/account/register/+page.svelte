@@ -1,7 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { env } from '$env/dynamic/public';
+	import Button from '$lib/components/core/Button.svelte';
 	import FormInput from '$lib/components/core/FormInput.svelte';
 	import Title from '$lib/components/core/Title.svelte';
+	import { Turnstile } from 'svelte-turnstile';
 
 	let { form } = $props();
 
@@ -76,9 +79,13 @@
 		<p>Please make sure emails match!</p>
 	{/if}
 
-	<FormInput
-		type="submit"
-		value="Register"
-		disabled={!passwords_confirmed || !emails_confirmed || !password || !email}
-	/>
+	{#if env.PUBLIC_TURNSTILE_SITE_KEY}
+		<Turnstile siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} action="register" />
+	{:else}
+		<input type="hidden" name="cf-turnstile-response" value="dummy" />
+	{/if}
+
+	<Button type="submit" disabled={!passwords_confirmed || !emails_confirmed || !password || !email}
+		>Register</Button
+	>
 </form>

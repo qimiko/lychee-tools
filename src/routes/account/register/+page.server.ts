@@ -8,8 +8,14 @@ export const actions = {
 		const userName = formData.get('userName');
 		const password = formData.get('password');
 		const email = formData.get('email');
+		const challenge = formData.get('cf-turnstile-response');
 
-		if (typeof userName != 'string' || typeof password != 'string' || typeof email != 'string') {
+		if (
+			typeof userName != 'string' ||
+			typeof password != 'string' ||
+			typeof email != 'string' ||
+			typeof challenge != 'string'
+		) {
 			return fail(400, { success: false, error: 'Invalid information.', userName: '', email: '' });
 		}
 
@@ -19,7 +25,7 @@ export const actions = {
 		});
 
 		try {
-			await client.registerAccount(userName, password, email);
+			await client.registerAccount(userName, password, email, challenge);
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_registration') {

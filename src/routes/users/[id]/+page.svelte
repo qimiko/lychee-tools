@@ -21,16 +21,19 @@
 	const search_params = $derived(
 		new URLSearchParams({
 			type: 'user_levels',
-			query: data.user.id.toString()
+			query: data.user.id.toString(),
+			override_title: `Levels by ${data.user.name}`
 		})
 	);
 
 	async function updateQueryParams() {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('comments_page', comments_page.toString());
 		params.set('comments_sort', sort_type);
 
 		await goto(
+			// eslint-disable-next-line svelte/no-navigation-without-resolve
 			`${resolve('/users/[id]', {
 				id: data.user.id.toString()
 			})}?${params}`,

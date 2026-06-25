@@ -1,5 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import IconButton from './core/IconButton.svelte';
+
+	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 
 	interface Props {
 		count: number;
@@ -31,30 +35,45 @@
 </script>
 
 <div class="page-container">
-	Showing {pageCount} out of {count}
-	{count == 1 ? singularName : pluralName} <span class="bullet">&bull;</span>
-	<button
-		onclick={async () => {
-			await onSelect(Math.max(page - 1, 0));
-		}}
-		disabled={disabled || page == 0}>Prev</button
-	>
+	<span class="total-long">
+		Showing {pageCount} out of {count} total
+		{count == 1 ? singularName : pluralName}
+	</span>
+	<span class="total-short">
+		{count}
+		{count == 1 ? singularName : pluralName} total
+	</span>
 
-	Page {disp_page} of {max_pages}
+	<span class="main-bullet">&bull;</span>
 
-	<button
-		onclick={async () => {
-			await onSelect(Math.min(page + 1, max_pages));
-		}}
-		disabled={disabled || count == 0 || disp_page == max_pages}>Next</button
-	>
+	<div class="pagination-buttons">
+		<IconButton
+			onclick={async () => {
+				await onSelect(Math.max(page - 1, 0));
+			}}
+			disabled={disabled || page == 0}
+		>
+			<ChevronLeft />
+		</IconButton>
 
-	{#if children}
-		<span class="bullet">&bull;</span>
-		<div>
-			{@render children()}
-		</div>
-	{/if}
+		Page {disp_page} of {max_pages}
+
+		<IconButton
+			onclick={async () => {
+				await onSelect(Math.min(page + 1, max_pages));
+			}}
+			disabled={disabled || count == 0 || disp_page == max_pages}
+		>
+			<ChevronRight />
+		</IconButton>
+
+		{#if children}
+			<span class="bullet">&bull;</span>
+			<div>
+				{@render children()}
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
@@ -70,5 +89,35 @@
 		align-items: center;
 
 		gap: 0.5em;
+	}
+
+	.pagination-buttons {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		gap: 0.5em;
+	}
+
+	.total-short {
+		display: none;
+	}
+
+	@media screen and (max-width: 512px) {
+		.total-long {
+			display: none;
+		}
+
+		.total-short {
+			display: inline-block;
+		}
+
+		.page-container {
+			flex-direction: column;
+		}
+
+		.main-bullet {
+			display: none;
+		}
 	}
 </style>

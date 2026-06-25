@@ -40,5 +40,6 @@
 		flex-wrap: wrap;
 
 		gap: 2em;
+		margin-bottom: 1em;
 	}
 </style>
