@@ -114,19 +114,23 @@ Check out the 1.9 GDPS on other sites!
 
 <div class="social-links">
 	<div>
-		<Link href="https://discord.gg/eCGFrCG" icon={Discord}>Discord</Link>
+		<Link href="https://discord.gg/eCGFrCG" icon={Discord} target="_blank">Discord</Link>
 	</div>
 
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://demonlist.19gdps.com/" icon={Trophy}>Demonlist</Link>
+		<Link href="https://demonlist.19gdps.com/" icon={Trophy} target="_blank">Demonlist</Link>
 	</div>
 </div>
 
 <div class="social-links">
 	<div>
-		<Link href="https://www.youtube.com/channel/UCIUpOcn9GZ-IlEw34czouIg" icon={YouTube}>
+		<Link
+			href="https://www.youtube.com/channel/UCIUpOcn9GZ-IlEw34czouIg"
+			icon={YouTube}
+			target="_blank"
+		>
 			19GDPSOfficial
 		</Link>
 	</div>
@@ -134,13 +138,15 @@ Check out the 1.9 GDPS on other sites!
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://twitter.com/official19gdps" icon={Twitter}>official19gdps</Link>
+		<Link href="https://twitter.com/official19gdps" icon={Twitter} target="_blank"
+			>official19gdps</Link
+		>
 	</div>
 
 	<span class="bullet">&bull;</span>
 
 	<div>
-		<Link href="https://bsky.app/profile/19gdps.bsky.social" icon={Bluesky}>
+		<Link href="https://bsky.app/profile/19gdps.bsky.social" icon={Bluesky} target="_blank">
 			19gdps.bsky.social
 		</Link>
 	</div>
