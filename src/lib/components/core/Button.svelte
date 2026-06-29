@@ -66,6 +66,9 @@
 		background-blend-mode: multiply;
 
 		font-family: inherit;
+
+		--start-color: #9362ee;
+		--end-color: #7f73ee;
 	}
 
 	.emphasis {
