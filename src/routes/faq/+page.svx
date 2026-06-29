@@ -120,6 +120,19 @@ The folder button on the bottom left of the mods list is a shortcut to this fold
 Using a mod like textureldr is recommended for this purpose.
 Some mod downloads, including that one, are available in the modding channel of the 1.9 GDPS Discord server.
 
+## How do I install the 1.9 GDPS on a very old Android device?
+
+The main download for the 1.9 GDPS requires an ARMv7-compatible device that is running at least Android 6.0.
+
+There exists a [1.9 GDPS Lite](https://static.xyze.dev/gdps/260629-gdps-lite.apk) build, which expands support to Android 2.3.3 and ARMv5/x86 devices.
+Due its lack of modding functionality, this build may also run better in limited emulator environments (such as PS Vita homebrew).
+This build will not run on versions above Android 13 without workarounds.
+
+The Lite version of the 1.9 GDPS contains no modifications besides those required to connect to the 1.9 GDPS servers.
+IP-based sessions, which can be created in the [account management page](/account/management), _must_ be used for authentication.
+Convenience mods, including object limit bypass and unlock all are unavailable as well.
+This version contains no patches against save corruption, so you should backup your data frequently.
+
 # Account
 
 ## Does this server share accounts with the 2.2 servers?
