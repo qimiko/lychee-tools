@@ -38,6 +38,11 @@ export const actions = {
 						error: 'Failed to send activation email. Please try again later.',
 						email
 					});
+				} else if (e.type == 'invalid_credentials') {
+					return fail(400, {
+						error: 'No unactivated accounts exist with this email.',
+						email
+					});
 				}
 			}
 

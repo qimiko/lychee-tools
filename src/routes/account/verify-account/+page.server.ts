@@ -21,8 +21,6 @@ export const actions = {
 
 		try {
 			await client.finishVerification(key, captcha);
-
-			return { success: true, key };
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_request') {
@@ -35,6 +33,8 @@ export const actions = {
 
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
+
+		redirect(303, resolve('/account/login') + '?activated=true');
 	}
 } satisfies Actions;
 

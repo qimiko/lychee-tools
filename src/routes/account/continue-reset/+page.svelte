@@ -8,6 +8,8 @@
 	let { form, data } = $props();
 
 	const first_account = $derived(data.accounts[0]?.id);
+
+	const key = $derived(page.url.searchParams.get('k'));
 </script>
 
 <svelte:head>
@@ -18,14 +20,12 @@
 
 <Title>Password Reset</Title>
 
-<form method="POST" use:enhance>
+<form method="POST" use:enhance action={`?k=${key}`}>
 	{#if form?.error}
 		<p>{form.error}</p>
-	{:else if form?.success}
-		<p>Password successfully reset!</p>
 	{/if}
 
-	<input type="hidden" name="key" value={page.url.searchParams.get('k')} />
+	<input type="hidden" name="key" value={key} />
 
 	<p>Select account:</p>
 

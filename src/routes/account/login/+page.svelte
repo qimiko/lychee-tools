@@ -4,10 +4,15 @@
 	import Link from '$lib/components/core/Link.svelte';
 	import Title from '$lib/components/core/Title.svelte';
 
+	import { page } from '$app/state';
+
 	import { resolve } from '$app/paths';
 	import Button from '$lib/components/core/Button.svelte';
 
 	let { form } = $props();
+
+	const show_reset_message = $derived(page.url.searchParams.get('reset') == 'true');
+	const show_activate_message = $derived(page.url.searchParams.get('activated') == 'true');
 </script>
 
 <svelte:head>
@@ -22,6 +27,12 @@
 <form method="POST" use:enhance>
 	{#if form?.error}
 		<p>{form.error}</p>
+	{/if}
+
+	{#if show_activate_message}
+		<p>Account successfully activated! You may now log in.</p>
+	{:else if show_reset_message}
+		<p>Password successfully reset! You may now log in.</p>
 	{/if}
 
 	<FormInput type="text" label="Username" name="userName" value={form?.userName ?? ''} required />

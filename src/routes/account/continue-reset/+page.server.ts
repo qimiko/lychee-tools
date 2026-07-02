@@ -1,7 +1,8 @@
-import { error, fail } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { GDPSClient, ServerError } from '$lib/api';
 import { toIntSafe } from '$lib';
+import { resolve } from '$app/paths';
 
 export const actions = {
 	default: async ({ request, fetch, getClientAddress }) => {
@@ -24,8 +25,6 @@ export const actions = {
 
 		try {
 			await client.finishPasswordReset(key, account_id, password);
-
-			return { success: true };
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_request') {
@@ -46,20 +45,22 @@ export const actions = {
 
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
+
+		redirect(303, resolve('/account/login') + '?reset=true');
 	}
 } satisfies Actions;
 
 export const load: PageServerLoad = async ({ url, fetch }) => {
 	const key = url.searchParams.get('k');
 	if (!key) {
-		return error(400);
+		return error(400, 'Missing reset key');
 	}
 
 	const client = new GDPSClient({ fetch });
 	const accounts = await client.checkPasswordReset(key);
 
 	if (accounts.length == 0) {
-		return error(400);
+		return error(400, 'Invalid reset key');
 	}
 
 	return { accounts };

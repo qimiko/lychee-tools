@@ -22,7 +22,7 @@
 		<p>{form.error}</p>
 	{:else if form?.success}
 		<p>
-			Success, check your email to continue. If you don't receive an email after 10 minutes, try
+			Success, check your email to continue. If you don't receive an email after 15 minutes, try
 			again
 		</p>
 	{/if}
