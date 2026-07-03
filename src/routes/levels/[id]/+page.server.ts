@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 
 	const id = +params.id;
 	if (!id) {
-		return error(404);
+		return redirect(303, resolve('/levels') + '?query=' + params.id);
 	}
 
 	const client = new GDPSClient({ token, fetch });
