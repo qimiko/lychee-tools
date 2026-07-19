@@ -598,12 +598,7 @@ export type LevelSearchParams = {
 };
 
 export type CommentsSearchSort =
-	| 'timestamp'
-	| 'body'
-	| 'user_id'
-	| 'user_name'
-	| 'level_id'
-	| 'likes';
+	'timestamp' | 'body' | 'user_id' | 'user_name' | 'level_id' | 'likes';
 
 export type CommentsSearchParams = {
 	levels?: number[];
