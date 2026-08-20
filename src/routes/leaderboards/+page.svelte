@@ -17,12 +17,16 @@
 
 	let type = $derived(data.type ?? 'stars');
 	let time = $derived(data.time ?? 'global');
+	let max_version = $derived(data.max_version?.toString() ?? '19');
+
+	let version_enabled = $derived(data.max_version != 19);
 
 	async function updateQueryParams() {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const params = new URLSearchParams();
 		params.set('type', type);
 		params.set('time', time);
+		params.set('max_version', max_version);
 
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto(`${resolve('/leaderboards')}?${params}`, {
@@ -30,6 +34,20 @@
 			keepFocus: true,
 			replaceState: true
 		});
+	}
+
+	const show_mod_tools = $derived((data.current_user?.permission_level ?? 0) > 0);
+
+	async function toggleVersionFilter() {
+		if (version_enabled) {
+			version_enabled = false;
+			max_version = '19';
+		} else {
+			version_enabled = true;
+			max_version = '22';
+		}
+
+		await updateQueryParams();
 	}
 </script>
 
@@ -87,6 +105,15 @@
 		</div>
 	{/if}
 </div>
+
+{#if show_mod_tools}
+	<div class="filters">
+		<label>
+			<input type="checkbox" checked={version_enabled} onchange={() => toggleVersionFilter()} />
+			Disable Version Filter
+		</label>
+	</div>
+{/if}
 
 {#if data.users.length == 0}
 	<div>No users found!</div>

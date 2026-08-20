@@ -77,6 +77,19 @@ export type ServerUserMinimal = {
 
 export type TopStatType = 'stars' | 'demons' | 'secret_coins' | 'creator_points';
 
+export type TopUsersSearchParams = {
+	count?: number;
+	type?: TopStatType;
+	max_version?: number;
+};
+
+export type RecentTopUsersSearchParams = {
+	count?: number;
+	type?: TopStatType;
+	max_version?: number;
+	daily?: boolean;
+};
+
 export type ServerMinimalAccountPair = {
 	username: string;
 	id: number;
@@ -1113,24 +1126,43 @@ export class GDPSClient {
 		return validate(await data.json());
 	}
 
-	async getTopUsers(type: TopStatType = 'stars', count = 250): Promise<ServerUser[]> {
+	async getTopUsers(params: TopUsersSearchParams): Promise<ServerUser[]> {
 		const url = new URL(`${GDPS_BASE_URL}/v2/users/top`);
-		url.searchParams.set('type', type);
-		url.searchParams.set('count', count.toString());
+
+		if (params?.count !== undefined) {
+			url.searchParams.set('count', params.count.toString());
+		}
+
+		if (params?.type !== undefined) {
+			url.searchParams.set('type', params.type);
+		}
+
+		if (params?.max_version !== undefined) {
+			url.searchParams.set('max_version', params.max_version.toString());
+		}
 
 		const data = await this.#make_request(url);
 		return validate(await data.json());
 	}
 
-	async getTopRecentUsers(
-		type: TopStatType = 'stars',
-		count = 250,
-		daily = false
-	): Promise<ServerUser[]> {
+	async getTopRecentUsers(params: RecentTopUsersSearchParams): Promise<ServerUser[]> {
 		const url = new URL(`${GDPS_BASE_URL}/v2/users/top-recent`);
-		url.searchParams.set('type', type);
-		url.searchParams.set('count', count.toString());
-		url.searchParams.set('daily', daily ? 'true' : 'false');
+
+		if (params?.count !== undefined) {
+			url.searchParams.set('count', params.count.toString());
+		}
+
+		if (params?.type !== undefined) {
+			url.searchParams.set('type', params.type);
+		}
+
+		if (params?.max_version !== undefined) {
+			url.searchParams.set('max_version', params.max_version.toString());
+		}
+
+		if (params?.daily !== undefined) {
+			url.searchParams.set('daily', params.daily ? 'true' : 'false');
+		}
 
 		const data = await this.#make_request(url);
 
