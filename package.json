@@ -44,5 +44,9 @@
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-slug": "^6.0.0",
 		"remark-toc": "^9.0.0"
+	},
+	"allowScripts": {
+		"fsevents@2.3.3": true,
+		"sharp@0.34.5": true
 	}
 }
