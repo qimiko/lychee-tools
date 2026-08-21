@@ -19,6 +19,15 @@ export function toIntSafe(value: string | null) {
 	return as_int;
 }
 
+export function toBooleanSafe(value: string | null) {
+	if (!value) return undefined;
+
+	if (value == 'true') return true;
+	else if (value == 'false') return false;
+
+	return undefined;
+}
+
 export function undefIfEmpty<T>(value: T[]) {
 	if (value.length > 0) return value;
 

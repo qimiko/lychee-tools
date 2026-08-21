@@ -610,6 +610,64 @@ export type LevelSearchParams = {
 	no_reupload?: boolean;
 };
 
+export type LevelDifficulty =
+	'na' | 'easy' | 'normal' | 'hard' | 'harder' | 'insane' | 'demon' | 'auto';
+
+export type LevelLength = 'tiny' | 'short' | 'medium' | 'long' | 'extra_long';
+
+export type AdvancedLevelSortType =
+	| 'rated'
+	| 'uploaded'
+	| 'downloads'
+	| 'likes'
+	| 'reported'
+	| 'sent'
+	| 'updated'
+	| 'by_list'
+	| 'random';
+
+export type AdvancedSearchLevelData = {
+	by_users?: number[];
+	by_accounts?: number[];
+	starts_with?: string;
+	contains?: string;
+	difficulties?: LevelDifficulty[];
+	lengths?: LevelLength[];
+	ids_in?: number[];
+	ids_not_in?: number[];
+	rating_min?: number;
+	rating_max?: number;
+	stars_min?: number;
+	stars_max?: number;
+	object_count_min?: number;
+	object_count_max?: number;
+	original_id?: number;
+	two_player?: boolean;
+	game_version_min?: number;
+	game_version_max?: number;
+	audio_track?: number;
+	song_id?: number;
+	custom_song?: boolean;
+	no_creator_points?: boolean;
+	reuploaded?: boolean;
+	id_min?: number;
+	id_max?: number;
+	sent?: boolean;
+	reported?: boolean;
+	created_min?: string;
+	created_max?: string;
+	updated_min?: string;
+	updated_max?: string;
+	user_points_min?: number;
+	user_points_max?: number;
+	match_id?: number;
+	unlisted?: boolean;
+	sort?: AdvancedLevelSortType;
+	reverse_sort?: boolean;
+	page?: number;
+	total?: number;
+};
+
 export type CommentsSearchSort =
 	'timestamp' | 'body' | 'user_id' | 'user_name' | 'level_id' | 'likes';
 
@@ -1077,6 +1135,19 @@ export class GDPSClient {
 		}
 
 		const data = await this.#make_request(url);
+		return validate(await data.json());
+	}
+
+	async searchLevelsAdvanced(
+		params?: AdvancedSearchLevelData
+	): Promise<ServerPaginated<ServerLevel>> {
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/levels`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'QUERY',
+			body: JSON.stringify(params ?? {})
+		});
 		return validate(await data.json());
 	}
 
