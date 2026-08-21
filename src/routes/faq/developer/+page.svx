@@ -1,0 +1,155 @@
+<script>
+	import Title from '$lib/components/core/Title.svelte';
+</script>
+
+<svelte:head>
+	<title>Developer Guidelines - 1.9 GDPS</title>
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Developer Guidelines" />
+</svelte:head>
+
+<Title>Developer Guidelines</Title>
+
+Thank you for thinking of the 1.9 GDPS for your project!
+The 1.9 GDPS API is **free to use** for most applications, but we ask that developers do not (intentionally or otherwise) abuse this access.
+What this means for you:
+
+**Respect our users.**
+The 1.9 GDPS is built by its users, and we wish to keep them happy.
+- Please credit the users for the content they have created, including their levels, comments, and profiles.
+- Avoid collecting user credentials.  
+  If an authenticated action is required for your application, only store authentication information for the minimum amount of time necessary.
+	Use authentication tokens when possible instead of credentials (like passwords and the GJP2 token).
+	Sessions should never be used by an external application.
+- Do not use the 1.9 GDPS API to collect user data, or to harass users.
+- Usage of the 1.9 GDPS API for training models is _not allowed_.
+
+**Respect our servers.**
+Abuse of the 1.9 GDPS servers hurts users, and may hurt you (the developer) if your application or use-case becomes restricted as a result.
+- Do not intentionally bypass ratelimits.  
+  Most ratelimited endpoints have non-ratelimited alternatives through the [web API](#web-api), which will be described at the end of the guidelines.
+- If you have the means to do so, you should cache responses from the server.  
+  This is especially true for the GD API endpoints, which bypasses most automatic caching due to its design.
+- Larger scale applications should use the [web API](#web-api), if possible.  
+	We know that in most cases, this will not be possible, as the web API is very different from the GD API.
+	However, the web API is designed to handle a large volume of requests and offers many conveniences to the developer, so the translation effort may still be worth it.
+- For alternative clients, requests _should_ be made directly from the client instead of a primary proxy server, when possible.  
+	As with the previous point, for some use cases (specifically web clients), this is opposite of what other GD servers would expect.
+	So, we also know that this may not be feasible in some implementations and will not require it.
+
+**Respect our developers.**
+Our developers are not perfect, and may accidentally make changes that would affect external applications.
+Thus, it is helpful for the developers to be aware of who is using the 1.9 GDPS API, and to have a method of contact with those users.
+- Please reach out to 1.9 GDPS Staff prior to using the 1.9 GDPS API.  
+  This mostly applies for larger projects in which a large amount of requests are expected, or if the web API is being used.
+- Use the `User-Agent` field to identify your application.  
+	This allows developers to gauge what applications are using an endpoint, and who to reach out to if abuse is detected.
+	We may change the behavior for specific applications if we notice a bugfix may impact them.
+	Much like using the web API, we know this change may not be possible as the main GD servers block requests with a `User-Agent`.
+	Headers or post body parameters can also be used if this is an issue.
+- Follow what supported clients do.  
+  Our supported clients are the 1.9 GDPS (all versions), Geometry Dash 2.2 (latest version), the tools page and [GDBrowser](https://19gdps.gdbrowser.com).
+	All changes to the GDPS are tested against these clients, so external implementations that conform strictly to them should not be impacted by future changes.
+	This also applies to parser behavior.
+	Geometry Dash is very lenient when it comes to parsing responses, which some clients may not correctly replicate, especially when it comes to handling missing fields.
+
+---
+
+If abuse of the API is detected, we may take steps to restrict (or permanently block) your application.
+
+## Web API
+
+The web API is used by the tools page, and for some actions on the 1.9 GDPS client.
+For most actions, the web API is preferred as:
+- It may cache better, due to using GET requests and URL-based parameters instead of POST bodies.
+- It can fetch more data at once and perform searches that the GD API cannot perform.
+- A JSON body can be significantly easier to parse, and allows for more detail than the GD API.
+- It has more available actions than the primary GD API.
+
+However, the web API is **unstable** and (currently) **poorly-documented**.
+These downsides will be improved in the future, but it may simply be easier to use the GD API.
+Following from the "Respect our developers" rule, web API endpoints used by the 1.9 GDPS client will be maintained for as long as is reasonably possible.
+
+Some useful endpoints are documented below.
+
+### Server Responses
+
+All endpoints return a Result, which is a union object that is discriminated based on the `success` key.
+
+If `"success": false`, then there will be an additional object, `error`, which contains the `type` of the error and any additional data:
+
+```json
+{"success": false, "error": {"type": "example_error", "extra": "value"}}
+```
+
+If `"success": true`, then the response data will be in the `data` key:
+
+```json
+{"success": true, "data": {...}}
+```
+
+### Authentication
+
+You should authenticate with `/v2/accounts/login` instead of `loginGJAccount`.
+
+```
+POST /v2/accounts/login
+{"username": "$username", "password": "$password"}
+
+{"success": true, "data": {"authkey": "..."}}
+```
+
+This endpoint allows for more secure authentication by returning a token, and does not allow for user merging or implicit session creation.
+User merging can be a risk to an application (especially publicly available ones) as malicious users may find the UDID used by the application and perform actions to have the user banned.
+Then, when merging occurs, the ban transfers over to the logged in account.
+
+The returned `authkey` can be used on all requests, **including GD API requests**.
+This is provided through the `Authorization` header: `Authorization: Bearer $authkey`.
+Using an authentication token should be preferred to all other forms of authentication.
+
+In the future, further forms of authentication may be provided through this endpoint.
+
+### Fetching Songs
+
+The primary `getGJSongInfo` endpoint is ratelimited to prevent abuse.
+Instead `/v2/songs/{id}` and `/v2/songs` may be used to search songs.
+
+```
+GET /v2/songs/{id}
+
+{"success": true, "data": {"id": 1, "title": "Chilled 1", ...}}
+```
+
+This endpoint will not attempt to reach the GD servers if a song is not found.
+You should have a fallback for songs that report a `not_found` error.
+
+```
+GET /v2/songs?page={0...}&count={1...500}&query=...&reupload={true|false}
+
+{"success": true, "data": {"items": [{"id": 1, ...}, ...], "count": 111}}
+```
+
+This endpoint allows for searching for songs in bulk.
+The query will match a song ID, or a portion of the song title.
+This is preferred to fetching the song info for many songs at once.
+
+### Fetching Levels
+
+While not ratelimited, the web API's level endpoints allow for more granularity when fetching data, which means your application may be able to use less requests (and require less data).
+
+The 1.9 GDPS is setup to allow for rolling back level updates.
+This means that you will have to consider **level revisions** when parsing responses.
+All level search endpoints will return a level with at least one `revision`, which can be uniquely identified by their `id`.
+
+```
+GET /v2/levels/{id}?with_data={true|false}
+
+{"success": true, "data": {"id": 1, "name": "Rate Test", ...}}
+```
+
+This returns all of the information for `downloadGJLevel`, but does not perform a download.
+If `with_data=true`, then a level's replay string and level string are returned alongside the data.
+
+There also exists a level search endpoint at `GET /v2/levels` and an advanced level search endpoint at `QUERY /v2/levels`.
+These endpoints have an expanded limit of 100 levels.
+For the time being, these endpoints are undocumented, as there are too many parameters to list.

@@ -180,10 +180,21 @@ Upon deletion, all of your levels and comments will be moved to the Reupload acc
 An account deletion is permanent, so please think carefully before requesting one!
 There may be a short waiting period before the deletion is carried through.
 
-## Why am I unable to make a session ingame?
+# Online
 
-The server used for creating sessions on versions prior to u9.0.4 no longer exists.
+## Why is nothing loading?
+
+This issue is typically viewed as a failure to create a session, but impacts everything on the GDPS.
+
+The server used on versions prior to u9.0.4 no longer exists.
 Please update the 1.9 GDPS using the latest version in the [Downloads](/downloads) page.
+
+If you are on the latest version of the GDPS, make sure you are not using a VPN as some providers may be blocked.
+You may also want to ensure that connections to the 1.9 GDPS work correctly on your device, if it is not the same as the one accessing the FAQ.
+
+## Can I use the 1.9 GDPS API for my own projects?
+
+Sure! However, please read the [Developer Guidelines](/faq/developer) prior to doing so.
 
 # Songs
 
@@ -297,4 +308,4 @@ Mods also exist to unlock this limitation.
 ## Where is preview mode?
 
 1.9 did not have preview mode!
-Mods also exist to add this functionality, or you may choose to build on the 2.2 editor and reupload your levels to the 1.9 GDPS.
+Mods exist to add this functionality, or you may choose to build on the 2.2 editor and reupload your levels to the 1.9 GDPS.
