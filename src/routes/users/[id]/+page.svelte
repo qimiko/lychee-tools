@@ -44,12 +44,24 @@
 			}
 		);
 	}
+
+	const description = $derived.by(() => {
+		const parts = [`${data.user.stars} stars`, `${data.user.demons} demons`];
+
+		if (data.user.creator_points > 0) {
+			parts.push(`${data.user.creator_points} creator points`);
+		}
+
+		return parts.join(', ') + `, and ${data.user.coins} coins`;
+	});
 </script>
 
 <svelte:head>
 	<title>{data.user.name} - 1.9 GDPS</title>
 	<meta name="og:site_name" content="1.9 GDPS" />
 	<meta name="og:title" content={data.user.name} />
+	<meta name="og:description" content={description} />
+	<meta name="description" content={`User page for ${data.user.name}, with ${description}`} />
 </svelte:head>
 
 {#if data.levels.count > 0}

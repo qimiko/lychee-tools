@@ -8,6 +8,8 @@
 		data: PageData;
 	}
 
+	let show_blanks = $state(false);
+
 	let { data }: Props = $props();
 </script>
 
@@ -22,6 +24,13 @@
 {#if data.history.length == 0}
 	<div>No stats have been recorded for this user!</div>
 {:else}
+	<div style="padding-bottom: 1em;">
+		<label>
+			<input type="checkbox" bind:checked={show_blanks} />
+			Show Blank Entries
+		</label>
+	</div>
+
 	<div class="table-container">
 		<table>
 			<thead>
@@ -35,16 +44,18 @@
 			</thead>
 			<tbody>
 				{#each data.history as item (item.id)}
-					<tr
-						class:warning={item.stars < 0 || item.max_stars < 0}
-						class:suspicious={item.stars > 750 || item.max_stars > 750}
-					>
-						<td>{formatTimestamp(item.timestamp)}</td>
-						<td>{item.stars}</td>
-						<td>{item.demons}</td>
-						<td>{item.coins}</td>
-						<td>{item.max_stars}</td>
-					</tr>
+					{#if show_blanks || item.stars != 0 || item.max_stars != 0 || item.demons != 0 || item.coins != 0}
+						<tr
+							class:warning={item.stars < 0 || item.max_stars < 0}
+							class:suspicious={item.stars > 750 || item.max_stars > 750}
+						>
+							<td>{formatTimestamp(item.timestamp)}</td>
+							<td>{item.stars}</td>
+							<td>{item.demons}</td>
+							<td>{item.coins}</td>
+							<td>{item.max_stars}</td>
+						</tr>
+					{/if}
 				{/each}
 			</tbody>
 		</table>
