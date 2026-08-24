@@ -8,7 +8,7 @@
 		data: PageData;
 	}
 
-	let show_blanks = $state(false);
+	let show_blanks = $state(true);
 
 	let { data }: Props = $props();
 </script>
@@ -44,10 +44,13 @@
 			</thead>
 			<tbody>
 				{#each data.history as item (item.id)}
-					{#if show_blanks || item.stars != 0 || item.max_stars != 0 || item.demons != 0 || item.coins != 0}
+					{@const blank =
+						item.stars == 0 && item.max_stars == 0 && item.demons == 0 && item.coins == 0}
+					{#if show_blanks || !blank}
 						<tr
 							class:warning={item.stars < 0 || item.max_stars < 0}
 							class:suspicious={item.stars > 750 || item.max_stars > 750}
+							class:blank
 						>
 							<td>{formatTimestamp(item.timestamp)}</td>
 							<td>{item.stars}</td>
@@ -72,7 +75,24 @@
 		background-color: #f0f000;
 	}
 
+	.warning:hover {
+		background-color: #d0d000;
+	}
+
 	.suspicious {
 		background-color: #f00000;
+		color: white;
+	}
+
+	.suspicious:hover {
+		background-color: #b00000;
+	}
+
+	.blank {
+		background-color: #ccc;
+	}
+
+	.blank:hover {
+		background-color: #bbb;
 	}
 </style>
