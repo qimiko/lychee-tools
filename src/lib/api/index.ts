@@ -1,4 +1,5 @@
-import { GDPS_BASE_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+const GDPS_BASE_URL = env.GDPS_BASE_URL;
 
 type ServerResultError = {
 	type: string;
