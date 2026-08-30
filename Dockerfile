@@ -21,3 +21,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://0.0.0.0:3000/health || exit 1
 
 CMD ["node", "build/index.js"]
+
+LABEL org.opencontainers.image.source=https://github.com/qimiko/lychee-tools
+LABEL org.opencontainers.image.description="1.9 GDPS Frontend"
+LABEL org.opencontainers.image.licenses=BSD-3-Clause
