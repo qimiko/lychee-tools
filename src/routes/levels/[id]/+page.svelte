@@ -12,6 +12,7 @@
 	import ObjectIcon from '$lib/assets/icons/object.png';
 	import HighObjectIcon from '$lib/assets/icons/high_objects.png';
 	import CollaborationIcon from '$lib/assets/icons/collaboration.png';
+	import ReuploadIcon from '$lib/assets/icons/reupload.png';
 
 	import Link from '$lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
@@ -73,6 +74,30 @@
 	<meta name="og:description" content={revision.description} />
 </svelte:head>
 
+{#snippet original_id()}
+	{#if revision.original_id || data.level.reuploaded}
+		<div class="level-stat">
+			{#if data.level.reuploaded}
+				<img src={ReuploadIcon} alt="reuploaded" />
+
+				<Link href={`https://gdbrowser.com/${revision.original_id}`} target="_blank">
+					{revision.original_id}
+				</Link>
+			{:else}
+				<img src={CollaborationIcon} alt="copied" />
+
+				<Link
+					href={resolve('/levels/[id]', {
+						id: revision.original_id.toString()
+					})}
+				>
+					{revision.original_id}
+				</Link>
+			{/if}
+		</div>
+	{/if}
+{/snippet}
+
 <div class="level-header">
 	<DifficultyIcon stars={data.level.stars} {difficulty} {badge} />
 
@@ -123,35 +148,13 @@
 				{lengthToString(revision.length)}
 			</div>
 
-			{#if revision.original_id && revision.objects == 0}
-				<div class="level-stat">
-					<img src={CollaborationIcon} alt="likes" />
-
-					<Link
-						href={resolve('/levels/[id]', {
-							id: revision.original_id.toString()
-						})}
-					>
-						{revision.original_id}
-					</Link>
-				</div>
+			{#if revision.objects == 0}
+				{@render original_id()}
 			{/if}
 		</div>
 
-		{#if revision.original_id && revision.objects != 0}
-			<div class="stats-container">
-				<div class="level-stat">
-					<img src={CollaborationIcon} alt="likes" />
-
-					<Link
-						href={resolve('/levels/[id]', {
-							id: revision.original_id.toString()
-						})}
-					>
-						{revision.original_id}
-					</Link>
-				</div>
-			</div>
+		{#if revision.objects != 0}
+			{@render original_id()}
 		{/if}
 	</div>
 </div>

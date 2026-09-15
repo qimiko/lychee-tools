@@ -200,6 +200,7 @@ export type ServerLevel = {
 	rating: number;
 	auto: boolean;
 	upload_date?: string;
+	reuploaded?: boolean;
 	revisions: ServerLevelData[];
 };
 

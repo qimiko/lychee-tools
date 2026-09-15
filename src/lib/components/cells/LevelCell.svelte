@@ -9,6 +9,7 @@
 	import LengthIcon from '$lib/assets/icons/length.png';
 	import HighObjectIcon from '$lib/assets/icons/high_objects.png';
 	import CollaborationIcon from '$lib/assets/icons/collaboration.png';
+	import ReuploadIcon from '$lib/assets/icons/reupload.png';
 
 	import DifficultyIcon from '../render/DifficultyIcon.svelte';
 	import SongInfo from '$lib/songs.json';
@@ -77,8 +78,12 @@
 						<img src={HighObjectIcon} alt="high objects" class="title-badge" />
 					{/if}
 
-					{#if revision.original_id && type != 'cell'}
-						<img src={CollaborationIcon} alt="collaboration" class="title-badge" />
+					{#if type != 'cell' && (revision.original_id || level.reuploaded)}
+						{#if level.reuploaded}
+							<img src={ReuploadIcon} alt="reupload" class="title-badge" />
+						{:else}
+							<img src={CollaborationIcon} alt="collaboration" class="title-badge" />
+						{/if}
 					{/if}
 				</Link>
 			</div>
