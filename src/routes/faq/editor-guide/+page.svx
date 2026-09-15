@@ -13,7 +13,13 @@
 	<i> Editor Guide </i>
 </div>
 
-<enhanced:img src="$lib/assets/faq/guide.png" alt="screenshot of the editor" class="screenshot" />
+[&#9664; Back to FAQs](/faq)
+
+### Contents
+
+# Basics
+
+<enhanced:img src="$lib/assets/faq/guide.png" alt="screenshot of the editor" class="hero-screenshot" />
 
 ## Key Features
 
@@ -38,6 +44,145 @@ Example: Place a spike and rotate it 90 degrees. While the spike is still select
 
 Inspired by [2.0's editor guide](http://web.archive.org/web/20150412090606/http://www.boomlings.com/files/GJGuide.pdf).
 
+# 1.9 GDPS Changes
+
+This portion of the guide will focus on 1.9 GDPS-specific changes to the editor.
+
+## Editor Options
+
+<enhanced:img src="$lib/assets/faq/editor_pause.png" alt="screenshot of the editor pause screen" class="screenshot" />
+
+**Level Length** shows the length of the level in seconds, as well as the name that is displayed ingame for the length.
+
+**Playtest Speed** controls the speed of gameplay while playtesting.
+This value will also carry over into gameplay outside of the editor.
+
+**Show Info Label** will show information about the selected object, which contains detailed information about values like position and layering.
+
+<enhanced:img src="$lib/assets/faq/editor_info_label.png" alt="screenshot of the editor info label option" class="screenshot screenshot-small" />
+
+**Show Hitboxes** shows hitboxes for all objects with collision.
+This can be toggled with the `F5` key.
+Some hitboxes are different between 1.9 and the latest versions of Geometry Dash, so please use this option to double check any assumptions.
+
+<enhanced:img src="$lib/assets/faq/editor_hitboxes.png" alt="screenshot of the editor with hitboxes enabled" class="screenshot screenshot-small" />
+
+**Follow Player** can now be toggled with the `F6` key.
+
+## Color Triggers
+
+<enhanced:img src="$lib/assets/faq/editor_color_edit.png" alt="screenshot of the edit object page of a color trigger" class="screenshot" />
+
+Color triggers now have the option for **RGB** and **hexadecimal** inputs.
+
+The precision of **FadeTime** was increased to two decimal places.
+
+Color triggers can also be remapped with the **Remap** button, which shows a popup to change the target color of that trigger.
+
+<enhanced:img src="$lib/assets/faq/editor_color_remap.png" alt="screenshot of the remap color page of a color trigger" class="screenshot screenshot-small" />
+
+The ability to edit multiple color triggers at once was also added.
+
+<enhanced:img src="$lib/assets/faq/editor_trigger_multiselect.png" alt="screenshot of multiple color triggers being selected, with edit object being visible" class="screenshot" />
+
+Only properties that are changed in the popup will be modified across all selected color triggers.
+
+## Overlay
+
+<enhanced:img src="$lib/assets/faq/editor_fps.png" alt="screenshot of the overlay, with the fps bypass category being highlighted" class="screenshot screenshot-small" />
+
+Aside from the gameplay options in the pause menu, the 1.9 GDPS has an overlay that can be accessed with the `Tab` key.
+The FPS Bypass option is available from the overlay, allowing for the framerate to be changed during gameplay.
+As physics are dependent on framerate in this version, creators should test their levels on multiple framerates to ensure no bugs are present.
+
+## Hide Pause UI
+
+<enhanced:img src="$lib/assets/faq/editor_hideui.png" alt="screenshot of the pause menu, with the hide ui button in the bottom left highlighted" class="screenshot" />
+
+The pause menu now has the ability to hide the pause interface while keeping the game paused.
+This can be useful for taking screenshots of decoration, or gameplay with "Show Hitboxes on Death" enabled.
+
+## Show Unused Objects
+
+The "Show Unused Objects" option, available in the Editor category of the settings, will make several additional objects accessible:
+
+<enhanced:img src="$lib/assets/faq/editor_unused_list.png" alt="screenshot of the unused editor objects, with the category they are found in on the left" class="screenshot screenshot-small" />
+
+These objects existed in 1.9, but are normally hidden from the editor.
+So, none of these objects would appear in a _true_ 1.9 level, but any 1.9 client would still play any levels with these objects correctly.
+
+# FAQ
+
+## What differences exist between the 1.9 and 2.2 editor?
+
+All objects after ID 744 (the 3DL color trigger) do not exist in 1.9.
+This means that about 83.6% of the 2.2 object palette is unavailable.
+
+Some of that 83.6% is replacements for 1.9 objects.
+This includes recolorable versions of black objects (like the gradient slabs and saws), the unified color trigger, slopes with cornerpieces built in, and more.
+When converting a 2.2 level to 1.9, please make sure to fix your slope cornerpieces!
+
+2.0 added the functionality for objects to have two colors.
+In 1.9, only the 2nd color of those objects would be colorable, with the first color being either OBJ or white.
+Objects (with only 1 color) that default to OBJ are not recolorable in 1.9.
+Objects are also limited to being colored with the first 4 color channels, P-Col 1/2, Light BG and 3DL.
+However, 3DL cannot be selected for non-3DL object on 1.9 without mods.
+There is also no HSV option for objects or color triggers.
+The "NoGlow", "Dont Fade", "Dont Enter" and all other object options also do not exist in 1.9.
+Objects cannot have their Z-Orders or layers changed.
+Object rotations are limited to integer degrees, and skewing/warp/scale options do not exist.
+
+For level settings, the font and ground line cannot be customized.
+Middle ground does not exist, and you are limited to the first 7 backgrounds and grounds.
+The OBJ and Line color channel cannot be given blending (Line is forced blending in 1.9).
+All legacy physics options should be enabled.
+
+Some physics changes also exist, which cannot be fixed through the legacy physics options.
+For example, some saw hitboxes are larger, and physics depend on framerate in 1.9.
+The 1.9 GDPS has the option to show hitboxes in the editor, which you can use to identify differences that may impact your levels.
+Slope physics saw a significant overhaul in 2.2, which may make some levels impossible across versions.
+
+This is a very general overview.
+It is highly recommended that you spend some time with the 1.9 editor to gain a proper understanding of what it can do.
+
+## How does object layering work?
+
+There are two layers: bottom (B) and top (T). In 2.2 terms, this is like the B1 and T1 layers.
+Those two layers are divided into two sublayers, which is based on the blending status of the object's color.
+Objects with blending colors are layered below non-blending objects on that same layer.
+Objects within the same sublayer are then ordered by Z-order, with lower Z-order objects displaying below higher ones.
+Objects with the same sublayer and Z-order are then ordered by when they were loaded, with objects placed left typically displaying behind objects on the right.
+
+All layers are behind the player, with the exception of the non-blending top layer.
+This is different from 2.2, which always displays T1 objects in front of the player.
+
+The 1.9 GDPS comes built-in with a ["Show Info Label"](#editor-options) option, which can be enabled in the editor.
+This allows you to see the Z-order and layer of any selected object.
+
+There is obviously more nuance to this, but layering is very hard to describe without some intuition.
+Please experiment!
+
+<enhanced:img src="$lib/assets/faq/editor_layering.png" alt="screenshot of basic editor layering, with the layers being pointed to" class="screenshot screenshot-small" />
+
+## How do I hide gameplay boundaries?
+
+The editor preview option, which also hides speed portals from length calculations, can be found next to the editor layer selection on the right side of the editor.
+
+<enhanced:img src="$lib/assets/faq/editor_preview.png" alt="screenshot of the editor preview option" class="screenshot screenshot-small" />
+
+There is also an "Uncheck Portals" option in the editor pause menu, which will disable preview for all gameplay portals.
+
+## How do I build behind the start line?
+
+There exists a glitch in 1.9 which abuses slopes to flip objects out of the editor bounds.
+You can find the tutorial on [YouTube](https://youtu.be/Cy58Du0_tIY).
+
+Mods also exist to unlock this limitation.
+
+## Where is preview mode?
+
+1.9 did not have preview mode!
+Mods exist to add this functionality, or you may choose to build on the 2.2 editor and reupload your levels to the 1.9 GDPS.
 
 <style>
 	.title {
@@ -62,7 +207,7 @@ Inspired by [2.0's editor guide](http://web.archive.org/web/20150412090606/http:
 		margin-bottom: 2em;
 	}
 
-	.screenshot {
+	.hero-screenshot {
 		display: block;
 
 		margin: 0 auto;
@@ -70,5 +215,21 @@ Inspired by [2.0's editor guide](http://web.archive.org/web/20150412090606/http:
 
 		width: 95%;
 		max-width: 90ch;
+	}
+
+	.screenshot {
+		display: block;
+
+		margin: 0 auto;
+		height: auto;
+
+		width: 95%;
+		max-width: 70ch;
+
+		border-radius: 8px;
+	}
+
+	.screenshot-small {
+		max-width: 50ch;
 	}
 </style>

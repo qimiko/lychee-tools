@@ -16,6 +16,7 @@ If you cannot find an answer to your question, please ask in the [1.9 GDPS Disco
 ## Additional Guides
 
 - [Commands Help](/faq/commands)
+- [Editor Guide](/faq/editor-guide)
 - [Developer Guidelines (External API Use)](/faq/developer)
 
 # Contents
@@ -197,6 +198,25 @@ Please update the 1.9 GDPS using the latest version in the [Downloads](/download
 If you are on the latest version of the GDPS, make sure you are not using a VPN as some providers may be blocked.
 You may also want to ensure that connections to the 1.9 GDPS work correctly on your device, if it is not the same as the one accessing the FAQ.
 
+## How do I transfer levels to the 2.2 servers?
+
+The recommended method is through the GDShare functionality built into the GDPS.
+Export your level on 1.9, then import it into 2.2 with a mod like [GDShare](https://geode-sdk.org/mods/hjfod.gdshare).
+
+To fix details like layering, the community has developed external tools to automatically adjust them, such as the [fancy level reuploader](https://github.com/solstacoded/fancy-1.9-level-reuploader/).
+
+## How do I reupload levels created on other servers to here?
+
+For levels created prior to 2.0, or on other old version private servers, you can use the [level reupload tool](/levels/reupload).
+This tool expects the level ID and download endpoint of the server you are uploading from.
+If you do not know what that endpoint is, ask the host of that server.
+
+For newer levels (including those edited in a post-1.9 version), you must first convert it to 1.9 format through an external tool like the [Level Converter](https://qimiko.github.io/gdlevelconverter-web/).
+You can then import it into the 1.9 GDPS through its built-in GDShare functionality.
+
+Some level details will not convert properly, including hitboxes.
+Please verify your converted levels on the 1.9 GDPS to ensure that visuals and gameplay is as expected.
+
 ## Can I use the 1.9 GDPS API for my own projects?
 
 Sure! However, please read the [Developer Guidelines](/faq/developer) prior to doing so.
@@ -235,82 +255,4 @@ Please note that songs from NCS or CHOMPO will not correctly download in u9.0.4.
 
 # Editor
 
-## How do I transfer levels to the 2.2 servers?
-
-The recommended method is through the GDShare functionality built into the GDPS.
-Export your level on 1.9, then import it into 2.2 with a mod like [GDShare](https://geode-sdk.org/mods/hjfod.gdshare).
-
-To fix details like layering, the community has developed external tools to automatically adjust them, such as the [fancy level reuploader](https://github.com/solstacoded/fancy-1.9-level-reuploader/).
-
-## How do I reupload levels created on other servers to here?
-
-For levels created prior to 2.0, or on other old version private servers, you can use the [level reupload tool](/levels/reupload).
-This tool expects the level ID and download endpoint of the server you are uploading from.
-If you do not know what that endpoint is, ask the host of that server.
-
-For newer levels (including those edited in a post-1.9 version), you must first convert it to 1.9 format through an external tool like the [Level Converter](https://qimiko.github.io/gdlevelconverter-web/).
-You can then import it into the 1.9 GDPS through its built-in GDShare functionality.
-
-Some level details will not convert properly, including hitboxes.
-Please verify your converted levels on the 1.9 GDPS to ensure that visuals and gameplay is as expected.
-
-## What differences exist between the 1.9 and 2.2 editor?
-
-All objects after ID 744 (the 3DL color trigger) do not exist in 1.9.
-This means that about 83.6% of the 2.2 object palette is unavailable.
-
-Some of that 83.6% is replacements for 1.9 objects.
-This includes recolorable versions of black objects (like the gradient slabs and saws), the unified color trigger, slopes with cornerpieces built in, and more.
-When converting a 2.2 level to 1.9, please make sure to fix your slope cornerpieces!
-
-2.0 added the functionality for objects to have two colors.
-In 1.9, only the 2nd color of those objects would be colorable, with the first color being either OBJ or white.
-Objects (with only 1 color) that default to OBJ are not recolorable in 1.9.
-Objects are also limited to being colored with the first 4 color channels, P-Col 1/2, Light BG and 3DL.
-However, 3DL cannot be selected for non-3DL object on 1.9 without mods.
-There is also no HSV option for objects or color triggers.
-The "NoGlow", "Dont Fade", "Dont Enter" and all other object options also do not exist in 1.9.
-Objects cannot have their Z-Orders or layers changed.
-Object rotations are limited to integer degrees, and skewing/warp/scale options do not exist.
-
-For level settings, the font and ground line cannot be customized.
-Middle ground does not exist, and you are limited to the first 7 backgrounds and grounds.
-The OBJ and Line color channel cannot be given blending (Line is forced blending in 1.9).
-All legacy physics options should be enabled.
-
-Some physics changes also exist, which cannot be fixed through the legacy physics options.
-For example, some saw hitboxes are larger, and physics depend on framerate in 1.9.
-The 1.9 GDPS has the option to show hitboxes in the editor, which you can use to identify differences that may impact your levels.
-Slope physics saw a significant overhaul in 2.2, which may make some levels impossible across versions.
-
-This is a very general overview.
-It is highly recommended that you spend some time with the 1.9 editor to gain a proper understanding of what it can do.
-
-## How does object layering work?
-
-There are two layers: bottom (B) and top (T). In 2.2 terms, this is like the B1 and T1 layers.
-Those two layers are divided into two sublayers, which is based on the blending status of the object's color.
-Objects with blending colors are layered below non-blending objects on that same layer.
-Objects within the same sublayer are then ordered by Z-order, with lower Z-order objects displaying below higher ones.
-Objects with the same sublayer and Z-order are then ordered by when they were loaded, with objects placed left typically displaying behind objects on the right.
-
-All layers are behind the player, with the exception of the non-blending top layer.
-This is different from 2.2, which always displays T1 objects in front of the player.
-
-The 1.9 GDPS comes built-in with a "Show Info Label" option, which can be enabled in the editor.
-This allows you to see the Z-order and layer of any selected object.
-
-There is obviously more nuance to this, but layering is very hard to describe without some intuition.
-Please experiment!
-
-## How do I build behind the start line?
-
-There exists a glitch in 1.9 which abuses slopes to flip objects out of the editor bounds.
-You can find the tutorial on [YouTube](https://youtu.be/Cy58Du0_tIY).
-
-Mods also exist to unlock this limitation.
-
-## Where is preview mode?
-
-1.9 did not have preview mode!
-Mods exist to add this functionality, or you may choose to build on the 2.2 editor and reupload your levels to the 1.9 GDPS.
+Additional editor information can be found in the [Editor Guide](/faq/editor-guide).
