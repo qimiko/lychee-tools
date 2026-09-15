@@ -1,0 +1,150 @@
+<script>
+	import Title from '$lib/components/core/Title.svelte';
+</script>
+
+<svelte:head>
+	<title>Commands - 1.9 GDPS</title>
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Commands" />
+</svelte:head>
+
+<Title>Commands</Title>
+
+[&#9664; Back to FAQs](/faq)
+
+Commands can be performed on any level by uploading it as a comment:
+
+<enhanced:img src="$lib/assets/faq/commands_send.png" alt="Screenshot of the send command being performed: !send insane 9 0 could be better, large rating curve" class="screenshot" />
+
+The command always starts with an `!`, and arguments are separated by spaces.
+
+If the command succeeds, the following message will be displayed:
+
+<enhanced:img src="$lib/assets/faq/commands_success.png" alt="Screenshot of a successful command, which displays a Success popup." class="screenshot" />
+
+On non-1.9 GDPS clients, this message may instead display as a ban.
+This is a side effect of the method used to display successful commands to the user, and does not indicate that the user is comment banned.
+
+If a command fails, a comment will be displayed ingame notifying the user of the reason for this failure:
+
+<enhanced:img src="$lib/assets/faq/commands_error.png" alt="Screenshot of a failed command, which displays as a comment from Reupload." class="screenshot" />
+
+This failure is only visible to the user who attempted to use the command, and will no longer be visible upon refreshing the comments.
+
+# Commands List
+
+Parameters between angle brackets (`&lt;parameter&gt;`) are required, and parameters between square brackets (`[parameter]`) are optional.
+If the parameter has an ellipses (`parameter...`), this means it will read the rest of the comment, including spaces, as the value.
+
+## Accessible to everyone
+
+`!send &lt;difficulty&gt; &lt;stars&gt; &lt;rating&gt; [reason...]`  
+Sends a level, which will appear on the [Sent Levels](/levels/sent) page and the 1.9 GDPS Discord.
+
+Difficulty must be one of: "easy", "normal", "hard", "harder", "insane", "demon", "na", "auto".  
+Stars can be any number.  
+Rating is mapped to the following values: 0 for star rate, 1 for feature and 2 for super.  
+The reason is displayed alongside the send, and can fill the rest of the comment (or be omitted entirely).
+
+Usage of the send command is subject to the send guidelines, which can be found ingame through the send button.
+Abuse of the system will result in a permanent ban from sending levels.
+
+## Accessible to the level creator
+
+Moderators are also able to perform these commands on any level.
+
+`!delete [reason...]`  
+Deletes a level.
+
+The reason field, if provided, will be shown in the deletion message.
+
+Rated levels cannot be deleted.
+Level deletions can be reverted by an Administrator, in the event of an accidental deletion.
+
+`!rename &lt;new name...&gt;`  
+Changes the name of a level.
+
+`!description &lt;new description...&gt;`  
+Changes the description of a level.
+
+`!song &lt;new song ID&gt;`  
+Changes the song ID of a level.
+This change applies even if the level previously used a default song.
+
+`!pass &lt;new pass&gt;`  
+Changes the password of a level. The new password can be a string of at most 6 numbers.
+
+`!freecopy`  
+Sets a level to have no password, allowing it to be copied freely.
+
+`!nocopy`  
+Removes the password for a level, blocking it from being copied.
+It is not recommended to rely on this for security, as copy hack exists.
+
+`!unlist`  
+Hides a level from search, which means it can only be found by its direct ID.
+
+Rated levels cannot be unlisted.
+It is not recommended to rely on this for security, as levels can be easily scraped.
+
+`!public`  
+Reverses the action of the unlist command, allowing for the level to be searched again.
+
+`!sharecp &lt;username...&gt;`  
+Shares the Creator Points of a level to the specified user.
+
+If a number is provided for username, it will instead share creator points to the specified user ID.
+
+It is encouraged to only share creator points when the user has built a significant portion of the level.
+A list of all shared Creator Points can be found in the [Shared Points](/levels/shared-points) page.
+
+`!noshare`  
+Removes all shared Creator Points.
+
+## Accessible to Moderators
+
+`!setacc &lt;username...&gt;`  
+Moves the level to the specified account.
+
+If a number is provided for username, it will instead move the level to the specified user ID.
+
+`!reupload`  
+Marks a level as reuploaded, which hides it from the Non-Reupload search filter.
+
+`!unreupload`  
+Removes a level's reupload tag.
+
+`!rate &lt;difficulty&gt; &lt;stars&gt; &lt;rating&gt; [reason...]`  
+Rates a level. Parameters are identical to the send command.
+
+`!feature`  
+Promotes a level to feature.
+
+`!epic`  
+Promotes a level to super.
+
+`!unfeature`  
+Demotes a level from feature to rate. Displays an "unfeatured" message in the rates channel.
+
+`!unepic`  
+Demotes a level from super to feature. Displays an "unsuper'd" message in the rates channel.
+
+`!nocp`  
+Revokes Creator Points for the level.
+
+`!givecp`  
+Reinstates Creator Points for the level.
+
+<style>
+	.screenshot {
+		display: block;
+
+		margin: 0 auto;
+		height: auto;
+
+		width: 95%;
+		max-width: 50ch;
+
+		border-radius: 8px;
+	}
+</style>
