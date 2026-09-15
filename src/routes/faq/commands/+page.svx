@@ -12,6 +12,10 @@
 
 [&#9664; Back to FAQs](/faq)
 
+### Contents
+
+# How to Use Commands
+
 Commands can be performed on any level by uploading it as a comment:
 
 <enhanced:img src="$lib/assets/faq/commands_send.png" alt="Screenshot of the send command being performed: !send insane 9 0 could be better, large rating curve" class="screenshot" />
@@ -36,7 +40,7 @@ This failure is only visible to the user who attempted to use the command, and w
 Parameters between angle brackets (`&lt;parameter&gt;`) are required, and parameters between square brackets (`[parameter]`) are optional.
 If the parameter has an ellipses (`parameter...`), this means it will read the rest of the comment, including spaces, as the value.
 
-## Accessible to everyone
+## Accessible to Everyone
 
 `!send &lt;difficulty&gt; &lt;stars&gt; &lt;rating&gt; [reason...]`  
 Sends a level, which will appear on the [Sent Levels](/levels/sent) page and the 1.9 GDPS Discord.
@@ -49,7 +53,7 @@ The reason is displayed alongside the send, and can fill the rest of the comment
 Usage of the send command is subject to the send guidelines, which can be found ingame through the send button.
 Abuse of the system will result in a permanent ban from sending levels.
 
-## Accessible to the level creator
+## Accessible to the Level Creator
 
 Moderators are also able to perform these commands on any level.
 

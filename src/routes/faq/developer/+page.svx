@@ -10,6 +10,8 @@
 
 <Title>Developer Guidelines</Title>
 
+[&#9664; Back to FAQs](/faq)
+
 Thank you for thinking of the 1.9 GDPS for your project!
 The 1.9 GDPS API is **free to use** for most applications, but we ask that developers do not (intentionally or otherwise) abuse this access.
 What this means for you:
@@ -153,3 +155,18 @@ If `with_data=true`, then a level's replay string and level string are returned 
 There also exists a level search endpoint at `GET /v2/levels` and an advanced level search endpoint at `QUERY /v2/levels`.
 These endpoints have an expanded limit of 100 levels.
 For the time being, these endpoints are undocumented, as there are too many parameters to list.
+
+<style>
+ pre {
+	white-space: pre-wrap;
+
+	padding: 1em;
+	margin: 1em auto;
+	max-width: 80ch;
+	text-align: left;
+
+	background: #dfdfdf;
+	border-radius: 8px;
+	border: solid black #aaa;
+ }
+</style>

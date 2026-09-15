@@ -16,6 +16,7 @@ If you cannot find an answer to your question, please ask in the [1.9 GDPS Disco
 ## Additional Guides
 
 - [Commands Help](/faq/commands)
+- [Developer Guidelines (External API Use)](/faq/developer)
 
 # Contents
 
