@@ -171,7 +171,7 @@
 	<div>
 		<img src={NoteIcon} alt="note" class="song-icon" />
 
-		{#if data.song && data.song.ingame_song_source == 0}
+		{#if data.song && (data.song.id <= 10_000_000 || data.song.id >= 20_000_000)}
 			<Link href={data.song.download}>{song_name} by {song_artist}</Link> ({revision.song_id})
 		{:else}
 			<span>
