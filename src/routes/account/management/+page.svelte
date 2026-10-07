@@ -150,6 +150,12 @@
 	</form>
 {/if}
 
+<hr />
+
+<Button href={resolve('/account/management/request-deletion')} buttonStyle="secondary"
+	>Delete account</Button
+>
+
 <div style="padding: 0.5em;"></div>
 
 <style>

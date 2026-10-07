@@ -180,6 +180,7 @@
 			<option value="song_reupload">Song Reupload</option>
 			<option value="song_edit">Song Edit</option>
 			<option value="account_edit">Account Edit</option>
+			<option value="account_delete">Account Delete</option>
 		</select>
 	</label>
 

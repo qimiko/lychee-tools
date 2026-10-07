@@ -42,7 +42,7 @@ export const actions = {
 		const reset = formData.get('reset');
 
 		if (typeof reset != 'string' || !id) {
-			return fail(400, { error: 'Invalid ban type!', type: 'remove_ban' });
+			return fail(400, { error: 'Invalid reset type!' });
 		}
 
 		const ip = getClientAddress();
@@ -53,6 +53,26 @@ export const actions = {
 			await client.verifyAccount(id, reset == '1');
 			return { success: true };
 		} catch {
+			return fail(400, { error: 'An unknown server error has happened, please try again!' });
+		}
+	},
+	delete: async ({ fetch, cookies, params, getClientAddress }) => {
+		const id = +params.id;
+
+		const ip = getClientAddress();
+		const token = cookies.get('token');
+		const client = new GDPSClient({ fetch, token, ip });
+
+		try {
+			await client.requestAccountDeletion(id);
+			return { success: true };
+		} catch (e) {
+			if (e instanceof ServerError) {
+				if (e.type == 'unauthorized') {
+					return fail(400, { error: 'You cannot delete moderators!' });
+				}
+			}
+
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
 	},

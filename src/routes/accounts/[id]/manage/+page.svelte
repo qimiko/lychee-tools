@@ -13,6 +13,8 @@
 	const can_manage = $derived(
 		current_permissions >= 3 || current_permissions > data.account.permission_level
 	);
+
+	let show_danger = $state(false);
 </script>
 
 <svelte:head>
@@ -82,9 +84,18 @@ Currently managing account <b>{data.account.name}</b>.
 	<form use:enhance method="POST" action="?/verify">
 		<h2>Security Options</h2>
 
+		{#if current_permissions >= 3}
+			<p>
+				<label>
+					<input type="checkbox" bind:checked={show_danger} />
+					Show Dangerous Actions
+				</label>
+			</p>
+		{/if}
+
 		<Button type="submit" name="reset" value={0}>Verify Account</Button>
 
-		{#if current_permissions >= 3}
+		{#if current_permissions >= 3 && show_danger}
 			<Button type="submit" name="reset" value={1} buttonStyle="emphasis"
 				>Force Unverify Account</Button
 			>
@@ -94,6 +105,10 @@ Currently managing account <b>{data.account.name}</b>.
 				<Link href={resolve('/account/resend-activation')}>E-Mail Activation</Link>
 				to use their account again.)
 			</p>
+
+			<Button type="submit" buttonStyle="secondary" formaction="?/delete">Queue Deletion</Button>
+
+			<p>Queued deletions are reversible by the user, do not rely on this for moderation!</p>
 		{/if}
 	</form>
 {/if}

@@ -180,11 +180,18 @@ Afterwards, you should see the username change on your levels and on the [Search
 
 ## How do I delete my account?
 
-For now, you must contact a staff member to have your account deleted.
-Upon deletion, all of your levels and comments will be moved to the Reupload account.
+The tool to request this can be found on the [account management page](/account/management).
 
-An account deletion is permanent, so please think carefully before requesting one!
-There may be a short waiting period before the deletion is carried through.
+Upon requesting deletion, an email will be sent, which contains a link that must be used to confirm the deletion process.
+After successful confirmation, your account will be locked and scheduled for deletion **in two weeks**.
+At this point, all of your levels and comments will be moved to the Reupload account, and all other data will be permanently deleted.
+
+Staff may not remove, modify, or restore data once it is on Reupload.
+As such, if there is any information that you wish to be removed, it should be deleted **prior** to account deletion.
+
+Logging into your account at any point will **cancel** the deletion.
+
+If you do not have access to the email linked to your 1.9 GDPS account, contact a staff member for further support.
 
 # Online
 

@@ -486,6 +486,10 @@ export type ServerActionSongReupload = BaseServerAction & {
 	};
 };
 
+export type ServerActionAccountDelete = BaseServerAction & {
+	type: 'account_delete';
+};
+
 export type ServerAction =
 	| ServerActionLevelReupload
 	| ServerActionSongReupload
@@ -506,7 +510,8 @@ export type ServerAction =
 	| ServerActionLevelUpdate
 	| ServerActionLegacyLevelAccount
 	| ServerActionLegacySharePoints
-	| ServerActionLegacyPackEdit;
+	| ServerActionLegacyPackEdit
+	| ServerActionAccountDelete;
 
 export type ServerLevelSend = {
 	id: string;
@@ -828,6 +833,25 @@ export class GDPSClient {
 		return validate<ServerMe>(await data.json());
 	}
 
+	async requestAccountDeletion(id: number) {
+		if (!this.#token) {
+			throw new AuthenticationError();
+		}
+
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/${id}`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'DELETE'
+		});
+
+		if (data.status == 204) {
+			return;
+		}
+
+		validate(await data.json());
+	}
+
 	async changeAccountUsername(id: number, username: string) {
 		if (!this.#token) {
 			throw new AuthenticationError();
@@ -996,6 +1020,42 @@ export class GDPSClient {
 			}),
 			method: 'POST',
 			body: JSON.stringify({ current_password, new_password })
+		});
+
+		if (data.status == 204) {
+			return;
+		}
+
+		validate(await data.json());
+	}
+
+	async requestDeletion(password: string) {
+		if (!this.#token) {
+			throw new AuthenticationError();
+		}
+
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/request-deletion`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'POST',
+			body: JSON.stringify({ password })
+		});
+
+		if (data.status == 201) {
+			return;
+		}
+
+		validate(await data.json());
+	}
+
+	async continueDeletion(token: string) {
+		const data = await this.#make_request(`${GDPS_BASE_URL}/v2/accounts/finish-deletion`, {
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			method: 'POST',
+			body: JSON.stringify({ token })
 		});
 
 		if (data.status == 204) {
