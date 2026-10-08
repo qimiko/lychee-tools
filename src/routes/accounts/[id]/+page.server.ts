@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ fetch, params, getClientAddress }) 
 	const ip = getClientAddress();
 	const client = new GDPSClient({ fetch, ip });
 
-	const account = await client.getAccount(id);
+	const account = await client.accounts.get(id);
 
 	if (account.user) {
 		redirect(

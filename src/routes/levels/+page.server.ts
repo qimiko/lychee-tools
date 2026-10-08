@@ -41,7 +41,7 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 
 	let levels;
 	try {
-		levels = await client.searchLevels(params);
+		levels = await client.levels.search(params);
 	} catch (e) {
 		// if the token is invalid, this is the one request that will mysteriously fail
 		if (e instanceof ServerError) {

@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 	};
 
 	const client = new GDPSClient({ fetch, token });
-	const actions = await client.searchActions(params);
+	const actions = await client.actions.search(params);
 
 	return { actions, params };
 };

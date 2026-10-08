@@ -16,7 +16,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, ip });
 
 		try {
-			await client.beginPasswordReset(email, captcha);
+			await client.self.beginPasswordReset(email, captcha);
 
 			return { success: true, email };
 		} catch (e) {

@@ -6,7 +6,7 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 	if (token) {
 		try {
 			const client = new GDPSClient({ token, fetch });
-			const profile = await client.getAccount();
+			const profile = await client.accounts.get();
 
 			return { current_user: profile };
 		} catch (e) {

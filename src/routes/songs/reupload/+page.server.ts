@@ -23,7 +23,7 @@ export const actions = {
 		const override_artist = artist ? artist : undefined;
 
 		try {
-			const reuploaded_id = await client.reuploadSong(url, override_title, override_artist);
+			const reuploaded_id = await client.songs.reupload(url, override_title, override_artist);
 
 			return { success: true, url, title, artist, reuploaded_id };
 		} catch (e) {

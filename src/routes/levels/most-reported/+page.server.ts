@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	const count = toIntSafe(url.searchParams.get('count')) ?? 50;
 
 	const client = new GDPSClient({ fetch });
-	const reports = await client.getMostReported(page, count);
+	const reports = await client.levels.getMostReported(page, count);
 
 	return { reports, params: { page, count } };
 };

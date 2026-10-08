@@ -18,7 +18,7 @@ export const actions = {
 		});
 
 		try {
-			await client.beginPasswordReset(email, captcha, true);
+			await client.self.beginPasswordReset(email, captcha, true);
 
 			return { success: true, email };
 		} catch (e) {

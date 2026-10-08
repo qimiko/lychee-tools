@@ -15,7 +15,7 @@ export const load: PageServerLoad = async ({ url, fetch, getClientAddress, cooki
 	});
 
 	try {
-		await client.continueDeletion(key);
+		await client.self.continueDeletion(key);
 	} catch (e) {
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_request') {

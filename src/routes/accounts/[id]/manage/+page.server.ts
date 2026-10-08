@@ -19,7 +19,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.promoteAccount(id, +level);
+			await client.accounts.promote(id, +level);
 			return { success: true };
 		} catch (e) {
 			if (e instanceof ServerError) {
@@ -50,7 +50,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.verifyAccount(id, reset == '1');
+			await client.accounts.verify(id, reset == '1');
 			return { success: true };
 		} catch {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
@@ -64,7 +64,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.requestAccountDeletion(id);
+			await client.accounts.requestDeletion(id);
 			return { success: true };
 		} catch (e) {
 			if (e instanceof ServerError) {
@@ -92,7 +92,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.changeAccountUsername(id, username);
+			await client.accounts.changeUsername(id, username);
 
 			return { success: true, username };
 		} catch (e) {
@@ -122,7 +122,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, getClientAd
 	const ip = getClientAddress();
 	const client = new GDPSClient({ token, fetch, ip });
 
-	const account = await client.getAccount(id);
+	const account = await client.accounts.get(id);
 
 	return { account };
 };

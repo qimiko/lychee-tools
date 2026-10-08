@@ -10,7 +10,7 @@ export const load: LayoutServerLoad = async ({ fetch, params, cookies }) => {
 
 	const id = +params.id;
 	if (!id) {
-		const search_check = await client.searchUsers(params.id, 0, 1);
+		const search_check = await client.users.search(params.id, 0, 1);
 		if (search_check.count == 0) {
 			return error(404);
 		}
@@ -26,7 +26,7 @@ export const load: LayoutServerLoad = async ({ fetch, params, cookies }) => {
 
 	let user;
 	try {
-		user = await client.getUser(id);
+		user = await client.users.getUser(id);
 	} catch {
 		error(404);
 	}

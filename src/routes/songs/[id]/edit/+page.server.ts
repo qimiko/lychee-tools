@@ -21,11 +21,11 @@ export const actions = {
 		const token = cookies.get('token');
 		const client = new GDPSClient({ fetch, token, ip });
 
-		const song = await client.getSong(+id);
+		const song = await client.songs.get(+id);
 
 		try {
 			// only send values that were changed, for better audit logs
-			await client.editSong(
+			await client.songs.edit(
 				song.id,
 				song.title == name ? undefined : name,
 				song.artist_name == artist ? undefined : artist,
@@ -56,7 +56,7 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 
 	let song;
 	try {
-		song = await client.getSong(+id);
+		song = await client.songs.get(+id);
 	} catch {
 		error(404);
 	}

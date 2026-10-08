@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	};
 
 	const client = new GDPSClient({ fetch });
-	const songs = await client.searchSongs(params);
+	const songs = await client.songs.search(params);
 
 	return { songs, params };
 };

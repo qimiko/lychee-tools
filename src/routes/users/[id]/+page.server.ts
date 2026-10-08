@@ -20,7 +20,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 
 	let levels;
 	try {
-		levels = await client.searchLevels({
+		levels = await client.levels.search({
 			type: 'user_levels',
 			query: id.toString(),
 			count: 5
@@ -35,7 +35,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 		levels = { count: 0, items: [] };
 	}
 
-	const comments = await client.searchComments({
+	const comments = await client.comments.search({
 		users: [id],
 		page: comments_page,
 		sort: comments_sort

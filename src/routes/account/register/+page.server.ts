@@ -25,7 +25,7 @@ export const actions = {
 		});
 
 		try {
-			await client.registerAccount(userName, password, email, challenge);
+			await client.self.register(userName, password, email, challenge);
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_registration') {

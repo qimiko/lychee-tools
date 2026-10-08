@@ -54,7 +54,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.createMapPack(
+			await client.mapPacks.create(
 				name,
 				level_list,
 				stars_int,

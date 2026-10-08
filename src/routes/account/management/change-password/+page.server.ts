@@ -19,7 +19,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.changePassword(current_password, new_password);
+			await client.self.changePassword(current_password, new_password);
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_credentials') {

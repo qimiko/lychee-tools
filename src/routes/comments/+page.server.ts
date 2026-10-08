@@ -19,7 +19,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.manageComments(comments, 'delete');
+			await client.comments.manage(comments, 'delete');
 			return { success: true };
 		} catch {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
@@ -40,7 +40,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.manageComments(comments, 'hide');
+			await client.comments.manage(comments, 'hide');
 			return { success: true };
 		} catch {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
@@ -86,7 +86,7 @@ export const load: PageServerLoad = async ({ fetch, cookies, url }) => {
 	const token = cookies.get('token');
 	const client = new GDPSClient({ token, fetch });
 
-	const comments = await client.searchComments(params);
+	const comments = await client.comments.search(params);
 
 	return { comments, params };
 };

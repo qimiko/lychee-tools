@@ -25,7 +25,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			const reuploaded_id = await client.reuploadLevel(level_id, url);
+			const reuploaded_id = await client.levels.reupload(level_id, url);
 
 			return { success: true, level, url, reuploaded_id };
 		} catch (e) {

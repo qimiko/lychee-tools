@@ -18,7 +18,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.requestDeletion(password);
+			await client.self.requestDeletion(password);
 
 			return { success: true };
 		} catch (e) {
@@ -60,8 +60,8 @@ export const load: PageServerLoad = async ({ cookies, getClientAddress, parent }
 	try {
 		const user_id = current_user.user?.id;
 		if (user_id) {
-			levels_count = (await client.searchLevelsAdvanced({ by_users: [user_id], total: 1 })).count;
-			comments_count = (await client.searchComments({ users: [user_id], count: 1 })).count;
+			levels_count = (await client.levels.searchAdvanced({ by_users: [user_id], total: 1 })).count;
+			comments_count = (await client.comments.search({ users: [user_id], count: 1 })).count;
 		}
 	} catch {
 		const url_params = new URLSearchParams({ redirect: '/account/management/request-deletion' });

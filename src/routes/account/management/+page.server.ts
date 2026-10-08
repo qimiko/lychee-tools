@@ -10,7 +10,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.createSession();
+			await client.self.createSession();
 			return { success: true, type: 'session' };
 		} catch {
 			return fail(400, {
@@ -24,7 +24,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token });
 
 		try {
-			await client.logout(true);
+			await client.self.logout(true);
 		} catch {
 			return fail(400, {
 				error: 'An unknown server error has happened, please try again!',
@@ -50,7 +50,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token });
 
 		try {
-			await client.removeDevice(key);
+			await client.self.removeDevice(key);
 			return { success: true, type: 'logout_device' };
 		} catch {
 			return fail(400, {
@@ -74,7 +74,7 @@ export const load: PageServerLoad = async ({ cookies, fetch, getClientAddress })
 	let extra_details;
 	try {
 		// handle if we get logged out here
-		extra_details = await client.getExtraAccountDetails();
+		extra_details = await client.self.getExtraDetails();
 	} catch {
 		const url_params = new URLSearchParams({ redirect: '/account/management' });
 		redirect(303, resolve('/account/login') + `?${url_params}`);

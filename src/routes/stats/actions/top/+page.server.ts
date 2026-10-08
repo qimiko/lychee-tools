@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
 
 	const client = new GDPSClient({ fetch, token });
 
-	const top_actions = await client.getTopActions();
+	const top_actions = await client.actions.getTop();
 
 	return { top_actions };
 };

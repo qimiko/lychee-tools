@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	});
 
 	try {
-		await client.logout();
+		await client.self.logout();
 	} catch {
 		return redirect(303, '/tools?logout=true');
 	}

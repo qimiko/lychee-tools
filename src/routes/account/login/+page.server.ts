@@ -27,7 +27,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, ip });
 
 		try {
-			const authkey = await client.loginAccount(userName, password);
+			const authkey = await client.self.login(userName, password);
 
 			cookies.set('token', authkey, {
 				path: '/',

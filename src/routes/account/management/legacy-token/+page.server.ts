@@ -18,7 +18,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			const { token } = await client.createLegacyToken(password);
+			const { token } = await client.self.createLegacyToken(password);
 
 			return { success: true, token };
 		} catch (e) {
@@ -49,7 +49,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	let extra_details;
 	try {
 		// handle if we get logged out here
-		extra_details = await client.getExtraAccountDetails();
+		extra_details = await client.self.getExtraDetails();
 	} catch {
 		const url_params = new URLSearchParams({ redirect: '/account/management' });
 		redirect(303, resolve('/account/login') + `?${url_params}`);

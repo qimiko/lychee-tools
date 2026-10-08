@@ -55,7 +55,7 @@ export const actions = {
 		const token = cookies.get('token');
 		const client = new GDPSClient({ fetch, token, ip });
 
-		const pack = (await client.getAllMapPacks()).items.find((m) => m.id.toString() == id);
+		const pack = (await client.mapPacks.getAll()).items.find((m) => m.id.toString() == id);
 
 		if (!pack) {
 			return fail(404, { error: 'Pack does not exist.' });
@@ -63,7 +63,7 @@ export const actions = {
 
 		try {
 			// only send values that were changed, for better audit logs
-			await client.editMapPack(
+			await client.mapPacks.edit(
 				pack.id,
 				pack.name == name ? undefined : name,
 				JSON.stringify(pack.levels) == JSON.stringify(level_list) ? undefined : level_list,
@@ -98,7 +98,7 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 	}
 
 	const client = new GDPSClient({ fetch });
-	const pack = (await client.getAllMapPacks()).items.find((m) => m.id.toString() == id);
+	const pack = (await client.mapPacks.getAll()).items.find((m) => m.id.toString() == id);
 
 	if (!pack) {
 		return error(404);

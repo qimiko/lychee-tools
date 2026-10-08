@@ -20,7 +20,7 @@ export const actions = {
 		});
 
 		try {
-			await client.finishVerification(key, captcha);
+			await client.self.finishVerification(key, captcha);
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_request') {

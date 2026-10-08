@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	const count = toIntSafe(url.searchParams.get('count')) ?? 25;
 
 	const client = new GDPSClient({ fetch });
-	const users = await client.searchUsers(query, page, count);
+	const users = await client.users.search(query, page, count);
 
 	return {
 		users,

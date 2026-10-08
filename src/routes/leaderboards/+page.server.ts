@@ -13,11 +13,11 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 
 	let users;
 	if (time == 'daily' && type != 'creator_points') {
-		users = await client.getTopRecentUsers({ type, count, daily: true, max_version });
+		users = await client.users.getTopRecent({ type, count, daily: true, max_version });
 	} else if (time == 'weekly' && type != 'creator_points') {
-		users = await client.getTopRecentUsers({ type, count, daily: false, max_version });
+		users = await client.users.getTopRecent({ type, count, daily: false, max_version });
 	} else {
-		users = await client.getTopUsers({ type, count, max_version });
+		users = await client.users.getTop({ type, count, max_version });
 	}
 
 	return { users, type, time, max_version };

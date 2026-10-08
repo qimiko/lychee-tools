@@ -16,7 +16,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.runTask(action);
+			await client.actions.runTask(action);
 			return { success: true };
 		} catch (e) {
 			if (e instanceof ServerError) {
@@ -35,7 +35,7 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
 
 	const client = new GDPSClient({ token, fetch });
 
-	const tasks = await client.getTasks();
+	const tasks = await client.actions.getTasks();
 
 	return { tasks };
 };

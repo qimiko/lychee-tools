@@ -20,7 +20,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 
 	let level;
 	try {
-		level = await client.getLevel(id);
+		level = await client.levels.get(id);
 	} catch (e) {
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_credentials') {
@@ -35,13 +35,13 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 	const revision = level.revisions[0];
 	if (revision.song_id) {
 		try {
-			song = await client.getSong(revision.song_id);
+			song = await client.songs.get(revision.song_id);
 		} catch {
 			// no song :(
 		}
 	}
 
-	const comments = await client.searchComments({
+	const comments = await client.comments.search({
 		levels: [id],
 		page: comments_page,
 		sort: comments_sort

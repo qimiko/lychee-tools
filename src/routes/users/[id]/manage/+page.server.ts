@@ -20,7 +20,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.createBan(id, type as BanType, reason);
+			await client.users.createBan(id, type as BanType, reason);
 			return { success: true, type: 'add_ban' };
 		} catch {
 			return fail(400, {
@@ -44,7 +44,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.removeBan(id, key as BanType);
+			await client.users.removeBan(id, key as BanType);
 			return { success: true, type: 'remove_ban' };
 		} catch {
 			return fail(400, {
@@ -69,7 +69,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies }) => {
 
 	const client = new GDPSClient({ token, fetch });
 
-	const bans = await client.getUserBans(id);
+	const bans = await client.users.getBans(id);
 
 	return { bans };
 };

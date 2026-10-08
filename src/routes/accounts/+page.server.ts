@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	};
 
 	const client = new GDPSClient({ fetch });
-	const accounts = await client.searchAccounts(params);
+	const accounts = await client.accounts.search(params);
 
 	return { accounts, params };
 };

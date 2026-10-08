@@ -19,7 +19,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, token, ip });
 
 		try {
-			await client.changeUsername(username, password);
+			await client.self.changeUsername(username, password);
 
 			return { success: true, username };
 		} catch (e) {

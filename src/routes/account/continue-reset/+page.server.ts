@@ -24,7 +24,7 @@ export const actions = {
 		const client = new GDPSClient({ fetch, ip });
 
 		try {
-			await client.finishPasswordReset(key, account_id, password);
+			await client.self.finishPasswordReset(key, account_id, password);
 		} catch (e) {
 			if (e instanceof ServerError) {
 				if (e.type == 'invalid_request') {
@@ -57,7 +57,7 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
 	}
 
 	const client = new GDPSClient({ fetch });
-	const accounts = await client.checkPasswordReset(key);
+	const accounts = await client.self.checkPasswordReset(key);
 
 	if (accounts.length == 0) {
 		return error(400, 'Invalid reset key');
