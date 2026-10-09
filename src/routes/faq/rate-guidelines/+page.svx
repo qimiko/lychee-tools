@@ -1,0 +1,70 @@
+<script>
+	import Title from '$lib/components/core/Title.svelte';
+</script>
+
+<svelte:head>
+	<title>Rate Guidelines - 1.9 GDPS</title>
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Rate Guidelines" />
+</svelte:head>
+
+<Title>Rate Guidelines</Title>
+
+[&#9664; Back to FAQs](/faq)
+
+## Minimum Expectations
+
+Aside from the standards for each individual rating tier, we have things we look for before deciding rates, regardless of quality. These include, but are not limited to:
+
+- **Editor competency:** Instances where inexperience is prevalent will be given fair evaluation just like anything else. An example of this inexperience would be visible level borders, where you can see beyond the intended space provided by the creator.
+- **Original or inspired work:** Plagiarism of any kind is not recommended. Inspiration does not fall under plagiarism, though this does generate a kind of editorial Ship of Theseus. Levels will be taken on a case-by-case basis. Recreations fall under plagiarism and will not be rated, but original remakes (or level “remixes”) can potentially be evaluated if original enough.
+- **Playability:** Gameplay that is fair and fun is, of course, preferred. Subjectively, it is up to the mod team. Objectively, gameplay should not be riddled with bugs (including hertz) or made to be unfair and/or unbalanced on purpose. A level being "funny" does not improve its standing.
+
+**The standards are dynamic due to the nature of a team-based rating system. We do not compare and contrast with levels from a different period of standards unless they are updated under the current ones.**
+
+You are allowed to name your level using cuss words, as long as it isn’t excessive. No slurs, though.
+
+## Star Rating
+
+A star rated level should feel like a polished, complete experience that most players or viewers can enjoy. This, of course, is highly subjective due to the nature of a creative medium. It's hard to judge what exactly feels "complete" when evaluating a level, as we have no connection to the feelings of the creator, so each moderator will evaluate with their own opinions in mind. Inconsistencies in level quality can influence these opinions, as the entire level is played by each moderator that participates in any given vote. When a level is too difficult, moderators might not play through it but will watch it instead to ensure a fair assessment.
+
+Level length plays a large role, too. Longer levels receive more leniency during evaluation due to the increased effort involved in creating a larger product. This leniency experiences diminishing returns as the level extends further in length though; the weight of scrutiny between a 1-minute level and a 1.5-minute level is more significant than between a 2-minute level and a 2.5-minute level. These diminishing returns work to prevent a length meta, where excessively long but poor-quality levels are rated simply because of their length. Think of it as a logarithmic curve.
+
+Repetitive level design, when a creator consistently uses the same elements across multiple levels, may discourage moderators from voting for a rate. This can be seen as self-plagiarism. While a unique style marks a creator's personal touch and is generally positive, self-plagiarism involves recycling identical designs, which can detract from the creativity and originality expected in new levels.
+
+ We encourage logical 3D and proper corner piece usage, unless there's a stylistic reason to apply these objects differently.
+⠀
+## Feature
+Gameplay plays a much more significant role in featured levels, so it's crucial to create levels that are both subjectively enjoyable and objectively functional. Beyond standard star-rate criteria, a higher level of polish is also important, reflecting well-considered decisions that avoid unfairness or unnecessary compromises. When considering polish in this instance, refer to the minimum expectation of editor competency. Projecting your own tastes and identity into your creation can keep the level fresh and engaging!
+
+We expect better artistic execution, which means creating visual compositions that are more sophisticated without sacrificing gameplay functionality. If this point is confusing, we recommend looking up composition in photography or art; it's a very difficult concept to explain without visual examples.
+
+## Super
+
+Super is a custom rating for the 1.9 GDPS, awarding 4 creator points. It is reserved for levels that provide a generally unanimously positive experience. These levels are comparable to what a featured level represents but are generally better received, offering an entirely fair and enjoyable playthrough.
+
+In addition to the standard star-rate and feature criteria, we greatly value optimization here. A great level that is unplayable is just that: unplayable. Poor optimization demonstrates either a lack of care or a lack of experience on the creator's end.
+
+Standout individuality and identity are crucial, and should not be confused with groundbreaking innovation. This distinction emphasizes style over true originality; it should be evident that the level is uniquely yours, but this doesn’t necessarily mean it has to be something never seen before.
+⠀
+## No-Creator Points Rating
+
+No-Creator Point rates are a specific type of rating on the GDPS that assigns star values to levels without awarding creator points. This approach is typically used for reuploads and bug fixes (like Bloodbath 240hz).
+⠀
+## Rating Restrictions
+
+**A small list of specific level types that are disallowed from being rated:**
+
+- **Layouts.**
+- **Standard Nine Circles levels** that derive entirely from the original, similar to levels like Fairydust and Jawbreaker. Nine Circles levels must include an alternate take, as the list became too saturated with them and it became a genuine problem.
+- **Plagiarism,** including direct recreations of existing levels.
+
+## Level Re-evaluations
+
+- **Levels which have undergone significant changes in either decoration or gameplay will be subject to re-evaluation under current standards, either at time of update or time of notice.** Minor, non-breaking changes, such as bugfixes, will not subject levels to re-evaluation.
+
+- **For the first two weeks after a level is rated, it cannot be re-evaluated unless a major update has been made.** For a six week period after this, a level may be re-evaluated without form entry for any changes made to it. A form submission is required for any re-evaluation to take place after three months have passed since the last discussion regarding the level, and after it is re-evaluated in this way there is a six month grace period where the level may not be submitted again. Each time a level is re-evaluated, this grace period doubles.
+
+For the purposes of these rules, a major update is considered a "new level," which resets the timers. However, this is subject to change based on how many times the level has been updated. After numerous updates, we may indefinitely lock re-evaluation for a level.
+
+Level Re-Evaluation Form: [docs.google.com](https://docs.google.com/forms/d/e/1FAIpQLSe0XAyvk7OU6fvdWaGM73mQ53GcjFiO5DrHrGr3zztCdjjDgA/viewform)

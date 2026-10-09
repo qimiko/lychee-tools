@@ -1,0 +1,34 @@
+<script>
+	import Title from '$lib/components/core/Title.svelte';
+</script>
+
+<svelte:head>
+	<title>Rules - 1.9 GDPS</title>
+	<meta name="og:site_name" content="1.9 GDPS" />
+	<meta name="og:title" content="Rules" />
+</svelte:head>
+
+<Title>Rules</Title>
+
+[&#9664; Back to FAQs](/faq)
+
+**Rules (In-Game):**
+
+1. Do not use inappropriate names or imagery.
+
+2. Hacking any levels or cheating/exploiting stats will result in an immediate leaderboard ban.
+	A hack is only accepted if it is a bugfix or LDM version of your own level that you have verified legitimately, or gotten another member to verify legitimately for you.
+
+3. NSFW content is not allowed.
+
+4. Impersonations are bannable.
+
+5. **YOU MUST OWN THE OFFICIAL GAME LEGALLY BEFORE DOWNLOADING THE PRIVATE SERVER.**
+
+6. When you upload a level, all rights go to the community.
+
+	Rated levels may not be removed or unrated by moderators.
+	Any attempts to destroy a rated level will result in the level being removed from the creator's account.
+	This is done to preserve server integrity and history.
+
+You can appeal any punishment given ingame with the [ban appeal form](https://forms.gle/YbsPudsmt23LLZJy7).

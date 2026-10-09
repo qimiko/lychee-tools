@@ -15,6 +15,7 @@ If you cannot find an answer to your question, please ask in the [1.9 GDPS Disco
 
 ## Additional Guides
 
+- [Ingame Rules](/faq/rules)
 - [Commands Help](/faq/commands)
 - [Editor Guide](/faq/editor-guide)
 - [Developer Guidelines (External API Use)](/faq/developer)
@@ -109,6 +110,21 @@ On Windows, the 1.9 GDPS's executable is located at `%localappdata%\Programs\1.9
 On Android, save data is accessible through the file manager.
 You may need to use a tool like the Geode Android Launcher to view it.
 
+## How do I install the 1.9 GDPS on a very old Android device?
+
+The main download for the 1.9 GDPS requires an ARMv7-compatible device that is running at least Android 6.0.
+
+There exists a [1.9 GDPS Lite](https://static.xyze.dev/gdps/260629-gdps-lite.apk) build, which expands support to Android 2.3.3 and ARMv5/x86 devices.
+Due its lack of modding functionality, this build may also run better in limited emulator environments (such as PS Vita homebrew).
+This build will not run on versions above Android 13 without workarounds.
+
+The Lite version of the 1.9 GDPS contains no modifications besides those required to connect to the 1.9 GDPS servers.
+IP-based sessions, which can be created in the [account management page](/account/management), _must_ be used for authentication.
+Convenience mods, including object limit bypass and unlock all are unavailable as well.
+This version contains no patches against save corruption, so you should backup your data frequently.
+
+# Customization
+
 ## How do I install mods?
 
 If you do not currently have any mods installed, you can access the mods list through the ingame settings.
@@ -126,18 +142,11 @@ The folder button on the bottom left of the mods list is a shortcut to this fold
 Using a mod like textureldr is recommended for this purpose.
 Some mod downloads, including that one, are available in the modding channel of the 1.9 GDPS Discord server.
 
-## How do I install the 1.9 GDPS on a very old Android device?
+## How do I use the overlay?
 
-The main download for the 1.9 GDPS requires an ARMv7-compatible device that is running at least Android 6.0.
-
-There exists a [1.9 GDPS Lite](https://static.xyze.dev/gdps/260629-gdps-lite.apk) build, which expands support to Android 2.3.3 and ARMv5/x86 devices.
-Due its lack of modding functionality, this build may also run better in limited emulator environments (such as PS Vita homebrew).
-This build will not run on versions above Android 13 without workarounds.
-
-The Lite version of the 1.9 GDPS contains no modifications besides those required to connect to the 1.9 GDPS servers.
-IP-based sessions, which can be created in the [account management page](/account/management), _must_ be used for authentication.
-Convenience mods, including object limit bypass and unlock all are unavailable as well.
-This version contains no patches against save corruption, so you should backup your data frequently.
+The ingame overlay can be opened by pressing the `Tab` key.
+The overlay can also be rebound to any other key through the "Open Menu" button.
+If you have forgotten what key it is set to, the currently set keybind is displayed while the game is loading.
 
 # Account
 
@@ -223,6 +232,16 @@ You can then import it into the 1.9 GDPS through its built-in GDShare functional
 
 Some level details will not convert properly, including hitboxes.
 Please verify your converted levels on the 1.9 GDPS to ensure that visuals and gameplay is as expected.
+
+## How do I become an ingame moderator?
+
+Moderators for the 1.9 GDPS are chosen based on a variety of factors, including activity within the 1.9 GDPS community
+
+If you believe you would be a good fit for the 1.9 GDPS team, you can apply with the [staff application form](https://forms.gle/FzXjoahbE5CZXAga6)!
+
+## How do I appeal a ban?
+
+You can appeal any ban, including for the Discord server, in the [ban appeal form](https://forms.gle/YbsPudsmt23LLZJy7).
 
 ## Can I use the 1.9 GDPS API for my own projects?
 

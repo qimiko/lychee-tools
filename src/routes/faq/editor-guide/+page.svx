@@ -184,6 +184,18 @@ Mods also exist to unlock this limitation.
 1.9 did not have preview mode!
 Mods exist to add this functionality, or you may choose to build on the 2.2 editor and reupload your levels to the 1.9 GDPS.
 
+## How do I get a level rated?
+
+First, you should review the [rate guidelines](/faq/rate-guidelines) to ensure that the level is rateworthy.
+
+You can send a level using the ingame send button, or the send command.
+For more information, see the [commands guide](/faq/commands).
+
+Once a level is sent, it is reviewed by the moderator team.
+This review process typically takes a week.
+The final decision will be posted in the Discord server's rates channel, along with a short message explaining the rating.
+In the event that a level is not rateworthy, moderators may also leave a comment on the level to explain their decision.
+
 <style>
 	.title {
 		display: flex;
