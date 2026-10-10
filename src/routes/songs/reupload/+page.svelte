@@ -1,10 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import Button from '$lib/components/core/Button.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 
 	let { form } = $props();
 </script>
@@ -22,7 +22,9 @@
 		<p>{form.error}</p>
 	{:else if form?.success}
 		<p>
-			Success! Song reuploaded with ID <Link href={resolve('/songs')}>{form.reuploaded_id}</Link>.
+			Success! Song reuploaded with ID
+			<Link href={resolve('songs')}>{form.reuploaded_id}</Link>
+			.
 		</p>
 	{/if}
 

@@ -1,5 +1,5 @@
 <script>
-	import Title from '$lib/components/core/Title.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 </script>
 
 <svelte:head>
@@ -18,20 +18,20 @@
 
 Commands can be performed on any level by uploading it as a comment:
 
-<enhanced:img src="$lib/assets/faq/commands_send.png" alt="Screenshot of the send command being performed: !send insane 9 0 could be better, large rating curve" class="screenshot" />
+<enhanced:img src="#lib/assets/faq/commands_send.png" alt="Screenshot of the send command being performed: !send insane 9 0 could be better, large rating curve" class="screenshot" />
 
 The command always starts with an `!`, and arguments are separated by spaces.
 
 If the command succeeds, the following message will be displayed:
 
-<enhanced:img src="$lib/assets/faq/commands_success.png" alt="Screenshot of a successful command, which displays a Success popup." class="screenshot" />
+<enhanced:img src="#lib/assets/faq/commands_success.png" alt="Screenshot of a successful command, which displays a Success popup." class="screenshot" />
 
 On non-1.9 GDPS clients, this message may instead display as a ban.
 This is a side effect of the method used to display successful commands to the user, and does not indicate that the user is comment banned.
 
 If a command fails, a comment will be displayed ingame notifying the user of the reason for this failure:
 
-<enhanced:img src="$lib/assets/faq/commands_error.png" alt="Screenshot of a failed command, which displays as a comment from Reupload." class="screenshot" />
+<enhanced:img src="#lib/assets/faq/commands_error.png" alt="Screenshot of a failed command, which displays as a comment from Reupload." class="screenshot" />
 
 This failure is only visible to the user who attempted to use the command, and will no longer be visible upon refreshing the comments.
 

@@ -7,7 +7,7 @@ const mappings: Record<string, string> = {
 	twitter: 'https://twitter.com/official19gdps',
 	discord: 'https://discord.gg/eCGFrCG',
 	demonlist: 'https://demonlist.19gdps.com/',
-	editor: resolve('/faq/editor-guide')
+	editor: resolve('faq/editor-guide')
 };
 
 export const load: PageServerLoad = async ({ params }) => {

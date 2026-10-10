@@ -1,9 +1,9 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import Button from '$lib/components/core/Button.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 </script>
 
 <svelte:head>
@@ -23,9 +23,11 @@
 </p>
 
 <p class="body">
-	For more information, see the <Link href={resolve('/faq') + '#how-do-i-delete-my-account'}
-		>FAQ</Link
-	>.
+	For more information, see the
+
+	<Link href={resolve('faq') + '#how-do-i-delete-my-account'}>FAQ</Link>
+
+	.
 </p>
 
 <Button onclick={() => goto(resolve('/'))}>1.9 GDPS Home</Button>

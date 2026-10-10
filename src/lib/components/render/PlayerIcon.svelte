@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import Outfits from '$lib/outfits.json';
-	import { loadImage } from '$lib';
+	import Outfits from '#lib/outfits.json';
+	import { loadImage } from '#lib';
 
 	type IconType = 'cube' | 'ball' | 'ship' | 'wave' | 'ufo';
 

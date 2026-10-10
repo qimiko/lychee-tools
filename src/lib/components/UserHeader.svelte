@@ -1,15 +1,15 @@
 <script lang="ts">
-	import PlayerIcon from '$lib/components/render/PlayerIcon.svelte';
+	import PlayerIcon from '#lib/components/render/PlayerIcon.svelte';
 
-	import StarIcon from '$lib/assets/icons/star_big.png';
-	import DemonIcon from '$lib/assets/icons/demon.png';
-	import CoinIcon from '$lib/assets/icons/coin.png';
-	import PointsIcon from '$lib/assets/icons/points.png';
-	import ModBadge from '$lib/assets/badges/mod.png';
-	import AdminBadge from '$lib/assets/badges/admin.png';
+	import StarIcon from '#lib/assets/icons/star_big.png';
+	import DemonIcon from '#lib/assets/icons/demon.png';
+	import CoinIcon from '#lib/assets/icons/coin.png';
+	import PointsIcon from '#lib/assets/icons/points.png';
+	import ModBadge from '#lib/assets/badges/mod.png';
+	import AdminBadge from '#lib/assets/badges/admin.png';
 
-	import { formatNumber } from '$lib';
-	import type { ServerUser } from '$lib/api';
+	import { formatNumber } from '#lib';
+	import type { ServerUser } from '#lib/api/index.js';
 	import RankIcon from './render/RankIcon.svelte';
 
 	interface Props {

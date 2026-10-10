@@ -1,7 +1,7 @@
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { GDPSClient, ServerError } from '$lib/api';
-import { toIntSafe } from '$lib';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
+import { toIntSafe } from '#lib';
 import { resolve } from '$app/paths';
 
 export const actions = {
@@ -46,7 +46,7 @@ export const actions = {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
 
-		redirect(303, resolve('/account/login') + '?reset=true');
+		redirect(303, resolve('account/login') + '?reset=true');
 	}
 } satisfies Actions;
 

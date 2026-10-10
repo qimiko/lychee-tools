@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import { formatTimestamp } from '$lib';
-	import Title from '$lib/components/core/Title.svelte';
+	import { formatTimestamp } from '#lib';
+	import Title from '#lib/components/core/Title.svelte';
 
 	interface Props {
 		data: PageData;

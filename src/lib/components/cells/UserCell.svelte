@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { ServerUser } from '$lib/api';
+	import type { ServerUser } from '#lib/api/index.js';
 	import PlayerIcon from '../render/PlayerIcon.svelte';
-	import StarIcon from '$lib/assets/icons/star_big.png';
-	import DemonIcon from '$lib/assets/icons/demon.png';
-	import CoinIcon from '$lib/assets/icons/coin.png';
-	import PointsIcon from '$lib/assets/icons/points.png';
-	import ModBadge from '$lib/assets/badges/mod.png';
-	import AdminBadge from '$lib/assets/badges/admin.png';
+	import StarIcon from '#lib/assets/icons/star_big.png';
+	import DemonIcon from '#lib/assets/icons/demon.png';
+	import CoinIcon from '#lib/assets/icons/coin.png';
+	import PointsIcon from '#lib/assets/icons/points.png';
+	import ModBadge from '#lib/assets/badges/mod.png';
+	import AdminBadge from '#lib/assets/badges/admin.png';
 
-	import { formatNumber, iconTypeToString } from '$lib';
+	import { formatNumber, iconTypeToString } from '#lib';
 	import Link from '../core/Link.svelte';
 	import { resolve } from '$app/paths';
 

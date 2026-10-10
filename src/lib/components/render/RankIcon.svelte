@@ -1,15 +1,15 @@
 <script lang="ts">
-	import DefaultTopIcon from '$lib/assets/rank/top.png';
-	import Top1Icon from '$lib/assets/rank/top1.png';
-	import Top10Icon from '$lib/assets/rank/top10.png';
-	import Top50Icon from '$lib/assets/rank/top50.png';
-	import Top100Icon from '$lib/assets/rank/top100.png';
-	import Top200Icon from '$lib/assets/rank/top200.png';
-	import Top500Icon from '$lib/assets/rank/top500.png';
-	import Top1000Icon from '$lib/assets/rank/top1000.png';
-	import Top2500Icon from '$lib/assets/rank/top2500.png';
-	import Top5000Icon from '$lib/assets/rank/top5000.png';
-	import Top10000Icon from '$lib/assets/rank/top10000.png';
+	import DefaultTopIcon from '#lib/assets/rank/top.png';
+	import Top1Icon from '#lib/assets/rank/top1.png';
+	import Top10Icon from '#lib/assets/rank/top10.png';
+	import Top50Icon from '#lib/assets/rank/top50.png';
+	import Top100Icon from '#lib/assets/rank/top100.png';
+	import Top200Icon from '#lib/assets/rank/top200.png';
+	import Top500Icon from '#lib/assets/rank/top500.png';
+	import Top1000Icon from '#lib/assets/rank/top1000.png';
+	import Top2500Icon from '#lib/assets/rank/top2500.png';
+	import Top5000Icon from '#lib/assets/rank/top5000.png';
+	import Top10000Icon from '#lib/assets/rank/top10000.png';
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
 	interface Props extends HTMLImgAttributes {

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import { formatTimestamp } from '$lib';
+	import { formatTimestamp } from '#lib';
 
 	interface Props {
 		data: PageData;
@@ -23,11 +23,9 @@
 		params.set('page', page.toString());
 		params.set('count', count.toString());
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/levels/sent')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('levels/sent')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 </script>

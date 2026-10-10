@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import IconButton from '$lib/components/core/IconButton.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
 	import Search from '@lucide/svelte/icons/search';
-	import { formatTimestamp } from '$lib';
+	import { formatTimestamp } from '#lib';
 
 	interface Props {
 		data: PageData;
@@ -36,11 +36,9 @@
 			params.set('sort', sort);
 		}
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/accounts')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('accounts')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 

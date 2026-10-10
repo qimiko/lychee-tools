@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import MapPackCell from '$lib/components/cells/MapPackCell.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import MapPackCell from '#lib/components/cells/MapPackCell.svelte';
 
 	interface Props {
 		data: PageData;

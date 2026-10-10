@@ -1,4 +1,4 @@
-import { AuthenticationError, GDPSClient, ServerError } from '$lib/api/index.js';
+import { AuthenticationError, GDPSClient, ServerError } from '#lib/api/index.js';
 import type { LayoutServerLoad } from './$types.js';
 
 export const load: LayoutServerLoad = async ({ cookies, fetch }) => {

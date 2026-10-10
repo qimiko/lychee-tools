@@ -1,9 +1,9 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { env } from '$env/dynamic/public';
-	import Button from '$lib/components/core/Button.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
+	import Button from '#lib/components/core/Button.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 
 	let { form } = $props();
@@ -31,8 +31,8 @@
 
 	<FormInput type="email" placeholder="Email" name="email" value={form?.email ?? ''} required />
 
-	{#if env.PUBLIC_TURNSTILE_SITE_KEY}
-		<Turnstile siteKey={env.PUBLIC_TURNSTILE_SITE_KEY} action="reset" />
+	{#if PUBLIC_TURNSTILE_SITE_KEY}
+		<Turnstile siteKey={PUBLIC_TURNSTILE_SITE_KEY} action="reset" />
 	{:else}
 		<input type="hidden" name="cf-turnstile-response" value="dummy" />
 	{/if}

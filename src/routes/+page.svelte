@@ -1,25 +1,25 @@
 <script lang="ts">
-	import logo from '$lib/assets/ogp-icon.png';
-	import Link from '$lib/components/core/Link.svelte';
+	import logo from '#lib/assets/ogp-icon.png';
+	import Link from '#lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
 	import { fade } from 'svelte/transition';
 
-	import YouTube from '$lib/components/icons/YouTube.svelte';
-	import Twitter from '$lib/components/icons/Twitter.svelte';
-	import Bluesky from '$lib/components/icons/Bluesky.svelte';
-	import Discord from '$lib/components/icons/Discord.svelte';
-	import Trophy from '$lib/components/icons/Trophy.svelte';
+	import YouTube from '#lib/components/icons/YouTube.svelte';
+	import Twitter from '#lib/components/icons/Twitter.svelte';
+	import Bluesky from '#lib/components/icons/Bluesky.svelte';
+	import Discord from '#lib/components/icons/Discord.svelte';
+	import Trophy from '#lib/components/icons/Trophy.svelte';
 	import Download from '@lucide/svelte/icons/download';
 	import CircleQuestionMark from '@lucide/svelte/icons/circle-question-mark';
 
-	import PlaceholderImage from '$lib/assets/home/banner/placeholder.png?enhanced';
-	import Level1 from '$lib/assets/home/banner/12353.png?enhanced&blur=8&brightness=0.5';
-	import Level2 from '$lib/assets/home/banner/14895.png?enhanced&blur=8&brightness=0.5';
-	import Level3 from '$lib/assets/home/banner/22006.png?enhanced&blur=8&brightness=0.5';
-	import Level4 from '$lib/assets/home/banner/28539.png?enhanced&blur=8&brightness=0.5';
-	import Level5 from '$lib/assets/home/banner/72524.png?enhanced&blur=8&brightness=0.5';
-	import Level6 from '$lib/assets/home/banner/307901.png?enhanced&blur=8&brightness=0.5';
-	import Button from '$lib/components/core/Button.svelte';
+	import PlaceholderImage from '#lib/assets/home/banner/placeholder.png?enhanced';
+	import Level1 from '#lib/assets/home/banner/12353.png?enhanced&blur=8&brightness=0.5';
+	import Level2 from '#lib/assets/home/banner/14895.png?enhanced&blur=8&brightness=0.5';
+	import Level3 from '#lib/assets/home/banner/22006.png?enhanced&blur=8&brightness=0.5';
+	import Level4 from '#lib/assets/home/banner/28539.png?enhanced&blur=8&brightness=0.5';
+	import Level5 from '#lib/assets/home/banner/72524.png?enhanced&blur=8&brightness=0.5';
+	import Level6 from '#lib/assets/home/banner/307901.png?enhanced&blur=8&brightness=0.5';
+	import Button from '#lib/components/core/Button.svelte';
 
 	const banner_listing = [
 		{ src: Level4, name: 'Unreality by GrenadeofTacos', id: 28539 },
@@ -64,9 +64,11 @@
 
 <div class="img-container">
 	<!-- blank image for box sizing -->
-	<enhanced:img src={PlaceholderImage} alt="blank" class="screenshot-placeholder" />
 
-	<enhanced:img src={previous_img['src']} alt={previous_img['name']} class="screenshot" />
+	<enhanced:img src={PlaceholderImage} alt="blank" class="screenshot-placeholder"></enhanced:img>
+
+	<enhanced:img src={previous_img['src']} alt={previous_img['name']} class="screenshot"
+	></enhanced:img>
 
 	{#key current_img_idx}
 		<div in:fade={{ duration: 1000 }}>
@@ -74,13 +76,13 @@
 				src={banner_listing[current_img_idx]['src']}
 				alt={banner_listing[current_img_idx]['name']}
 				class="screenshot"
-			/>
+			></enhanced:img>
 		</div>
 	{/key}
 
 	<div class="hero-content">
 		<h1 class="title">
-			<enhanced:img src="$lib/assets/icon.png" alt="logo" class="logo" />
+			<enhanced:img src="#lib/assets/icon.png" alt="logo" class="logo"></enhanced:img>
 			1.9 GDPS
 		</h1>
 
@@ -95,9 +97,9 @@
 		</div>
 
 		<div class="download-btn">
-			<Button href={resolve('/download')} icon={Download} buttonStyle="emphasis">Download</Button>
+			<Button href={resolve('download')} icon={Download} buttonStyle="emphasis">Download</Button>
 
-			<Button href={resolve('/faq')} icon={CircleQuestionMark}>FAQ</Button>
+			<Button href={resolve('faq')} icon={CircleQuestionMark}>FAQ</Button>
 		</div>
 	</div>
 
@@ -117,7 +119,7 @@ Check out the 1.9 GDPS on other sites!
 		<Link href="https://discord.gg/eCGFrCG" icon={Discord} target="_blank">Discord</Link>
 	</div>
 
-	<span class="bullet">&bull;</span>
+	<span class="bullet">•</span>
 
 	<div>
 		<Link href="https://demonlist.19gdps.com/" icon={Trophy} target="_blank">Demonlist</Link>
@@ -135,7 +137,7 @@ Check out the 1.9 GDPS on other sites!
 		</Link>
 	</div>
 
-	<span class="bullet">&bull;</span>
+	<span class="bullet">•</span>
 
 	<div>
 		<Link href="https://twitter.com/official19gdps" icon={Twitter} target="_blank"
@@ -143,7 +145,7 @@ Check out the 1.9 GDPS on other sites!
 		>
 	</div>
 
-	<span class="bullet">&bull;</span>
+	<span class="bullet">•</span>
 
 	<div>
 		<Link href="https://bsky.app/profile/19gdps.bsky.social" icon={Bluesky} target="_blank">
@@ -155,10 +157,10 @@ Check out the 1.9 GDPS on other sites!
 <div class="bullet-list">
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/gameplay.png"
+			src="#lib/assets/home/info/gameplay.png"
 			alt="screenshot of Windy Landscape"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span>
 			Relive the 1.9 experience, with visuals and physics exactly as they were 10 years ago!
@@ -167,20 +169,20 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/editor.png"
+			src="#lib/assets/home/info/editor.png"
 			alt="screenshot of the 1.9 editor"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span> Push the limits of the classic 1.9 editor! </span>
 	</div>
 
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/main.png"
+			src="#lib/assets/home/info/main.png"
 			alt="screenshot of the main level, Jack Russel"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span>
 			Challenge yourself with the new main levels, which grant original icons and colors!
@@ -189,10 +191,10 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/creators.png"
+			src="#lib/assets/home/info/creators.png"
 			alt="screenshot of the level search page"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span>
 			Enjoy the thousands of levels made by other creators, including levels given our exclusive <span
@@ -203,10 +205,10 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card">
 		<enhanced:img
-			src="$lib/assets/home/info/options.png"
+			src="#lib/assets/home/info/options.png"
 			alt="screenshot of the gameplay options"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span>
 			Customize your experience as you wish, with several quality-of-life changes built-in!
@@ -215,10 +217,10 @@ Check out the 1.9 GDPS on other sites!
 
 	<div class="bullet-card reversed">
 		<enhanced:img
-			src="$lib/assets/home/info/mods.png"
+			src="#lib/assets/home/info/mods.png"
 			alt="screenshot of the mods list"
 			class="promo-image"
-		/>
+		></enhanced:img>
 
 		<span>
 			The bundled modloader (based on <Link href="https://geode-sdk.org">Geode</Link>) gives

@@ -1,12 +1,12 @@
 <script>
-	import Title from '$lib/components/core/Title.svelte';
-	import { formatFileSize, formatTimestamp } from '$lib';
+	import Title from '#lib/components/core/Title.svelte';
+	import { formatFileSize, formatTimestamp } from '#lib';
 	import { resolve } from '$app/paths';
 	import { enhance } from '$app/forms';
 
 	import X from '@lucide/svelte/icons/x';
-	import IconButton from '$lib/components/core/IconButton.svelte';
-	import Button from '$lib/components/core/Button.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	let { data, form } = $props();
 
@@ -36,9 +36,11 @@
 
 <Title>Account Management</Title>
 <div class="main-container">
-	<Button href={resolve('/account/management/change-password')}>Change Password</Button>
-	<Button href={resolve('/account/management/change-username')}>Change Username</Button>
-	<Button href={resolve('/account/management/legacy-token')}>
+	<Button href={resolve('account/management/change-password')}>Change Password</Button>
+
+	<Button href={resolve('account/management/change-username')}>Change Username</Button>
+
+	<Button href={resolve('account/management/legacy-token')}>
 		{#if data.extra_details.has_legacy_token}
 			Reset 2.2 Login
 		{:else}
@@ -129,7 +131,7 @@
 
 	<Button type="submit" buttonStyle="emphasis">Log out of all devices</Button>
 
-	<Button href={resolve('/account/logout')} data-sveltekit-reload>Log out</Button>
+	<Button href={resolve('account/logout')} data-sveltekit-reload>Log out</Button>
 </form>
 
 <Title size={2}>Sessions</Title>
@@ -152,7 +154,7 @@
 
 <hr />
 
-<Button href={resolve('/account/management/request-deletion')} buttonStyle="secondary"
+<Button href={resolve('account/management/request-deletion')} buttonStyle="secondary"
 	>Delete account</Button
 >
 

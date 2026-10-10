@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Button from '$lib/components/core/Button.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	import RefreshCw from '@lucide/svelte/icons/refresh-cw';
 	import Hammer from '@lucide/svelte/icons/hammer';
@@ -14,7 +14,7 @@
 	<p>{page.error.message}</p>
 {/if}
 
-<Button onclick={() => goto(resolve('/tools'))} icon={Hammer}>Tools Page</Button>
+<Button onclick={() => goto(resolve('tools'))} icon={Hammer}>Tools Page</Button>
 
 {#if page.status != 404}
 	<Button onclick={() => window.location.reload()} icon={RefreshCw} buttonStyle="emphasis">

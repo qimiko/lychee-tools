@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import type { ServerStatsLevelRow } from '$lib/api/index.js';
+	import Title from '#lib/components/core/Title.svelte';
+	import type { ServerStatsLevelRow } from '#lib/api/index.js';
 
 	interface Props {
 		data: PageData;

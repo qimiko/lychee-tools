@@ -4,7 +4,7 @@ import { resolve } from '$app/paths';
 
 export const load: PageServerLoad = async ({ params }) => {
 	if (params.path == 'download.php') {
-		redirect(301, resolve('/download'));
+		redirect(301, resolve('download'));
 	}
 
 	const valid_level = /^[a-zA-Z0-9 -]{1,48}$/g;
@@ -13,5 +13,5 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const search = new URLSearchParams({ query: params.path });
-	redirect(303, resolve('/levels') + `?${search}`);
+	redirect(303, resolve('levels') + `?${search}`);
 };

@@ -1,20 +1,20 @@
 <script lang="ts">
-	import type { ServerLevel } from '$lib/api';
+	import type { ServerLevel } from '#lib/api/index.js';
 
-	import DownloadIcon from '$lib/assets/icons/download.png';
-	import LikesIcon from '$lib/assets/icons/like.png';
-	import NoteIcon from '$lib/assets/icons/note.png';
-	import DislikeIcon from '$lib/assets/icons/dislike.png';
+	import DownloadIcon from '#lib/assets/icons/download.png';
+	import LikesIcon from '#lib/assets/icons/like.png';
+	import NoteIcon from '#lib/assets/icons/note.png';
+	import DislikeIcon from '#lib/assets/icons/dislike.png';
 
-	import LengthIcon from '$lib/assets/icons/length.png';
-	import HighObjectIcon from '$lib/assets/icons/high_objects.png';
-	import CollaborationIcon from '$lib/assets/icons/collaboration.png';
-	import ReuploadIcon from '$lib/assets/icons/reupload.png';
+	import LengthIcon from '#lib/assets/icons/length.png';
+	import HighObjectIcon from '#lib/assets/icons/high_objects.png';
+	import CollaborationIcon from '#lib/assets/icons/collaboration.png';
+	import ReuploadIcon from '#lib/assets/icons/reupload.png';
 
 	import DifficultyIcon from '../render/DifficultyIcon.svelte';
-	import SongInfo from '$lib/songs.json';
+	import SongInfo from '#lib/songs.json';
 	import { resolve } from '$app/paths';
-	import { levelToBadge, levelToDifficulty, formatShortNumber, lengthToString } from '$lib';
+	import { levelToBadge, levelToDifficulty, formatShortNumber, lengthToString } from '#lib';
 
 	import Link from '../core/Link.svelte';
 

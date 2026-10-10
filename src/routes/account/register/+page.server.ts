@@ -1,6 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { GDPSClient, ServerError, type ServerInvalidRegistrationError } from '$lib/api';
+import { GDPSClient, ServerError, type ServerInvalidRegistrationError } from '#lib/api/index.js';
 
 export const actions = {
 	default: async ({ request, fetch, getClientAddress }) => {

@@ -1,18 +1,18 @@
 <script lang="ts">
 	import Pusab from './Pusab.svelte';
-	import StarIcon from '$lib/assets/icons/star_big.png';
+	import StarIcon from '#lib/assets/icons/star_big.png';
 
-	import DifficultyNA from '$lib/assets/difficulty/difficulty_00_btn_001.png';
-	import DifficultyAuto from '$lib/assets/difficulty/difficulty_auto_btn_001.png';
-	import DifficultyEasy from '$lib/assets/difficulty/difficulty_01_btn_001.png';
-	import DifficultyNormal from '$lib/assets/difficulty/difficulty_02_btn_001.png';
-	import DifficultyHard from '$lib/assets/difficulty/difficulty_03_btn_001.png';
-	import DifficultyHarder from '$lib/assets/difficulty/difficulty_04_btn_001.png';
-	import DifficultyInsane from '$lib/assets/difficulty/difficulty_05_btn_001.png';
-	import DifficultyDemon from '$lib/assets/difficulty/difficulty_06_btn_001.png';
+	import DifficultyNA from '#lib/assets/difficulty/difficulty_00_btn_001.png';
+	import DifficultyAuto from '#lib/assets/difficulty/difficulty_auto_btn_001.png';
+	import DifficultyEasy from '#lib/assets/difficulty/difficulty_01_btn_001.png';
+	import DifficultyNormal from '#lib/assets/difficulty/difficulty_02_btn_001.png';
+	import DifficultyHard from '#lib/assets/difficulty/difficulty_03_btn_001.png';
+	import DifficultyHarder from '#lib/assets/difficulty/difficulty_04_btn_001.png';
+	import DifficultyInsane from '#lib/assets/difficulty/difficulty_05_btn_001.png';
+	import DifficultyDemon from '#lib/assets/difficulty/difficulty_06_btn_001.png';
 
-	import BadgeSuper from '$lib/assets/badges/super.png';
-	import BadgeFeature from '$lib/assets/badges/feature.png';
+	import BadgeSuper from '#lib/assets/badges/super.png';
+	import BadgeFeature from '#lib/assets/badges/feature.png';
 
 	interface Props {
 		difficulty: 'na' | 'auto' | 'easy' | 'normal' | 'hard' | 'harder' | 'insane' | 'demon';

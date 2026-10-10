@@ -1,6 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { GDPSClient, ServerError } from '$lib/api';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
 import { redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
 
@@ -34,12 +34,12 @@ export const actions = {
 			return fail(400, { error: 'An unknown server error has happened, please try again!' });
 		}
 
-		redirect(303, resolve('/account/login') + '?activated=true');
+		redirect(303, resolve('account/login') + '?activated=true');
 	}
 } satisfies Actions;
 
 export const load: PageServerLoad = async ({ url }) => {
 	if (!url.searchParams.get('k')) {
-		return redirect(303, resolve('/tools'));
+		return redirect(303, resolve('tools'));
 	}
 };

@@ -1,5 +1,5 @@
-import { onlyIfTrue, toIntSafe, undefIfEmpty } from '$lib';
-import { GDPSClient, type CommentsSearchParams, type CommentsSearchSort } from '$lib/api';
+import { onlyIfTrue, toIntSafe, undefIfEmpty } from '#lib';
+import { GDPSClient, type CommentsSearchParams, type CommentsSearchSort } from '#lib/api/index.js';
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 

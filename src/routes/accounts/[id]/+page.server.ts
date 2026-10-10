@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { GDPSClient } from '$lib/api';
+import { GDPSClient } from '#lib/api/index.js';
 import { resolve } from '$app/paths';
 
 export const load: PageServerLoad = async ({ fetch, params, getClientAddress }) => {

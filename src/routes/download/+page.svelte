@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Title from '$lib/components/core/Title.svelte';
-	import Button from '$lib/components/core/Button.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	import FolderArchive from '@lucide/svelte/icons/folder-archive';
-	import Android from '$lib/components/icons/Android.svelte';
-	import Windows from '$lib/components/icons/Windows.svelte';
-	import Link from '$lib/components/core/Link.svelte';
+	import Android from '#lib/components/icons/Android.svelte';
+	import Windows from '#lib/components/icons/Windows.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 
 	const { data } = $props();
 </script>

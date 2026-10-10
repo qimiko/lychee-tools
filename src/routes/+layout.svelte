@@ -2,8 +2,8 @@
 	import '@fontsource-variable/montserrat';
 
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.ico';
-	import Header from '$lib/components/Header.svelte';
+	import favicon from '#lib/assets/favicon.ico';
+	import Header from '#lib/components/Header.svelte';
 
 	let { children, data } = $props();
 </script>

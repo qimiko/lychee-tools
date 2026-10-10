@@ -1,5 +1,5 @@
-import { onlyIfTrue, toIntSafe } from '$lib';
-import { GDPSClient, type SongsSearchParams } from '$lib/api';
+import { onlyIfTrue, toIntSafe } from '#lib';
+import { GDPSClient, type SongsSearchParams } from '#lib/api/index.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, url }) => {

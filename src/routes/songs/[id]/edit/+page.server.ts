@@ -1,4 +1,4 @@
-import { GDPSClient } from '$lib/api';
+import { GDPSClient } from '#lib/api/index.js';
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
@@ -49,7 +49,7 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 	const token = cookies.get('token');
 	if (!token) {
 		const url_params = new URLSearchParams({ redirect: `/levels/songs/${id}/edit` });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	const client = new GDPSClient({ fetch });

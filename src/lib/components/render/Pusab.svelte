@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { loadImage } from '$lib';
+	import { loadImage } from '#lib';
 
-	import BigFontDesc from '$lib/bigfont.json';
-	import GoldFontDesc from '$lib/goldfont.json';
+	import BigFontDesc from '#lib/bigfont.json';
+	import GoldFontDesc from '#lib/goldfont.json';
 	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {

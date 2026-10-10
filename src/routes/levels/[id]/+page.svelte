@@ -1,23 +1,23 @@
 <script lang="ts">
-	import DifficultyIcon from '$lib/components/render/DifficultyIcon.svelte';
+	import DifficultyIcon from '#lib/components/render/DifficultyIcon.svelte';
 	import type { PageData } from './$types.js';
-	import SongInfo from '$lib/songs.json';
-	import { levelToBadge, levelToDifficulty, formatNumber, lengthToString } from '$lib';
-	import CommentCell from '$lib/components/cells/CommentCell.svelte';
-	import DownloadIcon from '$lib/assets/icons/download.png';
-	import LikesIcon from '$lib/assets/icons/like.png';
-	import DislikeIcon from '$lib/assets/icons/dislike.png';
-	import LengthIcon from '$lib/assets/icons/length.png';
-	import NoteIcon from '$lib/assets/icons/note.png';
-	import ObjectIcon from '$lib/assets/icons/object.png';
-	import HighObjectIcon from '$lib/assets/icons/high_objects.png';
-	import CollaborationIcon from '$lib/assets/icons/collaboration.png';
-	import ReuploadIcon from '$lib/assets/icons/reupload.png';
+	import SongInfo from '#lib/songs.json';
+	import { levelToBadge, levelToDifficulty, formatNumber, lengthToString } from '#lib';
+	import CommentCell from '#lib/components/cells/CommentCell.svelte';
+	import DownloadIcon from '#lib/assets/icons/download.png';
+	import LikesIcon from '#lib/assets/icons/like.png';
+	import DislikeIcon from '#lib/assets/icons/dislike.png';
+	import LengthIcon from '#lib/assets/icons/length.png';
+	import NoteIcon from '#lib/assets/icons/note.png';
+	import ObjectIcon from '#lib/assets/icons/object.png';
+	import HighObjectIcon from '#lib/assets/icons/high_objects.png';
+	import CollaborationIcon from '#lib/assets/icons/collaboration.png';
+	import ReuploadIcon from '#lib/assets/icons/reupload.png';
 
-	import Link from '$lib/components/core/Link.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
-	import Title from '$lib/components/core/Title.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { goto } from '$app/navigation';
 
 	interface Props {
@@ -36,14 +36,12 @@
 		params.set('comments_sort', sort_type);
 
 		await goto(
-			// eslint-disable-next-line svelte/no-navigation-without-resolve
 			`${resolve('/levels/[id]', {
 				id: data.level.id.toString()
 			})}?${params}`,
 			{
-				noScroll: true,
-				keepFocus: true,
-				replaceState: true
+				reset: false,
+				replace: true
 			}
 		);
 	}
@@ -161,7 +159,7 @@
 
 <div class="info-container">
 	{#if revision.description}
-		&ldquo;{revision.description}&rdquo;
+		“{revision.description}”
 	{:else}
 		<i>No description provided.</i>
 	{/if}
@@ -204,11 +202,11 @@
 	<div style="padding: 0.5em;"></div>
 
 	<div>
-		<Link href={resolve('/comments') + `?level=${data.level.id}`}>Manage Comments</Link>
+		<Link href={resolve('comments') + `?level=${data.level.id}`}>Manage Comments</Link>
 
-		<span class="bullet">&bull;</span>
+		<span class="bullet">•</span>
 
-		<Link href={resolve('/stats/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
+		<Link href={resolve('stats/actions') + `?on_id=${data.level.id}`}>View Actions</Link>
 	</div>
 {/if}
 

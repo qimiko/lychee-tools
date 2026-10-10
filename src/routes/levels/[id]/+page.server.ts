@@ -1,7 +1,12 @@
-import { GDPSClient, ServerError, type CommentsSearchSort, type ServerSong } from '$lib/api';
+import {
+	GDPSClient,
+	ServerError,
+	type CommentsSearchSort,
+	type ServerSong
+} from '#lib/api/index.js';
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { toIntSafe } from '$lib';
+import { toIntSafe } from '#lib';
 import { resolve } from '$app/paths';
 
 export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
@@ -13,7 +18,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 
 	const id = +params.id;
 	if (!id) {
-		return redirect(303, resolve('/levels') + '?query=' + params.id);
+		return redirect(303, resolve('levels') + '?query=' + params.id);
 	}
 
 	const client = new GDPSClient({ token, fetch });
@@ -24,7 +29,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies, url }) => {
 	} catch (e) {
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_credentials') {
-				redirect(303, resolve('/account/logout'));
+				redirect(303, resolve('account/logout'));
 			}
 		}
 

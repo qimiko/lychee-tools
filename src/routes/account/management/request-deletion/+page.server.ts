@@ -1,4 +1,4 @@
-import { GDPSClient, ServerError } from '$lib/api';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
@@ -47,7 +47,7 @@ export const load: PageServerLoad = async ({ cookies, getClientAddress, parent }
 	const current_user = (await parent()).current_user;
 	if (!current_user) {
 		const url_params = new URLSearchParams({ redirect: '/account/management/request-deletion' });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	const token = cookies.get('token');
@@ -65,7 +65,7 @@ export const load: PageServerLoad = async ({ cookies, getClientAddress, parent }
 		}
 	} catch {
 		const url_params = new URLSearchParams({ redirect: '/account/management/request-deletion' });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	return { levels_count, comments_count };

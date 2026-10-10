@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import Button from '$lib/components/core/Button.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 
 	let { data, form } = $props();
 
@@ -102,7 +102,7 @@ Currently managing account <b>{data.account.name}</b>.
 
 			<p>
 				(Force unverifying an account will require that user to go through
-				<Link href={resolve('/account/resend-activation')}>E-Mail Activation</Link>
+				<Link href={resolve('account/resend-activation')}>E-Mail Activation</Link>
 				to use their account again.)
 			</p>
 

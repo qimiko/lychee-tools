@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import type { ServerMapPack } from '$lib/api';
-	import MapPackCell from '$lib/components/cells/MapPackCell.svelte';
-	import Button from '$lib/components/core/Button.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import type { ServerMapPack } from '#lib/api/index.js';
+	import MapPackCell from '#lib/components/cells/MapPackCell.svelte';
+	import Button from '#lib/components/core/Button.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 
 	let { form, data } = $props();
 

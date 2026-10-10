@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { ServerMapPack } from '$lib/api';
+	import type { ServerMapPack } from '#lib/api/index.js';
 
-	import StarIcon from '$lib/assets/icons/star_big.png';
-	import CoinIcon from '$lib/assets/icons/coin.png';
+	import StarIcon from '#lib/assets/icons/star_big.png';
+	import CoinIcon from '#lib/assets/icons/coin.png';
 	import DifficultyIcon from '../render/DifficultyIcon.svelte';
 	import { resolve } from '$app/paths';
 
@@ -50,9 +50,7 @@
 </script>
 
 <div class="level-cell">
-	<div class="difficulty-icon">
-		<DifficultyIcon stars={0} {difficulty} badge="none" />
-	</div>
+	<div class="difficulty-icon"><DifficultyIcon stars={0} {difficulty} badge="none" /></div>
 
 	<div class="info-container">
 		<div class="name-container">
@@ -61,9 +59,7 @@
 				class:small={pack.name.length >= 15 && pack.name.length < 20}
 				class:extra-small={pack.name.length >= 20}
 			>
-				<Link href={resolve('/levels') + `?${search_params}`}>
-					{pack.name}
-				</Link>
+				<Link href={resolve('levels') + `?${search_params}`}>{pack.name}</Link>
 			</div>
 		</div>
 
@@ -74,15 +70,8 @@
 		{/if}
 
 		<div class="stats-container">
-			<div class="level-stat">
-				<img src={StarIcon} alt="downloads" />
-				{pack.stars}
-			</div>
-
-			<div class="level-stat">
-				<img src={CoinIcon} alt="downloads" />
-				{pack.coins}
-			</div>
+			<div class="level-stat"><img src={StarIcon} alt="downloads" />{pack.stars}</div>
+			<div class="level-stat"><img src={CoinIcon} alt="downloads" />{pack.coins}</div>
 
 			{#if pack.id != 0 && showEdit}
 				<span>

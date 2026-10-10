@@ -1,14 +1,14 @@
 <script lang="ts">
-	import CommentCell from '$lib/components/cells/CommentCell.svelte';
+	import CommentCell from '#lib/components/cells/CommentCell.svelte';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import FormInput from '$lib/components/core/FormInput.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { enhance } from '$app/forms';
-	import Button from '$lib/components/core/Button.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	import MessageSquareDashed from '@lucide/svelte/icons/message-square-dashed';
 	import Trash2 from '@lucide/svelte/icons/trash-2';
@@ -36,7 +36,6 @@
 
 	function buildQueryParams(includes?: string[], excludes?: string[]) {
 		const includes_query = includes?.map((w) => (w.includes(' ') ? `"${w}"` : w)).join(' ') ?? '';
-
 		const excludes_query =
 			excludes?.map((w) => (w.includes(' ') ? `-"${w}"` : `-${w}`)).join(' ') ?? '';
 
@@ -98,11 +97,9 @@
 
 		params.set('sort', type);
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/comments')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('comments')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 

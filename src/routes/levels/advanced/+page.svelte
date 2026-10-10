@@ -1,17 +1,17 @@
 <script lang="ts">
-	import LevelCell from '$lib/components/cells/LevelCell.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import LevelCell from '#lib/components/cells/LevelCell.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 	import type { PageData } from './$types.js';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import Pagination from '$lib/components/Pagination.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
 	import Search from '@lucide/svelte/icons/search';
 	import Funnel from '@lucide/svelte/icons/funnel';
 	import FunnelX from '@lucide/svelte/icons/funnel-x';
 
-	import Button from '$lib/components/core/Button.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	interface Props {
 		data: PageData;
@@ -44,11 +44,9 @@
 			params.set('contains', contains);
 		}
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/levels/advanced')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('levels/advanced')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 
@@ -80,13 +78,12 @@
 <form onsubmit={onSearch}>
 	<div class="search-row">
 		<FormInput placeholder="Name Contains" type="text" bind:value={contains} />
-		<IconButton type="submit">
-			<Search />
-		</IconButton>
 
-		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}>
-			<Funnel />
-		</IconButton>
+		<IconButton type="submit"><Search /></IconButton>
+
+		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}
+			><Funnel /></IconButton
+		>
 	</div>
 </form>
 

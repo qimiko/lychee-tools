@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import IconButton from '$lib/components/core/IconButton.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
 	import Search from '@lucide/svelte/icons/search';
 
 	interface Props {
@@ -35,11 +35,9 @@
 			params.set('no_reupload', 'true');
 		}
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/songs')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('songs')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 

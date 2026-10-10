@@ -1,20 +1,20 @@
 <script lang="ts">
-	import LevelCell from '$lib/components/cells/LevelCell.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import LevelCell from '#lib/components/cells/LevelCell.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 	import type { PageData } from './$types.js';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import Pagination from '$lib/components/Pagination.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import IconButton from '$lib/components/core/IconButton.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
 	import Search from '@lucide/svelte/icons/search';
 	import Funnel from '@lucide/svelte/icons/funnel';
 	import FunnelX from '@lucide/svelte/icons/funnel-x';
 
-	import AudioTracksList from '$lib/songs.json';
-	import Button from '$lib/components/core/Button.svelte';
-	import Pusab from '$lib/components/render/Pusab.svelte';
+	import AudioTracksList from '#lib/songs.json';
+	import Button from '#lib/components/core/Button.svelte';
+	import Pusab from '#lib/components/render/Pusab.svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 
 	interface Props {
@@ -41,7 +41,6 @@
 	const override_title = $derived(page.url.searchParams.get('override_title'));
 
 	let track_input = $derived(data.params.audio_track?.toString() ?? '');
-
 	let show_song_filters = $derived(
 		data.params.audio_track !== undefined || data.params.custom_song
 	);
@@ -123,11 +122,9 @@
 			params.set('override_title', override_title);
 		}
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/levels')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('levels')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 
@@ -280,9 +277,9 @@
 			<option value="last_updated">Last Updated</option>
 		</select>
 
-		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}>
-			<Funnel />
-		</IconButton>
+		<IconButton onclick={() => (filters_open = !filters_open)} class={{ active: filters_open }}
+			><Funnel /></IconButton
+		>
 	</div>
 {/if}
 
@@ -370,80 +367,80 @@
 				onclick={() => toggleDifficulty(-1)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_00_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_00_btn_001.png"
 					alt="NA"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(-3) }}
 				onclick={() => toggleDifficulty(-3)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_auto_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_auto_btn_001.png"
 					alt="Auto"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(1) }}
 				onclick={() => toggleDifficulty(1)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_01_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_01_btn_001.png"
 					alt="Easy"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(2) }}
 				onclick={() => toggleDifficulty(2)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_02_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_02_btn_001.png"
 					alt="Normal"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(3) }}
 				onclick={() => toggleDifficulty(3)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_03_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_03_btn_001.png"
 					alt="Hard"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(4) }}
 				onclick={() => toggleDifficulty(4)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_04_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_04_btn_001.png"
 					alt="Harder"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(5) }}
 				onclick={() => toggleDifficulty(5)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_05_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_05_btn_001.png"
 					alt="Insane"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 			<IconButton
 				class={{ 'icon-unchecked': !selected_difficulties.has(-2) }}
 				onclick={() => toggleDifficulty(-2)}
 			>
 				<enhanced:img
-					src="$lib/assets/difficulty/difficulty_06_btn_001.png"
+					src="#lib/assets/difficulty/difficulty_06_btn_001.png"
 					alt="Demon"
 					class="difficulty-icon"
-				/>
+				></enhanced:img>
 			</IconButton>
 		</div>
 

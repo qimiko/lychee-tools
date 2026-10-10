@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Title from '$lib/components/core/Title.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import { formatTimestamp } from '$lib';
-	import Button from '$lib/components/core/Button.svelte';
-	import Link from '$lib/components/core/Link.svelte';
+	import { formatTimestamp } from '#lib';
+	import Button from '#lib/components/core/Button.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 	import X from '@lucide/svelte/icons/x';
 	import Search from '@lucide/svelte/icons/search';
-	import IconButton from '$lib/components/core/IconButton.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
 
 	let { data } = $props();
 
@@ -50,11 +50,9 @@
 			params.set('by_account', by_account.toString());
 		}
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/stats/actions')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('stats/actions')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 

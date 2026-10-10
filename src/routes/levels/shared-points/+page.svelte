@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
 
 	interface Props {

@@ -1,4 +1,4 @@
-import { GDPSClient, type BanType } from '$lib/api';
+import { GDPSClient, type BanType } from '#lib/api/index.js';
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
@@ -64,7 +64,7 @@ export const load: PageServerLoad = async ({ fetch, params, cookies }) => {
 	const token = cookies.get('token');
 	if (!token) {
 		const url_params = new URLSearchParams({ redirect: `/users/${id}/manage` });
-		return redirect(303, resolve('/account/login') + `?${url_params}`);
+		return redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	const client = new GDPSClient({ token, fetch });

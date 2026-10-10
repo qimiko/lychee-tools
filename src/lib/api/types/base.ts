@@ -1,6 +1,4 @@
-import { env } from '$env/dynamic/private';
-const GDPS_BASE_URL = env.GDPS_BASE_URL;
-
+import { GDPS_BASE_URL } from '$app/env/private';
 export { GDPS_BASE_URL };
 
 type ServerResultError = {
@@ -49,19 +47,8 @@ type ServerResultFull =
 	| ServerInvalidEmailError;
 
 export type ServerResult<T, E extends ServerResultError = ServerResultFull> =
-	| {
-			success: false;
-			error: E;
-	  }
-	| {
-			success: true;
-			data: T;
-	  };
-
-export type ServerPaginated<T> = {
-	items: T[];
-	count: number;
-};
+	{ success: false; error: E } | { success: true; data: T };
+export type ServerPaginated<T> = { items: T[]; count: number };
 
 export class AuthenticationError extends Error {
 	constructor() {

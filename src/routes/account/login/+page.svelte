@@ -1,13 +1,13 @@
 <script>
 	import { enhance } from '$app/forms';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 
 	import { page } from '$app/state';
 
 	import { resolve } from '$app/paths';
-	import Button from '$lib/components/core/Button.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	let { form } = $props();
 
@@ -40,12 +40,10 @@
 	<FormInput type="password" label="Password" name="password" required />
 
 	<div>
-		<Button href={resolve('/account/register')} buttonStyle="secondary">Register</Button>
+		<Button href={resolve('account/register')} buttonStyle="secondary">Register</Button>
 
 		<Button type="submit">Login</Button>
 	</div>
 </form>
 
-<p>
-	<Link href={resolve('/account/forgot-password')}>Forgot password?</Link>
-</p>
+<p><Link href={resolve('account/forgot-password')}>Forgot password?</Link></p>

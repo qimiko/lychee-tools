@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 
-	import LevelCell from '$lib/components/cells/LevelCell.svelte';
-	import CommentCell from '$lib/components/cells/CommentCell.svelte';
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
+	import LevelCell from '#lib/components/cells/LevelCell.svelte';
+	import CommentCell from '#lib/components/cells/CommentCell.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
-	import Pagination from '$lib/components/Pagination.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
 	import { goto } from '$app/navigation';
 
 	interface Props {
@@ -33,14 +33,12 @@
 		params.set('comments_sort', sort_type);
 
 		await goto(
-			// eslint-disable-next-line svelte/no-navigation-without-resolve
 			`${resolve('/users/[id]', {
 				id: data.user.id.toString()
 			})}?${params}`,
 			{
-				noScroll: true,
-				keepFocus: true,
-				replaceState: true
+				reset: false,
+				replace: true
 			}
 		);
 	}
@@ -74,7 +72,7 @@
 	</div>
 
 	{#if data.levels.count > data.levels.items.length}
-		<Link href={resolve('/levels') + `?${search_params}`}>More</Link>
+		<Link href={resolve('levels') + `?${search_params}`}>More</Link>
 	{/if}
 {/if}
 

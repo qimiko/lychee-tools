@@ -1,4 +1,4 @@
-import { GDPSClient } from '$lib/api';
+import { GDPSClient } from '#lib/api/index.js';
 import { error, redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { resolve } from '$app/paths';

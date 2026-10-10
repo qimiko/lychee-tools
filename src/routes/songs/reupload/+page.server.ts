@@ -1,4 +1,4 @@
-import { GDPSClient, ServerError, type ServerReuploadFailedError } from '$lib/api';
+import { GDPSClient, ServerError, type ServerReuploadFailedError } from '#lib/api/index.js';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
@@ -75,6 +75,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const token = cookies.get('token');
 	if (!token) {
 		const url_params = new URLSearchParams({ redirect: '/songs/reupload' });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 };

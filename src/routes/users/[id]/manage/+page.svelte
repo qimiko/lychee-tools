@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { formatTimestamp } from '$lib';
-	import Title from '$lib/components/core/Title.svelte';
+	import { formatTimestamp } from '#lib';
+	import Title from '#lib/components/core/Title.svelte';
 	import { enhance } from '$app/forms';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import type { BanType } from '$lib/api/index.js';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import type { BanType } from '#lib/api/index.js';
 
 	import X from '@lucide/svelte/icons/x';
-	import IconButton from '$lib/components/core/IconButton.svelte';
-	import Button from '$lib/components/core/Button.svelte';
+	import IconButton from '#lib/components/core/IconButton.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 
 	let { data, form } = $props();
 

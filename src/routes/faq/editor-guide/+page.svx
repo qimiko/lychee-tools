@@ -6,7 +6,7 @@
 
 <div class="title-container">
 	<h1 class="title">
-		<enhanced:img src="$lib/assets/icon.png" alt="logo" class="logo" />
+		<enhanced:img src="#lib/assets/icon.png" alt="logo" class="logo" />
 		1.9 GDPS
 	</h1>
 
@@ -19,7 +19,7 @@
 
 # Basics
 
-<enhanced:img src="$lib/assets/faq/guide.png" alt="screenshot of the editor" class="hero-screenshot" />
+<enhanced:img src="#lib/assets/faq/guide.png" alt="screenshot of the editor" class="hero-screenshot" />
 
 ## Key Features
 
@@ -50,7 +50,7 @@ This portion of the guide will focus on 1.9 GDPS-specific changes to the editor.
 
 ## Editor Options
 
-<enhanced:img src="$lib/assets/faq/editor_pause.png" alt="screenshot of the editor pause screen" class="screenshot" />
+<enhanced:img src="#lib/assets/faq/editor_pause.png" alt="screenshot of the editor pause screen" class="screenshot" />
 
 **Level Length** shows the length of the level in seconds, as well as the name that is displayed ingame for the length.
 
@@ -59,19 +59,19 @@ This value will also carry over into gameplay outside of the editor.
 
 **Show Info Label** will show information about the selected object, which contains detailed information about values like position and layering.
 
-<enhanced:img src="$lib/assets/faq/editor_info_label.png" alt="screenshot of the editor info label option" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_info_label.png" alt="screenshot of the editor info label option" class="screenshot screenshot-small" />
 
 **Show Hitboxes** shows hitboxes for all objects with collision.
 This can be toggled with the `F5` key.
 Some hitboxes are different between 1.9 and the latest versions of Geometry Dash, so please use this option to double check any assumptions.
 
-<enhanced:img src="$lib/assets/faq/editor_hitboxes.png" alt="screenshot of the editor with hitboxes enabled" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_hitboxes.png" alt="screenshot of the editor with hitboxes enabled" class="screenshot screenshot-small" />
 
 **Follow Player** can now be toggled with the `F6` key.
 
 ## Color Triggers
 
-<enhanced:img src="$lib/assets/faq/editor_color_edit.png" alt="screenshot of the edit object page of a color trigger" class="screenshot" />
+<enhanced:img src="#lib/assets/faq/editor_color_edit.png" alt="screenshot of the edit object page of a color trigger" class="screenshot" />
 
 Color triggers now have the option for **RGB** and **hexadecimal** inputs.
 
@@ -79,17 +79,17 @@ The precision of **FadeTime** was increased to two decimal places.
 
 Color triggers can also be remapped with the **Remap** button, which shows a popup to change the target color of that trigger.
 
-<enhanced:img src="$lib/assets/faq/editor_color_remap.png" alt="screenshot of the remap color page of a color trigger" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_color_remap.png" alt="screenshot of the remap color page of a color trigger" class="screenshot screenshot-small" />
 
 The ability to edit multiple color triggers at once was also added.
 
-<enhanced:img src="$lib/assets/faq/editor_trigger_multiselect.png" alt="screenshot of multiple color triggers being selected, with edit object being visible" class="screenshot" />
+<enhanced:img src="#lib/assets/faq/editor_trigger_multiselect.png" alt="screenshot of multiple color triggers being selected, with edit object being visible" class="screenshot" />
 
 Only properties that are changed in the popup will be modified across all selected color triggers.
 
 ## Overlay
 
-<enhanced:img src="$lib/assets/faq/editor_fps.png" alt="screenshot of the overlay, with the fps bypass category being highlighted" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_fps.png" alt="screenshot of the overlay, with the fps bypass category being highlighted" class="screenshot screenshot-small" />
 
 Aside from the gameplay options in the pause menu, the 1.9 GDPS has an overlay that can be accessed with the `Tab` key.
 The FPS Bypass option is available from the overlay, allowing for the framerate to be changed during gameplay.
@@ -97,7 +97,7 @@ As physics are dependent on framerate in this version, creators should test thei
 
 ## Hide Pause UI
 
-<enhanced:img src="$lib/assets/faq/editor_hideui.png" alt="screenshot of the pause menu, with the hide ui button in the bottom left highlighted" class="screenshot" />
+<enhanced:img src="#lib/assets/faq/editor_hideui.png" alt="screenshot of the pause menu, with the hide ui button in the bottom left highlighted" class="screenshot" />
 
 The pause menu now has the ability to hide the pause interface while keeping the game paused.
 This can be useful for taking screenshots of decoration, or gameplay with "Show Hitboxes on Death" enabled.
@@ -106,7 +106,7 @@ This can be useful for taking screenshots of decoration, or gameplay with "Show 
 
 The "Show Unused Objects" option, available in the Editor category of the settings, will make several additional objects accessible:
 
-<enhanced:img src="$lib/assets/faq/editor_unused_list.png" alt="screenshot of the unused editor objects, with the category they are found in on the left" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_unused_list.png" alt="screenshot of the unused editor objects, with the category they are found in on the left" class="screenshot screenshot-small" />
 
 These objects existed in 1.9, but are normally hidden from the editor.
 So, none of these objects would appear in a _true_ 1.9 level, but any 1.9 client would still play any levels with these objects correctly.
@@ -162,13 +162,13 @@ This allows you to see the Z-order and layer of any selected object.
 There is obviously more nuance to this, but layering is very hard to describe without some intuition.
 Please experiment!
 
-<enhanced:img src="$lib/assets/faq/editor_layering.png" alt="screenshot of basic editor layering, with the layers being pointed to" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_layering.png" alt="screenshot of basic editor layering, with the layers being pointed to" class="screenshot screenshot-small" />
 
 ## How do I hide gameplay boundaries?
 
 The editor preview option, which also hides speed portals from length calculations, can be found next to the editor layer selection on the right side of the editor.
 
-<enhanced:img src="$lib/assets/faq/editor_preview.png" alt="screenshot of the editor preview option" class="screenshot screenshot-small" />
+<enhanced:img src="#lib/assets/faq/editor_preview.png" alt="screenshot of the editor preview option" class="screenshot screenshot-small" />
 
 There is also an "Uncheck Portals" option in the editor pause menu, which will disable preview for all gameplay portals.
 

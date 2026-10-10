@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { GDPSClient, ServerError } from '$lib/api';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
 
 function getRedirectUrl(url: URL): string {
 	let redirectUrl = url.searchParams.get('redirect');

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { formatTimestamp } from '$lib';
-	import Title from '$lib/components/core/Title.svelte';
-	import Button from '$lib/components/core/Button.svelte';
+	import { formatTimestamp } from '#lib';
+	import Title from '#lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 

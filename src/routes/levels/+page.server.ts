@@ -1,6 +1,11 @@
-import { GDPSClient, ServerError, type LevelSearchParams, type SearchLevelType } from '$lib/api';
+import {
+	GDPSClient,
+	ServerError,
+	type LevelSearchParams,
+	type SearchLevelType
+} from '#lib/api/index.js';
 import type { PageServerLoad } from './$types';
-import { toIntSafe, onlyIfTrue, undefIfEmpty } from '$lib';
+import { toIntSafe, onlyIfTrue, undefIfEmpty } from '#lib';
 import { redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
 
@@ -46,7 +51,7 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 		// if the token is invalid, this is the one request that will mysteriously fail
 		if (e instanceof ServerError) {
 			if (e.type == 'invalid_credentials') {
-				redirect(303, resolve('/account/logout'));
+				redirect(303, resolve('account/logout'));
 			}
 		}
 

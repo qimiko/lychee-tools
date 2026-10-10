@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { ServerMe } from '$lib/api/index';
+	import type { ServerMe } from '#lib/api/index.js';
 	import { page } from '$app/state';
 	import PlayerIcon from './render/PlayerIcon.svelte';
-	import { iconTypeToString } from '$lib';
-	import ModBadge from '$lib/assets/badges/mod.png';
-	import AdminBadge from '$lib/assets/badges/admin.png';
-	import OwnerBadge from '$lib/assets/badges/owner.png';
-	import { env } from '$env/dynamic/public';
+	import { iconTypeToString } from '#lib';
+	import ModBadge from '#lib/assets/badges/mod.png';
+	import AdminBadge from '#lib/assets/badges/admin.png';
+	import OwnerBadge from '#lib/assets/badges/owner.png';
+	import { PUBLIC_SITE_TESTING } from '$app/env/public';
 
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
@@ -21,7 +21,7 @@
 	let { profile }: Props = $props();
 
 	const current_page = $derived(page.url.pathname);
-	const login_base = resolve('/account/login');
+	const login_base = resolve('account/login');
 
 	const login_path = $derived(
 		current_page == login_base || current_page == '/'
@@ -31,7 +31,9 @@
 
 	let overflow_open = $state(false);
 
-	beforeNavigate(() => {
+	beforeNavigate(({ shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		overflow_open = false;
 	});
 </script>
@@ -67,7 +69,7 @@
 					</div>
 				</a>
 			{:else}
-				<a href={resolve('/account/management')}>
+				<a href={resolve('account/management')}>
 					<div class="icon-container">
 						{profile.name}
 						{#if profile.permission_level > 1}
@@ -85,21 +87,20 @@
 	</div>
 {/snippet}
 
-<div class="topnav" class:menu-open={overflow_open} class:beta={env.PUBLIC_SITE_TESTING == 'true'}>
+<div class="topnav" class:menu-open={overflow_open} class:beta={PUBLIC_SITE_TESTING}>
 	<div class="links">
 		<a href={resolve('/')} class="logo-container" title="1.9 GDPS">
-			<enhanced:img src="$lib/assets/icon.png" alt="1.9 GDPS" class="logo" />
+			<enhanced:img src="#lib/assets/icon.png" alt="1.9 GDPS" class="logo"></enhanced:img>
 		</a>
 
-		<a href={resolve('/download')} class="hidden-small">Download</a>
-		<a href={resolve('/faq')} class="hidden-small">FAQ</a>
-		<a href={resolve('/tools')} class="hidden-small">Tools</a>
-		<a href={resolve('/leaderboards')} class="hidden-small">Leaderboards</a>
+		<a href={resolve('download')} class="hidden-small">Download</a>
+		<a href={resolve('faq')} class="hidden-small">FAQ</a>
+		<a href={resolve('tools')} class="hidden-small">Tools</a>
+
+		<a href={resolve('leaderboards')} class="hidden-small">Leaderboards</a>
 	</div>
 
-	<div class="account-container hidden-small">
-		{@render profile_btn()}
-	</div>
+	<div class="account-container hidden-small">{@render profile_btn()}</div>
 
 	<button class="show-small button" onclick={() => (overflow_open = !overflow_open)}>
 		<div class="overflow-btn">
@@ -115,7 +116,9 @@
 {#if overflow_open}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
+
 	<div class="overflow-background" onclick={() => (overflow_open = false)}></div>
+
 	<div
 		class="topnav-overflow show-small"
 		onfocusout={({ relatedTarget, currentTarget }) => {
@@ -126,14 +129,11 @@
 			overflow_open = false;
 		}}
 	>
-		<a href={resolve('/download')}>Download</a>
-		<a href={resolve('/faq')}>FAQ</a>
-		<a href={resolve('/tools')}>Tools</a>
-		<a href={resolve('/leaderboards')}>Leaderboards</a>
-
-		<div class="overflow-account-container">
-			{@render profile_btn()}
-		</div>
+		<a href={resolve('download')}>Download</a>
+		<a href={resolve('faq')}>FAQ</a>
+		<a href={resolve('tools')}>Tools</a>
+		<a href={resolve('leaderboards')}>Leaderboards</a>
+		<div class="overflow-account-container">{@render profile_btn()}</div>
 	</div>
 
 	<!-- for an incredibly silly illusion -->

@@ -1,10 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import Button from '$lib/components/core/Button.svelte';
-	import FormInput from '$lib/components/core/FormInput.svelte';
-	import Link from '$lib/components/core/Link.svelte';
-	import Title from '$lib/components/core/Title.svelte';
+	import Button from '#lib/components/core/Button.svelte';
+	import FormInput from '#lib/components/core/FormInput.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 
 	let { form, data } = $props();
 
@@ -38,17 +38,25 @@
 	<h3>Important Notes</h3>
 
 	<p class="body">
-		Once deleted, your <Link href={resolve('/comments') + `?user=${data.current_user?.user?.id}`}>
-			{data.comments_count} comment{data.comments_count == 1 ? '' : 's'}
-		</Link> and <Link href={resolve('/levels') + `?${search_params}`}>
-			{data.levels_count} level{data.levels_count == 1 ? '' : 's'}
-		</Link> will be moved to the Reupload account, and all other information will be removed.
+		Once deleted, your
+
+		<Link href={resolve('comments') + `?user=${data.current_user?.user?.id}`}
+			>{data.comments_count} comment{data.comments_count == 1 ? '' : 's'}</Link
+		>
+
+		and
+		<Link href={resolve('levels') + `?${search_params}`}
+			>{data.levels_count} level{data.levels_count == 1 ? '' : 's'}</Link
+		>
+		will be moved to the Reupload account, and all other information will be removed.
 	</p>
 
 	<p class="body">
-		For more information, see the <Link href={resolve('/faq') + '#how-do-i-delete-my-account'}
-			>FAQ</Link
-		>.
+		For more information, see the
+
+		<Link href={resolve('faq') + '#how-do-i-delete-my-account'}>FAQ</Link>
+
+		.
 	</p>
 
 	<FormInput type="password" label="Password" name="password" required />

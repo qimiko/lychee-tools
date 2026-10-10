@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import Link from '$lib/components/core/Link.svelte';
-	import UserHeader from '$lib/components/UserHeader.svelte';
+	import Link from '#lib/components/core/Link.svelte';
+	import UserHeader from '#lib/components/UserHeader.svelte';
 
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 
@@ -13,9 +13,7 @@
 
 <div class="header-links">
 	{#if data.current_user && data.current_user.account_id == data.user.account_id}
-		<div>
-			<Link href={resolve('/account/management')}>Manage Account</Link>
-		</div>
+		<div><Link href={resolve('account/management')}>Manage Account</Link></div>
 	{/if}
 
 	{#if page.route.id != '/users/[id]'}
@@ -49,7 +47,7 @@
 
 		{#if data.current_user && data.current_user.permission_level >= 1}
 			<div>
-				<Link href={resolve('/comments') + `?user=${data.user.id}`}>Manage Comments</Link>
+				<Link href={resolve('comments') + `?user=${data.user.id}`}>Manage Comments</Link>
 			</div>
 		{/if}
 
@@ -66,13 +64,13 @@
 		{#if data.user.account_id && data.current_user.permission_level >= 1}
 			<div>
 				<Link
-					href={resolve('/stats/actions') +
+					href={resolve('stats/actions') +
 						`?by_user=${data.user.id}&by_account=${data.user.account_id}`}>View Actions</Link
 				>
 			</div>
 		{:else if data.current_user.permission_level >= 1}
 			<div>
-				<Link href={resolve('/stats/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
+				<Link href={resolve('stats/actions') + `?by_user=${data.user.id}`}>View Actions</Link>
 			</div>
 		{/if}
 	</div>

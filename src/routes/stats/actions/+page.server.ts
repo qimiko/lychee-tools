@@ -1,14 +1,14 @@
 import { resolve } from '$app/paths';
-import { toIntSafe, undefIfEmpty } from '$lib';
-import { GDPSClient, type ActionsSearchParams, type ActionType } from '$lib/api';
+import { toIntSafe, undefIfEmpty } from '#lib';
+import { GDPSClient, type ActionsSearchParams, type ActionType } from '#lib/api/index.js';
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 	const token = cookies.get('token');
 	if (!token) {
-		const url_params = new URLSearchParams({ redirect: resolve('/stats/actions') });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		const url_params = new URLSearchParams({ redirect: resolve('stats/actions') });
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	const params: ActionsSearchParams = {

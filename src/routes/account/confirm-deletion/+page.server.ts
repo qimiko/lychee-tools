@@ -1,12 +1,12 @@
 import { resolve } from '$app/paths';
-import { GDPSClient, ServerError } from '$lib/api';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, fetch, getClientAddress, cookies }) => {
 	const key = url.searchParams.get('k');
 	if (!key) {
-		return redirect(303, resolve('/tools'));
+		return redirect(303, resolve('tools'));
 	}
 
 	const client = new GDPSClient({
@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ url, fetch, getClientAddress, cooki
 			}
 
 			if (e.type == 'invalid_credentials') {
-				redirect(303, resolve('/tools'));
+				redirect(303, resolve('tools'));
 			}
 		}
 
@@ -41,5 +41,5 @@ export const load: PageServerLoad = async ({ url, fetch, getClientAddress, cooki
 	});
 
 	// use a separate page so that the cookies can update
-	redirect(303, resolve('/account/deletion-finished'));
+	redirect(303, resolve('account/deletion-finished'));
 };

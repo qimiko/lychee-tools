@@ -1,4 +1,4 @@
-import { GDPSClient, ServerError } from '$lib/api';
+import { GDPSClient, ServerError } from '#lib/api/index.js';
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 

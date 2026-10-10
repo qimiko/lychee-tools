@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Title from '$lib/components/core/Title.svelte';
-	import Link from '$lib/components/core/Link.svelte';
+	import Title from '#lib/components/core/Title.svelte';
+	import Link from '#lib/components/core/Link.svelte';
 	import { resolve } from '$app/paths';
-	import type { ServerTopActionUser } from '$lib/api/index.js';
+	import type { ServerTopActionUser } from '#lib/api/index.js';
 
 	let { data } = $props();
 

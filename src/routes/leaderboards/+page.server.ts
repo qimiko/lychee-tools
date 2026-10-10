@@ -1,5 +1,5 @@
-import { toIntSafe } from '$lib';
-import { GDPSClient, type TopStatType } from '$lib/api';
+import { toIntSafe } from '#lib';
+import { GDPSClient, type TopStatType } from '#lib/api/index.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, url }) => {

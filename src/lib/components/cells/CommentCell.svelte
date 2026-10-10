@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { ServerComment } from '$lib/api';
+	import type { ServerComment } from '#lib/api/index.js';
 	import Link from '../core/Link.svelte';
 	import PlayerIcon from '../render/PlayerIcon.svelte';
-	import DislikeIcon from '$lib/assets/icons/dislike.png';
-	import LikeIcon from '$lib/assets/icons/like.png';
-	import { formatRelativeTimestamp, formatTimestamp } from '$lib';
+	import DislikeIcon from '#lib/assets/icons/dislike.png';
+	import LikeIcon from '#lib/assets/icons/like.png';
+	import { formatRelativeTimestamp, formatTimestamp } from '#lib';
 
-	import ModBadge from '$lib/assets/badges/mod.png';
-	import AdminBadge from '$lib/assets/badges/admin.png';
+	import ModBadge from '#lib/assets/badges/mod.png';
+	import AdminBadge from '#lib/assets/badges/admin.png';
 
 	interface Props {
 		comment: ServerComment;

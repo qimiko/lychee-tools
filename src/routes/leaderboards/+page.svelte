@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Title from '$lib/components/core/Title.svelte';
+	import Title from '#lib/components/core/Title.svelte';
 	import type { PageData } from './$types.js';
-	import UserCell from '$lib/components/cells/UserCell.svelte';
-	import StarIcon from '$lib/assets/icons/star_big.png';
-	import DemonIcon from '$lib/assets/icons/demon.png';
-	import CoinIcon from '$lib/assets/icons/coin.png';
-	import PointsIcon from '$lib/assets/icons/points.png';
+	import UserCell from '#lib/components/cells/UserCell.svelte';
+	import StarIcon from '#lib/assets/icons/star_big.png';
+	import DemonIcon from '#lib/assets/icons/demon.png';
+	import CoinIcon from '#lib/assets/icons/coin.png';
+	import PointsIcon from '#lib/assets/icons/points.png';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 
@@ -28,11 +28,9 @@
 		params.set('time', time);
 		params.set('max_version', max_version);
 
-		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		await goto(`${resolve('/leaderboards')}?${params}`, {
-			noScroll: true,
-			keepFocus: true,
-			replaceState: true
+		await goto(`${resolve('leaderboards')}?${params}`, {
+			reset: false,
+			replace: true
 		});
 	}
 

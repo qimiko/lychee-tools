@@ -1,4 +1,4 @@
-import { GDPSClient } from '$lib/api';
+import { GDPSClient } from '#lib/api/index.js';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { resolve } from '$app/paths';
@@ -65,7 +65,7 @@ export const load: PageServerLoad = async ({ cookies, fetch, getClientAddress })
 	const token = cookies.get('token');
 	if (!token) {
 		const url_params = new URLSearchParams({ redirect: '/account/management' });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	const ip = getClientAddress();
@@ -77,7 +77,7 @@ export const load: PageServerLoad = async ({ cookies, fetch, getClientAddress })
 		extra_details = await client.self.getExtraDetails();
 	} catch {
 		const url_params = new URLSearchParams({ redirect: '/account/management' });
-		redirect(303, resolve('/account/login') + `?${url_params}`);
+		redirect(303, resolve('account/login') + `?${url_params}`);
 	}
 
 	return { extra_details };
