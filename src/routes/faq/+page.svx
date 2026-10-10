@@ -16,8 +16,9 @@ If you cannot find an answer to your question, please ask in the [1.9 GDPS Disco
 ## Additional Guides
 
 - [Ingame Rules](/faq/rules)
-- [Commands Help](/faq/commands)
+- [Rate Guidelines](/faq/rate-guidelines)
 - [Editor Guide](/faq/editor-guide)
+- [Commands Help](/faq/commands)
 - [Developer Guidelines (External API Use)](/faq/developer)
 
 # Contents
